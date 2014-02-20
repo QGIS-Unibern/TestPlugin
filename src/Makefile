@@ -51,7 +51,7 @@ compile: $(UI_FILES) $(RESOURCE_FILES)
 	pyrcc4 -o $*_rc.py  $<
 
 %.py : %.ui
-	pyuic4.bat -o $@ $<
+	pyuic4 -o $@ $<
 
 %.qm : %.ts
 	lrelease $<
