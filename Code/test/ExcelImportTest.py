@@ -12,8 +12,6 @@ class ExcelImportTest(unittest.TestCase):
 
     
     def testImport(self):
-        print ExcelImport
-        print 'bla'
         importer = ExcelImport.ExcelImport()
         result = importer.importFile(CONST_FILENAME)
         self.assertNotEqual(None, result, 'result is none')
