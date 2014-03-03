@@ -34,12 +34,12 @@
     <rect>
      <x>170</x>
      <y>90</y>
-     <width>121</width>
+     <width>171</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
-    <string>Hello World</string>
+    <string>Hello World12345</string>
    </property>
   </widget>
  </widget>

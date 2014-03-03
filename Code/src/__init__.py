@@ -23,5 +23,5 @@
 
 def classFactory(iface):
     # load TestPlugin class from file TestPlugin
-    from testplugin import TestPlugin
+    from src.testplugin import TestPlugin
     return TestPlugin(iface)
