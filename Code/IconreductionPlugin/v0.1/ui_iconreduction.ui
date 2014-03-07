@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>IconReduction</class>
+ <widget class="QDialog" name="IconReduction">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>323</width>
+    <height>270</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>IconReduction</string>
+  </property>
+  <widget class="QTreeWidget" name="treeWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>40</y>
+     <width>301</width>
+     <height>181</height>
+    </rect>
+   </property>
+   <column>
+    <property name="text">
+     <string/>
+    </property>
+   </column>
+   <item>
+    <property name="text">
+     <string>ToolBar 1</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Tool 1.1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tool 1.2</string>
+     </property>
+    </item>
+   </item>
+   <item>
+    <property name="text">
+     <string>ToolBar 2</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Tool 2.1</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tool 2.2</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Tool 2.3</string>
+     </property>
+    </item>
+   </item>
+   <item>
+    <property name="text">
+     <string>...</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="B_Apply">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>230</y>
+     <width>301</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Apply</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>10</y>
+     <width>251</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>CustomView 1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CustomView 2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>CustomView 3</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="B_Apply_2">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>+</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B_Apply_3">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>10</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
