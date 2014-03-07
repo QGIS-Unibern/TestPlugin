@@ -4,7 +4,7 @@ Created on Mar 3, 2014
 @author: orlando.signer@students.unibe.ch
 '''
 import unittest
-from src import ExcelImport
+import ExcelImport
 
 CONST_FILENAME = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen.xls"
 

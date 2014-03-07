@@ -19,7 +19,7 @@ class ExcelImport(object):
         workbook = xlrd.open_workbook(filename)
         sheet = workbook.sheet_by_index(0)
         for row in range(sheet.nrows):
-            print row
+            print sheet.row(row)
             
         workbook.release_resources()
         return None
