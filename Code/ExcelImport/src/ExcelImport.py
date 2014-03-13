@@ -21,13 +21,12 @@ class ExcelImport(object):
         guiElements = []
         for i in range(sheet.nrows):
             if i == 0: 
-                continue
+                continue # first line contains titles
             row = sheet.row(i)
             guiElements.append(GuiElement(row[1], row[4]))
-
-        
+            
         workbook.release_resources()
-        return None
+        return guiElements
     
 class GuiElement(object):
     def __init__(self, varId, name):
@@ -35,3 +34,12 @@ class GuiElement(object):
             raise ValueError("varId (%varId) or name (%name) is none!", varId, name)
         self.varId = varId
         self.name = name
+        
+    def __str__(self, *args, **kwargs):
+        return str(self.__dict__)
+        
+    def __cmp__(self, other):
+        return self.varId == other.varId and self.name == other.name
+    
+    def __hash__(self, *args, **kwargs):
+        return hash(self.varId, self.name)
