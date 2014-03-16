@@ -22,21 +22,26 @@ class ExcelImport(object):
         tree = ElementTree.parse(xmlPath)
         widgets = self.getXmlWidgets(tree)
         
-        print widgets
-        
         for widget in widgets:
-            id = int(widget.get('name')[-3:])
-            name = excelElements[id]
+            varId = int(widget.get('name')[-3:])
+            name = excelElements[varId]
             if name is None:
-                print 'id: {0} is none'.format(id)
+                self.setWidgetInvisible(widget)
             else:
-                textProp = widget.find("./property[@name='text']")
-                if textProp is not None:
-                    textProp.find("./string").text = name
+                self.setWidgetText(widget, name)
         
         tree.write(outputPath)
         
+    def setWidgetText(self, widget, text):
+        textProp = widget.find("./property[@name='text']")
+        if textProp is not None:
+            textProp.find("./string").text = text
         
+    
+    def setWidgetInvisible(self, widget):    
+        prop = ElementTree.SubElement(widget, 'property', name='visible')
+        boolProp = ElementTree.SubElement(prop, 'bool')
+        boolProp.text = 'false'
         
     def importExcel(self, filename):
         workbook = xlrd.open_workbook(filename)

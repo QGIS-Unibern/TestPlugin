@@ -1,0 +1,909 @@
+<ui version="4.0">
+ <class>QGisMasterPluginUI</class>
+ <widget class="QMainWindow" name="QGisMasterPluginUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>936</width>
+    <height>752</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>QGisMasterPluginUI</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>941</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab_1">
+     <attribute name="title">
+      <string>Tab 1</string>
+     </attribute>
+     <widget class="QLineEdit" name="lineEdit_214">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>450</y>
+        <width>139</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>630</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Export</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>200</y>
+        <width>71</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="label_unit_204">
+         <property name="text">
+          <string>Breite Fahrbereich</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_unit_205">
+         <property name="text">
+          <string>Breite Weg links</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_unit_206">
+         <property name="text">
+          <string>Breite Weg rechts</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QSplitter" name="splitter">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>281</width>
+        <height>372</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QLabel" name="label_100">
+          <property name="text">
+           <string>Nr.</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_103">
+          <property name="text">
+           <string>Datum JJJJMMTT</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_104">
+          <property name="text">
+           <string>Art der Arbeit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_107">
+          <property name="text">
+           <string>Vermerk</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_200">
+          <property name="text">
+           <string>Strasse</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_202">
+          <property name="text">
+           <string>Hausnummer kleinste</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_204">
+          <property name="text">
+           <string>Breite Fahrbereich</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_205">
+          <property name="text">
+           <string>Breite Weg links</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_206">
+          <property name="text">
+           <string>Breite Weg rechts</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_207">
+          <property name="text">
+           <string>Verkehrsfuehrung</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_208">
+          <property name="text">
+           <string>Material Deckschicht</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLineEdit" name="lineEdit_100" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_103" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_104" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_107" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_200" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_202" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_204" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_205" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_206" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_207" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_208" />
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>290</x>
+        <y>0</y>
+        <width>281</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="label_101">
+         <property name="text">
+          <string>von</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="lineEdit_101" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QFrame" name="frame">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>400</y>
+        <width>351</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_30">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>60</y>
+        <width>51</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_215">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>450</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_216">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>510</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Word-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_217">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>600</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Excel-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_217">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>630</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_215">
+      <property name="geometry">
+       <rect>
+        <x>640</x>
+        <y>420</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PDF-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="lineEdit_216">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>540</y>
+        <width>351</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>810</x>
+        <y>180</y>
+        <width>81</width>
+        <height>151</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_6">
+       <item>
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Unit 209</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Unit 210</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Unit 211</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Unit 212</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Unit 213</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="label_214">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>430</y>
+        <width>125</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fotos</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_215">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>410</y>
+        <width>125</width>
+        <height>57</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>PDF-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_216">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>500</y>
+        <width>125</width>
+        <height>57</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Word-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_217">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>590</y>
+        <width>125</width>
+        <height>57</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Excel-Dateien</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>590</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Refresh All</string>
+      </property>
+     </widget>
+     <widget class="QSplitter" name="splitter_3">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>30</y>
+        <width>226</width>
+        <height>302</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="layoutWidget">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_102">
+          <property name="text">
+           <string>Event</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_105">
+          <property name="text">
+           <string>Firma</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_106">
+          <property name="text">
+           <string>Person</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_201">
+          <property name="text">
+           <string>Abschnitt</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_203">
+          <property name="text">
+           <string>Hausnummer groesste</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_209">
+          <property name="text">
+           <string>Dicke Deckschicht</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_210">
+          <property name="text">
+           <string>Dicke Binderschicht</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_211">
+          <property name="text">
+           <string>Dicke Asphalt-Tragschicht</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_212">
+          <property name="text">
+           <string>Dicke Schotter-tragschicht</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_213">
+          <property name="text">
+           <string>Dicke Frostschutzschicht</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="layoutWidget_2">
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLineEdit" name="lineEdit_102" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_105" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_106" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_201" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_203" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_209" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_210" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_211" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_212" />
+        </item>
+        <item>
+         <widget class="QLineEdit" name="lineEdit_213" />
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+     <widget class="QPushButton" name="pushButton_42">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>390</y>
+        <width>71</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Play</string>
+      </property>
+     </widget>
+     <widget class="QFrame" name="frame_2">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>290</y>
+        <width>341</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>290</y>
+        <width>371</width>
+        <height>62</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_12">
+       <item>
+        <widget class="QLabel" name="label_315">
+         <property name="text">
+          <string>Label 30</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_315" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_6">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>470</y>
+        <width>371</width>
+        <height>62</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_13">
+       <item>
+        <widget class="QLabel" name="label_317">
+         <property name="text">
+          <string>Label 30</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_317" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_7">
+      <property name="geometry">
+       <rect>
+        <x>520</x>
+        <y>380</y>
+        <width>371</width>
+        <height>62</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_14">
+       <item>
+        <widget class="QLabel" name="label_316">
+         <property name="text">
+          <string>Label 30</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_316" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>290</y>
+        <width>117</width>
+        <height>62</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_11">
+       <item>
+        <widget class="QLabel" name="label_314">
+         <property name="text">
+          <string>Fotos</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="comboBox_314" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>500</y>
+        <width>114</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Refresh All</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>211</width>
+        <height>116</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_7">
+         <item>
+          <widget class="QLabel" name="label_300">
+           <property name="text">
+            <string>Schmutzwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_301">
+           <property name="text">
+            <string>Mischwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_302">
+           <property name="text">
+            <string>Regenwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_303">
+           <property name="text">
+            <string>Frischwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_309">
+           <property name="text">
+            <string>Leitung Strom</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_8">
+         <item>
+          <widget class="QCheckBox" name="checkBox_300">
+           <property name="text">
+            <string>Schmutzwasser</string>
+           </property>
+           <property name="tristate">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_301">
+           <property name="text">
+            <string>Mischwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_302">
+           <property name="text">
+            <string>Regenwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_303">
+           <property name="text">
+            <string>Frischwasser</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox_309" />
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>20</y>
+        <width>181</width>
+        <height>116</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_10">
+         <item>
+          <widget class="QLabel" name="label_304">
+           <property name="text">
+            <string>Leitung Erdgas</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_305">
+           <property name="text">
+            <string>Leitung Fernwaerme</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_306">
+           <property name="text">
+            <string>Leitung Fernseh</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_307">
+           <property name="text">
+            <string>Leitung Telefon</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_308">
+           <property name="text">
+            <string>Leitung Glasfaser</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_9">
+         <item>
+          <widget class="QCheckBox" name="checkBox_304">
+           <property name="text">
+            <string>Leitung Erdgas</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_305">
+           <property name="text">
+            <string>Leitung Fernwaerme</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_306">
+           <property name="text">
+            <string>Leitung Fernseh</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_307">
+           <property name="text">
+            <string>Leitung Telefon</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_308">
+           <property name="text">
+            <string>Leitung Glasfaser</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar" />
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>936</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault margin="11" spacing="6" />
+ <resources />
+ <connections />
+</ui>
