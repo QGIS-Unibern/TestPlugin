@@ -5,11 +5,14 @@
 
 import xlrd
 from xml.etree import ElementTree
+import re
 
 class ExcelImport(object):
     '''
     classdocs
     '''
+    
+    
     
     def __init__(self, ):
         '''
@@ -29,20 +32,23 @@ class ExcelImport(object):
         workbook.release_resources()
         return guiElements
     
-    def addChildrenWidgets(self, widget, children):
-        for child in widget.findall("./"):
-            if child.tag == 'widget':
-                print child.get('name')
-            self.addChildrenWidgets(child, children)
-    
     def importXML(self, filename):
         with open(filename, 'r') as content_file:
             content = content_file.read()
         tree = ElementTree.XML(content)
         widgets = []
-        for widget in  tree.findall("widget/widget"):
-            self.addChildrenWidgets(widget, widgets)
+        self.addChildrenWidgets(tree.find("widget"), widgets)
             
+    def addChildrenWidgets(self, widget, children):
+        for child in widget.findall("./"):
+            if child.tag == 'widget':
+                name = child.get('name')
+                regex = re.compile('.*_\d{3}$', flags=re.M)
+                if regex.match(name):
+                    children.append(widget)
+                    
+            self.addChildrenWidgets(child, children)
+
 class GuiElement(object):
     def __init__(self, varId, name):
         if varId is None or name is None:
