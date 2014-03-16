@@ -4,6 +4,7 @@
 '''
 
 import xlrd
+from xml.etree import ElementTree
 
 class ExcelImport(object):
     '''
@@ -15,7 +16,7 @@ class ExcelImport(object):
         Constructor
         '''
         
-    def importFile(self, filename):
+    def importExcel(self, filename):
         workbook = xlrd.open_workbook(filename)
         sheet = workbook.sheet_by_index(0)
         guiElements = []
@@ -28,6 +29,20 @@ class ExcelImport(object):
         workbook.release_resources()
         return guiElements
     
+    def addChildrenWidgets(self, widget, children):
+        for child in widget.findall("./"):
+            if child.tag == 'widget':
+                print child.get('name')
+            self.addChildrenWidgets(child, children)
+    
+    def importXML(self, filename):
+        with open(filename, 'r') as content_file:
+            content = content_file.read()
+        tree = ElementTree.XML(content)
+        widgets = []
+        for widget in  tree.findall("widget/widget"):
+            self.addChildrenWidgets(widget, widgets)
+            
 class GuiElement(object):
     def __init__(self, varId, name):
         if varId is None or name is None:
