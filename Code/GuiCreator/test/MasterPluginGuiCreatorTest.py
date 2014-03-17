@@ -9,16 +9,20 @@ from xml.etree import ElementTree
 
 
 CONST_EXCEl_FILENAME = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen.xls"
+CONST_EXCEl_FILENAME_SIMPLE = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen_simple.xls"
+
 CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
 
 class MasterPluginGuiCreatorTest(unittest.TestCase):
-
     
     def testCreatePlugin(self):
         importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.createPluginGui(CONST_EXCEl_FILENAME, CONST_XML_FILENAME, 'output.ui')
+        
+    def testCreatePluginSimple(self):
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
+        importer.createPluginGui(CONST_EXCEl_FILENAME_SIMPLE, CONST_XML_FILENAME, 'output_simple.ui')
 
-    
     def testImportExcel(self):
         importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         result = importer.importExcel(CONST_EXCEl_FILENAME)

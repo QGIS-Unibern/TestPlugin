@@ -24,11 +24,10 @@ class MasterPluginGuiCreator(object):
         
         for widget in widgets:
             varId = int(widget.get('name')[-3:])
-            name = excelElements[varId]
-            if name is None:
-                self.setWidgetInvisible(widget)
+            if excelElements.has_key(varId):
+                self.setWidgetText(widget, excelElements[varId])
             else:
-                self.setWidgetText(widget, name)
+                self.setWidgetInvisible(widget)
         
         tree.write(outputPath)
         
