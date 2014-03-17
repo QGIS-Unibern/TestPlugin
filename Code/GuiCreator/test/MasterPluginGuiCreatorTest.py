@@ -4,21 +4,23 @@ Created on Mar 3, 2014
 @author: orlando.signer@students.unibe.ch
 '''
 import unittest
-import ExcelImport
+import MasterPluginGuiCreator
 from xml.etree import ElementTree
+
 
 CONST_EXCEl_FILENAME = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen.xls"
 CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
 
-class ExcelImportTest(unittest.TestCase):
+class MasterPluginGuiCreatorTest(unittest.TestCase):
+
     
     def testCreatePlugin(self):
-        importer = ExcelImport.ExcelImport()
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.createPluginGui(CONST_EXCEl_FILENAME, CONST_XML_FILENAME, 'output.ui')
 
     
     def testImportExcel(self):
-        importer = ExcelImport.ExcelImport()
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         result = importer.importExcel(CONST_EXCEl_FILENAME)
         self.assertNotEqual(None, result, 'result is none')
         self.assertEquals(42, len(result))
@@ -26,7 +28,7 @@ class ExcelImportTest(unittest.TestCase):
         
     def testImportXml(self):
         tree = ElementTree.parse(CONST_XML_FILENAME)
-        importer = ExcelImport.ExcelImport()
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         result = importer.getXmlWidgets(tree)
         
         self.assertNotEqual(None, result)
@@ -34,7 +36,7 @@ class ExcelImportTest(unittest.TestCase):
         
     def testSetWidgetInvisible(self):
         widget = ElementTree.Element('widget')
-        importer = ExcelImport.ExcelImport()
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.setWidgetInvisible(widget)
         
         self.assertNotEqual(None, widget.find('./property'))
@@ -47,7 +49,7 @@ class ExcelImportTest(unittest.TestCase):
         string = ElementTree.SubElement(prop, 'string')
         string.text = '42'
         
-        importer = ExcelImport.ExcelImport()
+        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.setWidgetText(widget, '1337')
         
         self.assertEqual('1337', widget.find("./property[@name='text']/string").text)

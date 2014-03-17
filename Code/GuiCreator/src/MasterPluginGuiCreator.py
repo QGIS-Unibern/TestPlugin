@@ -7,17 +7,17 @@ import xlrd
 from xml.etree import ElementTree
 import re
 
-class ExcelImport(object):
+class MasterPluginGuiCreator(object):
     '''
-    classdocs
+    This class is responsible to create a GUI from a existing GUI-template and an Excel-File.
+    
+    You need to have the xlrd-excel plugin installed. To do so, go to libs/xlrd-0.9.2/ and run 'python setup.py install'
     '''
     
-    def __init__(self, ):
-        '''
-        Constructor
-        '''
-        
     def createPluginGui(self, excelPath, xmlPath, outputPath):
+        '''
+        This is the main method from this class. It parses the excel and XMl file and creates the XML-GUI to outputPath.
+        '''
         excelElements = self.importExcel(excelPath)
         tree = ElementTree.parse(xmlPath)
         widgets = self.getXmlWidgets(tree)
@@ -44,12 +44,16 @@ class ExcelImport(object):
         boolProp.text = 'false'
         
     def importExcel(self, filename):
+        '''
+        Imports the data from the excel file and returns it as a dictionary where the 
+        key is the variable-id and the value is the name for the widget.
+        '''
         workbook = xlrd.open_workbook(filename)
         sheet = workbook.sheet_by_index(0)
         guiElements = {}
         for i in range(sheet.nrows):
             if i == 0: 
-                continue # first line contains titles
+                continue  # first line contains titles
             row = sheet.row(i)
             varId = round(row[1].value)
             if guiElements.has_key(varId):
@@ -60,11 +64,19 @@ class ExcelImport(object):
         return guiElements
     
     def getXmlWidgets(self, tree):
+        '''
+        Gets all XML-Widgets that we need to manipulate.
+        These are the widgets defined in the xml file which name ends with '*_\d{3}'.
+        It returns a list with the XML Elements.
+        '''
         widgets = []
         self.addChildrenWidgets(tree.find("widget"), widgets)
         return widgets
             
     def addChildrenWidgets(self, widget, children):
+        '''
+        Recursivly adds all widgets which name ends with '*_\d{3}' to the children list.
+        '''
         for child in widget.findall("./"):
             if child.tag == 'widget':
                 name = child.get('name')
