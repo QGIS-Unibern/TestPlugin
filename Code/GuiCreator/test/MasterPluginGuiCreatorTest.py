@@ -16,10 +16,7 @@ CONST_EXCEl_FILENAME_SIMPLE = "resources/20140301_Bern_Excel-Input-Tabelle_Attri
 CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
 
 class MasterPluginGuiCreatorTest(unittest.TestCase):
-    
-    def testFail(self):
-        self.assertTrue(False)
-    
+
     def testCreatePlugin(self):
         importer.createPluginGui(CONST_EXCEl_FILENAME, CONST_XML_FILENAME, 'output.ui')
         
