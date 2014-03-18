@@ -4,7 +4,9 @@ Created on Mar 3, 2014
 @author: orlando.signer@students.unibe.ch
 '''
 import unittest
-import MasterPluginGuiCreator
+import sys, os
+sys.path.insert(0, os.path.dirname('../src/MasterPluginGuiCreator.py'))
+import MasterPluginGuiCreator as importer
 from xml.etree import ElementTree
 
 
@@ -16,15 +18,12 @@ CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
 class MasterPluginGuiCreatorTest(unittest.TestCase):
     
     def testCreatePlugin(self):
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.createPluginGui(CONST_EXCEl_FILENAME, CONST_XML_FILENAME, 'output.ui')
         
     def testCreatePluginSimple(self):
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.createPluginGui(CONST_EXCEl_FILENAME_SIMPLE, CONST_XML_FILENAME, 'output_simple.ui')
 
     def testImportExcel(self):
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         result = importer.importExcel(CONST_EXCEl_FILENAME)
         self.assertNotEqual(None, result, 'result is none')
         self.assertEquals(42, len(result))
@@ -32,7 +31,6 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         
     def testImportXml(self):
         tree = ElementTree.parse(CONST_XML_FILENAME)
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         result = importer.getXmlWidgets(tree)
         
         self.assertNotEqual(None, result)
@@ -40,7 +38,6 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         
     def testSetWidgetInvisible(self):
         widget = ElementTree.Element('widget')
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.setWidgetInvisible(widget)
         
         self.assertNotEqual(None, widget.find('./property'))
@@ -53,13 +50,6 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         string = ElementTree.SubElement(prop, 'string')
         string.text = '42'
         
-        importer = MasterPluginGuiCreator.MasterPluginGuiCreator()
         importer.setWidgetText(widget, '1337')
         
         self.assertEqual('1337', widget.find("./property[@name='text']/string").text)
-        
-    
-
-if __name__ == "__main__":
-    #import sys;sys.argv = ['', 'Test.testName']
-    unittest.main()
