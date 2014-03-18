@@ -5,5 +5,5 @@ python:
 install:
   - pip install xlrd
 
-script: ./run_tests.py
+script: ./run_tests.sh
 
