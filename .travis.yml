@@ -1,3 +1,9 @@
 language: python
 python:
   - "2.7"
+
+install:
+  - pip install xlrd
+
+script: ./run_tests.py
+
