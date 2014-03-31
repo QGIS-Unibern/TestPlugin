@@ -92,10 +92,10 @@ def get_amalgamation():
     print "Downloading amalgation."
 
     # find out what's current amalgamation ZIP file
-    download_page = urllib.urlopen("http://www.gaia-gis.it/spatialite/sources.html").read()
+    download_page = urllib.urlopen("http://www.gaia-gis.it/spatialite-2.4.0-4/sources.html").read()
     pattern = re.compile("(libspatialite-amalgamation.*?\.zip)")
     download_file = pattern.findall(download_page)[0]
-    amalgamation_url = "http://www.gaia-gis.it/spatialite/" + download_file
+    amalgamation_url = "http://www.gaia-gis.it/spatialite-2.4.0-4/" + download_file
     zip_dir = string.replace(download_file,'.zip','')
     # and download it
     urllib.urlretrieve(amalgamation_url, "tmp.zip")
