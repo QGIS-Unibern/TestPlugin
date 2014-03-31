@@ -27,7 +27,9 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         result = importer.importExcel(CONST_EXCEl_FILENAME)
         self.assertNotEqual(None, result, 'result is none')
         self.assertEquals(42, len(result))
-        self.assertEquals('Nr.', result[100])
+        self.assertEquals('Nr.', result[100].name)
+        self.assertTrue(result[100].isVariabel)
+        self.assertFalse(result[300].isVariabel)
         
     def testImportXml(self):
         tree = ElementTree.parse(CONST_XML_FILENAME)

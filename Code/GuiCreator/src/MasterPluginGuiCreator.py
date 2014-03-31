@@ -18,7 +18,7 @@ def createPluginGui(excelPath, xmlPath, outputPath):
     for widget in widgets:
         varId = int(widget.get('name')[-3:])
         if excelElements.has_key(varId):
-            setWidgetText(widget, excelElements[varId])
+            setWidgetText(widget, excelElements[varId].name)
         else:
             setWidgetInvisible(widget)
     
@@ -37,8 +37,7 @@ def setWidgetInvisible(widget):
     
 def importExcel(filename):
     '''
-    Imports the data from the excel file and returns it as a dictionary where the 
-    key is the variable-id and the value is the name for the widget.
+    Imports the data from the excel file and returns it as a dictionary of DataElements. The varId is the key of the DataElement.
     '''
     workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
@@ -50,7 +49,10 @@ def importExcel(filename):
         varId = round(row[1].value)
         if guiElements.has_key(varId):
             raise ValueError("multiple rows with id (%id)", varId)
-        guiElements[varId] = row[4].value
+        
+        isVariabel = row[3].value.count('variabel') > 0
+        name = row[4].value
+        guiElements[varId] = DataElement(varId, name, isVariabel)
         
     workbook.release_resources()
     return guiElements
@@ -77,3 +79,9 @@ def addChildrenWidgets(widget, children):
                 children.append(child)
                 
         addChildrenWidgets(child, children)
+
+class DataElement(object):
+    def __init__(self, varId, name, isVariabel):
+        self.varId = varId
+        self.name = name
+        self.isVariabel = isVariabel
