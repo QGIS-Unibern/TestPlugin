@@ -3,6 +3,7 @@
 	<name>SpatiaLiteCreator</name>
 	<comment></comment>
 	<projects>
+		<project>GuiCreator</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
