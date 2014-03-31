@@ -46,12 +46,10 @@ def createTables(statNames, varNames, projectName):
         sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
     sql += ")"
-    print sql
     cur.execute(sql)
     
     sql = "SELECT AddGeometryColumn('"+projectName+"_const', " 
     sql += "'geometry', 4326, 'POLYGON', 'XY')" 
-    print sql
     cur.execute(sql)
     
     sql = "CREATE TABLE '" + projectName + "_var' ("
@@ -61,5 +59,4 @@ def createTables(statNames, varNames, projectName):
         sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
     sql += ")"
-    print sql
     cur.execute(sql)

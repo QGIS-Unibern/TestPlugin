@@ -20,7 +20,7 @@ class SpatiaLiteCreatorTest(unittest.TestCase):
     
     def testSpatiaLiteCreatorSimple(self):
         creator.createSpatiaLiteDatabase(CONST_EXCEl_FILENAME_SIMPLE, 'test_simple')
-        '''
+''' 
     def testSpatiaLiteCreator(self):
         creator.createSpatiaLiteDatabase(CONST_EXCEl_FILENAME, 'test')
-        '''
+'''
