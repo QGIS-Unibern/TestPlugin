@@ -37,7 +37,7 @@ def setWidgetInvisible(widget):
     
 def importExcel(filename):
     '''
-    Imports the data from the excel file and returns it as a dictionary of DataElements. The varId is the key of the DataElement.
+    Imports the data from the excel file and returns it as a dictionary of ExcelRows. The varId is the key for the ExcelRow.
     '''
     workbook = xlrd.open_workbook(filename)
     sheet = workbook.sheet_by_index(0)
@@ -52,7 +52,7 @@ def importExcel(filename):
         
         isVariabel = row[3].value.count('variabel') > 0
         name = row[4].value
-        guiElements[varId] = DataElement(varId, name, isVariabel)
+        guiElements[varId] = ExcelRow(varId, name, isVariabel)
         
     workbook.release_resources()
     return guiElements
@@ -80,7 +80,7 @@ def addChildrenWidgets(widget, children):
                 
         addChildrenWidgets(child, children)
 
-class DataElement(object):
+class ExcelRow(object):
     def __init__(self, varId, name, isVariabel):
         self.varId = varId
         self.name = name
