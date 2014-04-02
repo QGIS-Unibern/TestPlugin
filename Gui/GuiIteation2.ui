@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -448,23 +448,23 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QLabel" name="label_211">
+        <widget class="QLabel" name="label_unit_204">
          <property name="text">
           <string>Unit 204</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_214">
+        <widget class="QLabel" name="label_unit_205">
          <property name="text">
-          <string>Unit 204</string>
+          <string>Unit 205</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_218">
+        <widget class="QLabel" name="label_unit_206">
          <property name="text">
-          <string>Unit 204</string>
+          <string>Unit 206</string>
          </property>
         </widget>
        </item>
@@ -481,35 +481,35 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_219">
+        <widget class="QLabel" name="label_unit_209">
          <property name="text">
           <string>Unit 209</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_220">
+        <widget class="QLabel" name="label_unit_210">
          <property name="text">
           <string>Unit 210</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_221">
+        <widget class="QLabel" name="label_unit_211">
          <property name="text">
           <string>Unit 211</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_222">
+        <widget class="QLabel" name="label_unit_212">
          <property name="text">
           <string>Unit 212</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_223">
+        <widget class="QLabel" name="label_unit_213">
          <property name="text">
           <string>Unit 213</string>
          </property>
