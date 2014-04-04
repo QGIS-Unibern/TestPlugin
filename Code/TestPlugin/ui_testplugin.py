@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ui_testplugin.ui'
 #
-# Created: Sat Feb 22 23:34:56 2014
+# Created: Fri Apr  4 14:20:37 2014
 #      by: PyQt4 UI code generator 4.10.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,5 +43,5 @@ class Ui_TestPlugin(object):
 
     def retranslateUi(self, TestPlugin):
         TestPlugin.setWindowTitle(_translate("TestPlugin", "TestPlugin", None))
-        self.label.setText(_translate("TestPlugin", "Hello World12345", None))
+        self.label.setText(_translate("TestPlugin", "Hello World1234567", None))
 

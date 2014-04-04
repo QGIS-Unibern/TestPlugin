@@ -28,6 +28,8 @@ import resources_rc
 # Import the code for the dialog
 from testplugindialog import TestPluginDialog
 import os.path
+from qgis.gui import QgsMapToolEmitPoint
+from point_tool import PointTool
 
 
 class TestPlugin:
@@ -37,6 +39,12 @@ class TestPlugin:
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
+        # reference to map canvas
+        self.canvas = self.iface.mapCanvas()
+        
+        self.isActive = False
+       
+        self.clickTool = QgsMapToolEmitPoint(self.canvas)
         # initialize locale
         locale = QSettings().value("locale/userLocale")[0:2]
         localePath = os.path.join(self.plugin_dir, 'i18n', 'testplugin_{}.qm'.format(locale))
@@ -70,12 +78,15 @@ class TestPlugin:
 
     # run method that performs all the real work
     def run(self):
-        # show the dialog
-        self.dlg.show()
-        # Run the dialog event loop
-        result = self.dlg.exec_()
-        # See if OK was pressed
-        if result == 1:
-            # do something useful (delete the line containing pass and
-            # substitute with your code)
-            pass
+        if (self.isActive):
+            print("deactivating map tool")
+            self.canvas.setMapTool(self.oldMapTool)
+        else:
+            print("activationg map tool")
+            self.oldMapTool = self.canvas.mapTool()
+            tool = PointTool(self.canvas, self.iface)
+            self.canvas.setMapTool(tool)
+        self.isActive = not self.isActive
+        
+    def handleMouseDown(self, point, button):
+        QMessageBox.information( self.iface.mainWindow(),"Info", "X,Y = %s,%s" % (str(point.x()),str(point.y())) )
