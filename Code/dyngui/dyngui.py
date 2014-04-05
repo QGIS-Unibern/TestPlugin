@@ -20,6 +20,7 @@
  ***************************************************************************/
 """
 # Import the PyQt and QGIS libraries
+from PyQt4 import QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from qgis.core import *
@@ -31,6 +32,8 @@ import os.path
 # import plugin-functions
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
 from src.MasterPluginGuiCreator import createPluginGui
+from info_point_tool import InfoPointTool
+
 import random
 
 
@@ -41,6 +44,11 @@ class dyngui:
         self.iface = iface
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
+        # reference to map canvas
+        self.canvas = self.iface.mapCanvas()
+        
+        self.isActive = False
+        
         # initialize locale
         locale = QSettings().value("locale/userLocale")[0:2]
         localePath = os.path.join(self.plugin_dir, 'i18n', 'dyngui_{}.qm'.format(locale))
@@ -64,6 +72,7 @@ class dyngui:
         self.info = QAction(
             QIcon(":/plugins/dyngui/res/icons/info.png"),
             u"Identify Dynamic Gui", self.iface.mainWindow())
+        self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
         # Cereate action to load a new Guiform
         self.add = QAction(
             QIcon(":/plugins/dyngui/res/icons/add.png"),
@@ -103,3 +112,14 @@ class dyngui:
         offset = random.randrange(10000)
         createSpatiaLiteDatabase(fName, "projectName%d" % offset)
         createPluginGui(fName, "%s/res/GuiIteation2.ui"%self.plugin_dir, "%(dir)s/plugin/plugin%(offset)d.ui" % {"dir": self.plugin_dir, "offset": offset})
+        
+    def infoGui(self):
+        if (self.isActive):
+            self.canvas.setMapTool(self.oldMapTool)
+        else:
+            self.oldMapTool = self.canvas.mapTool()
+            tool = InfoPointTool(self.canvas, self.iface)
+            self.canvas.setMapTool(tool)
+        self.isActive = not self.isActive
+        self.info.setChecked(self.isActive)
+        print("Tool is %s" %self.isActive)
