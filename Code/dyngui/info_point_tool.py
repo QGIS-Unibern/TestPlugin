@@ -1,12 +1,16 @@
 from PyQt4.Qt import QMessageBox
 from qgis.gui import QgsMapTool
 from qgis.core import QgsRectangle
+from PyQt4 import QtCore, QtGui, uic
+from dynamicGuiLoader import DynamicGuiLoader
+
 
 class InfoPointTool(QgsMapTool):   
-    def __init__(self, canvas, iface):
+    def __init__(self, canvas, iface, guiName):
         QgsMapTool.__init__(self, canvas)
         self.canvas = canvas    
         self.iface = iface
+        self.guiName = guiName
 
     def canvasPressEvent(self, event):
         x = event.pos().x()
@@ -14,11 +18,8 @@ class InfoPointTool(QgsMapTool):
 
         point = self.canvas.getCoordinateTransform().toMapCoordinates(x, y)
         layer = self.iface.activeLayer()
-        QMessageBox.information( self.iface.mainWindow(), "Info", "Point clicked")
+        DynamicGuiLoader(self.guiName)
         
-    def openGui(self):
-        pass
-
     def canvasMoveEvent(self, event):
         pass
        
