@@ -30,6 +30,8 @@ from dynguidialog import dynguiDialog
 import os.path
 # import plugin-functions
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
+from src.MasterPluginGuiCreator import createPluginGui
+import random
 
 
 class dyngui:
@@ -97,4 +99,7 @@ class dyngui:
     # this method is called by the add- entry in the menubar
     def linkGui(self):
         fName = QFileDialog.getOpenFileName(None ,"Open a Guimask")
-        createSpatiaLiteDatabase(fName, "projectName")
+        # TODO random offset damit guis nicht immer gleich heissen, abfrage nach GUI-Namen machen
+        offset = random.randrange(10000)
+        createSpatiaLiteDatabase(fName, "projectName%d" % offset)
+        createPluginGui(fName, "%s/res/GuiIteation2.ui"%self.plugin_dir, "%(dir)s/plugin/plugin%(offset)d.ui" % {"dir": self.plugin_dir, "offset": offset})
