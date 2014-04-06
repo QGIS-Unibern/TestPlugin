@@ -111,7 +111,7 @@ class dyngui:
         if fName and fName.strip():
             # TODO random offset damit guis nicht immer gleich heissen, abfrage nach GUI-Namen machen
             offset = random.randrange(10000)
-            createSpatiaLiteDatabase(fName, "projectName%d" % offset)
+            createSpatiaLiteDatabase(fName, "projectName%d" % offset, fName)
             self.guiName = "%(dir)s/plugin/plugin%(offset)d.ui" % {"dir": self.plugin_dir, "offset": offset}
             createPluginGui(fName, "%s/res/GuiIteation2.ui"%self.plugin_dir, self.guiName)
         
