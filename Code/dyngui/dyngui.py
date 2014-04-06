@@ -108,7 +108,7 @@ class dyngui:
     # this method is called by the add- entry in the menubar
     def linkGui(self):
         fName = QFileDialog.getOpenFileName(None ,"Open a Guimask")
-        if fName and not fName.strip():
+        if fName and fName.strip():
             # TODO random offset damit guis nicht immer gleich heissen, abfrage nach GUI-Namen machen
             offset = random.randrange(10000)
             createSpatiaLiteDatabase(fName, "projectName%d" % offset)

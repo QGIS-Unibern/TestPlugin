@@ -5,7 +5,7 @@ from PyQt4 import QtCore, QtGui, uic
 from dynamicGuiLoader import DynamicGuiLoader
 
 
-class InfoPointTool(QgsMapTool):   
+class InfoPointTool(QgsMapToolIdentify):   
     def __init__(self, canvas, iface, guiName):
         QgsMapTool.__init__(self, canvas)
         self.canvas = canvas    
