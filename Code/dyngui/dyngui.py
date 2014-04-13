@@ -33,6 +33,8 @@ import os.path
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
 from src.MasterPluginGuiCreator import createPluginGui
 from info_point_tool import InfoPointTool
+from qgis.gui import QgsMapToolIdentify
+from qgis.gui import QgsMapTool
 
 import random
 
@@ -123,5 +125,3 @@ class dyngui:
             tool = InfoPointTool(self.canvas, self.iface, self.guiName)
             self.canvas.setMapTool(tool)
         self.isActive = not self.isActive
-        self.info.setChecked(self.isActive)
-        print("Tool is %s" %self.isActive)
