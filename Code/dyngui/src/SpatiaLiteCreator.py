@@ -9,7 +9,7 @@ sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6
 import MasterPluginGuiCreator as guiCreator
 from pyspatialite import dbapi2 as db
 
-def createSpatiaLiteDatabase(excelPath, projectName):
+def createSpatiaLiteDatabase(excelPath, projectName, outputPath):
     '''
     Main Method
     Creates a Spatialite-database with given attribute Names as Excel sheet
@@ -17,7 +17,7 @@ def createSpatiaLiteDatabase(excelPath, projectName):
     '''
     excelElements = guiCreator.importExcel(excelPath)
     attributeNames = extractAttributeNames(excelElements)
-    createTables(attributeNames[0], attributeNames[1], projectName)
+    createTables(attributeNames[0], attributeNames[1], projectName, outputPath)
 
 def extractAttributeNames(excelElements):
     '''
@@ -33,18 +33,18 @@ def extractAttributeNames(excelElements):
     return [statNames, varNames]
         
     
-def createTables(statNames, varNames, projectName):
+def createTables(statNames, varNames, projectName, outputPath):
     '''
     Creates a new Spatialite-database with
     - one geometry-layer (polygon) which also stores constant data
     - one geometry-less layer which stores variable data
     '''
-    conn = db.connect(projectName+'.sqlite')
+    conn = db.connect(outputPath+'/'+projectName+'.sqlite')
     cur = conn.cursor()
     
     sql = "SELECT InitSpatialMetadata()"
     cur.execute(sql)
-    sql = "CREATE TABLE '" + projectName + "_const' ("
+    sql = "CREATE TABLE '" + projectName + "' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
     for attribute in statNames:
         sql += "'" + attribute[0] + "' " + attribute[1] + ","
@@ -58,7 +58,7 @@ def createTables(statNames, varNames, projectName):
     
     sql = "CREATE TABLE '" + projectName + "_var' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    sql += "parent_id INTEGER REFERENCES '" + projectName + "_const',"
+    sql += "parent_id INTEGER REFERENCES '" + projectName + "',"
     for attribute in varNames:
         sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
