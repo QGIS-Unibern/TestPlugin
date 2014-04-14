@@ -33,7 +33,7 @@ import os.path
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
 from src.MasterPluginGuiCreator import createPluginGui
 from info_point_tool import InfoPointTool
-
+# import random-method for offset
 import random
 
 
@@ -72,24 +72,16 @@ class dyngui:
         self.info = QAction(
             QIcon(":/plugins/dyngui/res/icons/info.png"),
             u"Identify Dynamic Gui", self.iface.mainWindow())
-        self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
-        # Cereate action to load a new Guiform
-        self.add = QAction(
-            QIcon(":/plugins/dyngui/res/icons/add.png"),
-            u"Setup Dynamic Gui", self.iface.mainWindow())
         # connect the actions to methods
+        self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
         self.action.triggered.connect(self.run)
-        self.add.triggered.connect(self.linkGui)
 
         # Add toolbar button, menu item and info-tool
         self.iface.addToolBarIcon(self.action)
-        self.iface.addPluginToMenu(u"&Dynamic Gui", self.add)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").addAction(self.info)
-        # self.info.setDisabled(True)
 
     def unload(self):
         # Remove the plugin menu item and icons
-        self.iface.removePluginMenu(u"&Dynamic Gui", self.add)
         self.iface.removeToolBarIcon(self.action)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").removeAction(self.info)
 
