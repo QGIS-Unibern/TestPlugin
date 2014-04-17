@@ -52,7 +52,7 @@ def createTables(statNames, varNames, projectName, outputPath):
     sql += ")"
     cur.execute(sql)
     
-    sql = "SELECT AddGeometryColumn('"+projectName+"_const', " 
+    sql = "SELECT AddGeometryColumn('"+projectName+"', " 
     sql += "'geometry', 4326, 'POLYGON', 'XY')" 
     cur.execute(sql)
     
