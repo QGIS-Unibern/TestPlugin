@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/plugins/dyngui" >
         <file>icon.png</file>
-        <file>res/icons/add.png</file>
         <file>res/icons/info.png</file>
     </qresource>
 </RCC>
