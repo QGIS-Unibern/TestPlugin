@@ -7,10 +7,9 @@ from dynamicGuiLoader import DynamicGuiLoader
 
 
 class InfoPointTool(QgsMapTool):   
-    def __init__(self, canvas, guiName):
+    def __init__(self, canvas):
         QgsMapTool.__init__(self, canvas)
         self.canvas = canvas    
-        self.guiName = guiName
         
     def canvasReleaseEvent(self, event):
         x = event.pos().x()
@@ -20,6 +19,8 @@ class InfoPointTool(QgsMapTool):
         # canvasRealeaseEvent isn't called.
         tool = QgsMapToolIdentify(self.canvas)
         results = tool.identify(x,y, tool. TopDownStopAtFirst, tool.AllLayers)
+        if not results:
+            return
         result = results[0]
         print(result)
         print(result.mFeature.attributes())
@@ -31,6 +32,7 @@ class InfoPointTool(QgsMapTool):
             print(f.name())
         print("________________")
         
-
-        DynamicGuiLoader(self.guiName)
+        # hard coded plugin name, replace it!
+        guiName = "/home/orlandopse/newProject.ui"
+        DynamicGuiLoader(guiName)
     

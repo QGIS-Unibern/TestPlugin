@@ -97,23 +97,12 @@ class dyngui:
             # do something useful (delete the line containing pass and
             # substitute with your code)
             pass
-
-    # this method is called by the add- entry in the menubar
-    def linkGui(self):
-        fName = QFileDialog.getOpenFileName(None ,"Open a Guimask")
-        if fName and fName.strip():
-            # TODO random offset damit guis nicht immer gleich heissen, abfrage nach GUI-Namen machen
-            offset = random.randrange(10000)
-            outputDir = "%s/plugin/" % self.plugin_dir
-            createSpatiaLiteDatabase(fName, "projectName%d" % offset, outputDir)
-            self.guiName = "%(dir)sgui%(offset)d.ui" % {"dir": outputDir, "offset": offset}
-            createPluginGui(fName, "%s/res/GuiIteation2.ui"%self.plugin_dir, self.guiName)
         
     def infoGui(self):
         if (self.isActive):
             self.canvas.setMapTool(self.oldMapTool)
         else:
             self.oldMapTool = self.canvas.mapTool()
-            tool = InfoPointTool(self.canvas, self.guiName)
+            tool = InfoPointTool(self.canvas)
             self.canvas.setMapTool(tool)
         self.isActive = not self.isActive

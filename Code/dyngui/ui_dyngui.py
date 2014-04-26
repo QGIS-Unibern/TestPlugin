@@ -19,8 +19,6 @@ import os.path
 # import plugin-functions
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
 from src.MasterPluginGuiCreator import createPluginGui
-# import ramdon
-import random
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -72,13 +70,13 @@ class Ui_dyngui(object):
         self.connect(self.b_database, QtCore.SIGNAL('clicked()'), self.database)
 
     def apply(self):
-        excel = self.l_excel.text
-        database = self.l_database.text
-        name = self.tl_name.text
-        offset = random.randrange(10000)
+        excel = self.l_excel.text()
+        database = self.l_database.text()
+        name = self.tl_name.text()
+        plugin_dir = os.path.dirname(__file__)
         createSpatiaLiteDatabase(excel, name, database)
-        self.guiName = "%(dir)s/plugin/plugin%(offset)d.ui" % {"dir": self.plugin_dir, "offset": offset}
-        createPluginGui(excel, "%s/res/GuiIteation2.ui"%self.plugin_dir, self.guiName)
+        guiName = "%(dir)s/plugin/%(name)s.ui" % {"dir": plugin_dir, "name": name}
+        createPluginGui(excel, "%s/res/GuiIteation2.ui"%plugin_dir, guiName)
         self.close()
 
     def excel(self):

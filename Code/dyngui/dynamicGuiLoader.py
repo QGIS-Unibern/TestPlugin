@@ -31,12 +31,17 @@ class DynamicGuiLoader(QDialog):
     def __init__(self, guiName):
         super(QDialog, self).__init__()
         self.ui = uic.loadUi(guiName, self)
-        # Connect up the buttons.
-        self.connect(self.ui.okButton, QtCore.SIGNAL("clicked()"), self, QtCore.SLOT("accept()"))
-        self.connect(self.ui.cancelButton, QtCore.SIGNAL("clicked()"), self, QtCore.SLOT("reject()"))
+        # Connect the buttons.
+        self.connect(self.ui.buttonCancel_1, QtCore.SIGNAL("clicked()"), self.cancel)
+        self.connect(self.ui.buttonCancel_2, QtCore.SIGNAL("clicked()"), self.cancel)
+        self.connect(self.ui.buttonSave_1, QtCore.SIGNAL("clicked()"), self.save)
+        self.connect(self.ui.buttonSave_2, QtCore.SIGNAL("clicked()"), self.save)
+
 
         self.exec_()
         
-    def accept(self):
-        print("accept")
-        super.accept()
+    def save(self):
+        print("save")
+        
+    def cancel(self):
+        print("cancel")
