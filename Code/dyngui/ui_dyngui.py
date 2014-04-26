@@ -83,7 +83,6 @@ class Ui_dyngui(object):
     def addLayer(self, projectName, projectPath):
         uri = QgsDataSourceURI()
         file = "%s/%s.sqlite" % (projectPath, projectName)
-        print(file)
         uri.setDatabase(file)
         schema = ''
         table = projectName

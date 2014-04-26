@@ -24,21 +24,26 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QDialog
 from ui_dyngui import Ui_dyngui
 from PyQt4 import QtGui, uic
-# create the dialog for zoom to point
+import os.path
 
 
 class DynamicGuiLoader(QDialog):
-    def __init__(self, guiName):
+    def __init__(self, guiName, id):
         super(QDialog, self).__init__()
-        self.ui = uic.loadUi(guiName, self)
+        gui = "%s/plugin/%s.ui" % (os.path.dirname(__file__), guiName)
+        self.id = id
+        self.ui = uic.loadUi(gui, self)
         # Connect the buttons.
         self.connect(self.ui.buttonCancel_1, QtCore.SIGNAL("clicked()"), self.cancel)
         self.connect(self.ui.buttonCancel_2, QtCore.SIGNAL("clicked()"), self.cancel)
         self.connect(self.ui.buttonSave_1, QtCore.SIGNAL("clicked()"), self.save)
         self.connect(self.ui.buttonSave_2, QtCore.SIGNAL("clicked()"), self.save)
 
-
         self.exec_()
+        self.loadData()
+        
+    def loadData(self):
+        print(self.id)
         
     def save(self):
         print("save")
