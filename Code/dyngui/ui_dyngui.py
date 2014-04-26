@@ -77,7 +77,22 @@ class Ui_dyngui(object):
         createSpatiaLiteDatabase(excel, name, database)
         guiName = "%(dir)s/plugin/%(name)s.ui" % {"dir": plugin_dir, "name": name}
         createPluginGui(excel, "%s/res/GuiIteation2.ui"%plugin_dir, guiName)
+        self.addLayer(name, database)
         self.close()
+        
+    def addLayer(self, projectName, projectPath):
+        uri = QgsDataSourceURI()
+        file = "%s/%s.sqlite" % (projectPath, projectName)
+        print(file)
+        uri.setDatabase(file)
+        schema = ''
+        table = projectName
+        geom_column = 'Geometry'
+        uri.setDataSource(schema, table, geom_column)
+
+        display_name = projectName
+        layer = QgsVectorLayer(uri.uri(), display_name, 'spatialite')
+        QgsMapLayerRegistry.instance().addMapLayer(layer)
 
     def excel(self):
         read = QFileDialog.getOpenFileName(None ,"Open a Guimask")
