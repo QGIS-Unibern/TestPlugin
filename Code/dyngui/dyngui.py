@@ -113,8 +113,9 @@ class dyngui:
         if fName and fName.strip():
             # TODO random offset damit guis nicht immer gleich heissen, abfrage nach GUI-Namen machen
             offset = random.randrange(10000)
-            createSpatiaLiteDatabase(fName, "projectName%d" % offset, fName)
-            self.guiName = "%(dir)s/plugin/plugin%(offset)d.ui" % {"dir": self.plugin_dir, "offset": offset}
+            outputDir = "%s/plugin/" % self.plugin_dir
+            createSpatiaLiteDatabase(fName, "projectName%d" % offset, outputDir)
+            self.guiName = "%(dir)sgui%(offset)d.ui" % {"dir": outputDir, "offset": offset}
             createPluginGui(fName, "%s/res/GuiIteation2.ui"%self.plugin_dir, self.guiName)
         
     def infoGui(self):
@@ -122,6 +123,6 @@ class dyngui:
             self.canvas.setMapTool(self.oldMapTool)
         else:
             self.oldMapTool = self.canvas.mapTool()
-            tool = InfoPointTool(self.canvas, self.iface, self.guiName)
+            tool = InfoPointTool(self.canvas, self.guiName)
             self.canvas.setMapTool(tool)
         self.isActive = not self.isActive

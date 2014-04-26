@@ -30,5 +30,13 @@ from PyQt4 import QtGui, uic
 class DynamicGuiLoader(QDialog):
     def __init__(self, guiName):
         super(QDialog, self).__init__()
-        uic.loadUi(guiName, self)
+        self.ui = uic.loadUi(guiName, self)
+        # Connect up the buttons.
+        self.connect(self.ui.okButton, QtCore.SIGNAL("clicked()"), self, QtCore.SLOT("accept()"))
+        self.connect(self.ui.cancelButton, QtCore.SIGNAL("clicked()"), self, QtCore.SLOT("reject()"))
+
         self.exec_()
+        
+    def accept(self):
+        print("accept")
+        super.accept()

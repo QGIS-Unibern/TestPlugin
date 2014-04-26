@@ -7,30 +7,30 @@ from dynamicGuiLoader import DynamicGuiLoader
 
 
 class InfoPointTool(QgsMapTool):   
-    def __init__(self, canvas, iface, guiName):
+    def __init__(self, canvas, guiName):
         QgsMapTool.__init__(self, canvas)
         self.canvas = canvas    
-        self.iface = iface
         self.guiName = guiName
         
-    def identify(self, *args, **kwargs):
-        print("identifiying")
-        return QgsMapToolIdentify.identify(self, *args, **kwargs)
-
-    def canvasPressEvent(self, event):
-        print("press")
-        pass
-        
-    def canvasMoveEvent(self, event):
-        pass
-
     def canvasReleaseEvent(self, event):
-        print("released")
         x = event.pos().x()
         y = event.pos().y()
         
+        # Ugly hack to identify the clicked element. For some reasons if InfoPointTool inherits from QgsMapToolIdentify,
+        # canvasRealeaseEvent isn't called.
         tool = QgsMapToolIdentify(self.canvas)
-        results = tool.identify(x,y, tool.TopDownStopAtFirst, tool.VectorLayer)
+        results = tool.identify(x,y, tool. TopDownStopAtFirst, tool.AllLayers)
+        result = results[0]
+        print(result)
+        print(result.mFeature.attributes())
+        print(result.mFeature.fields())
+        print(result.mDerivedAttributes)
+        print("Fields")
+        for f in result.mFeature.fields().toList():
+            print(f)
+            print(f.name())
+        print("________________")
+        
 
         DynamicGuiLoader(self.guiName)
     
