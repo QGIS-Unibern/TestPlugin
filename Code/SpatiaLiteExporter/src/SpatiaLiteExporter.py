@@ -5,15 +5,12 @@
 import sys, os
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/reportlab-3.0/src')))
-sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1\build\lib.win32-2.7\pyspatialite')))
 
 from pyspatialite import dbapi2 as db
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import cm 
-from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-from reportlab.lib.enums import TA_JUSTIFY
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 
 ''' 
 Exports all data of geometric objects
@@ -43,21 +40,16 @@ Sollte den text richtig formatieren, so dass reportlab ihn nur noch printen kann
 FUNKTIONIERT NOCH NICHT
 '''
 def formatData(parentData, childData):
-    text = []
-    data = []
-    styles=getSampleStyleSheet()
-    styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
-    for index, item in  enumerate(parentData[0]):
-        text.append(item)
-        text.append(parentData[0][index])
-        
-    data.append(Paragraph(text, styles["Justify"]))
+    elements = []
+    data = [['abcdefaasdf', 'gagagagagaga'],
+            ['attribut2', 'daten2'],
+            ['attribut3asdfasdfasfsa', 'daten3sehrlangblbablablbalbalbabla']]
+    text = Table(data)
+    elements.append(text)
     return text
         
 def printPdf(outputPath, data):
-    doc = SimpleDocTemplate(outputPath,pagesize=letter,
-                        rightMargin=72,leftMargin=72,
-                        topMargin=72,bottomMargin=18)
+    doc = SimpleDocTemplate(outputPath)
     doc.build(data)
     
     
