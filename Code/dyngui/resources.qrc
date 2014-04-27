@@ -2,5 +2,6 @@
     <qresource prefix="/plugins/dyngui" >
         <file>icon.png</file>
         <file>res/icons/info.png</file>
+        <file>res/icons/export.png</file>
     </qresource>
 </RCC>

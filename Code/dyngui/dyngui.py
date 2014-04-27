@@ -32,6 +32,7 @@ import os.path
 # import plugin-functions
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
 from src.MasterPluginGuiCreator import createPluginGui
+from src.SpatiaLiteExporter import exportPDF
 from info_point_tool import InfoPointTool
 
 # import random-method for offset
@@ -69,21 +70,30 @@ class dyngui:
         self.action = QAction(
             QIcon(":/plugins/dyngui/icon.png"),
             u"Dynamic Gui", self.iface.mainWindow())
-        # Cereate action implementing the info-tool
+        # Create action implementing the info-tool
         self.info = QAction(
             QIcon(":/plugins/dyngui/res/icons/info.png"),
             u"Identify Dynamic Gui", self.iface.mainWindow())
+        
+        # Create action to open export dialog
+        self.export = QAction(
+            QIcon(":/plugins/dyngui/res/icons/info.png"),
+            u"Export Data", self.iface.mainWindow())
+        
         # connect the actions to methods
         self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
         self.action.triggered.connect(self.run)
+        self.export.triggered.connect(self.export)
 
         # Add toolbar button, menu item and info-tool
         self.iface.addToolBarIcon(self.action)
+        self.iface.addToolBarIcon(self.export)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").addAction(self.info)
 
     def unload(self):
         # Remove the plugin menu item and icons
         self.iface.removeToolBarIcon(self.action)
+        self.iface.removeToolBarIcon(self.export)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").removeAction(self.info)
 
     # run method will open plugin-window
@@ -97,6 +107,15 @@ class dyngui:
             # do something useful (delete the line containing pass and
             # substitute with your code)
             pass
+        
+    def export(self):
+        layer = iface.activeLayer()
+        features = layer.getFeatures()
+        idx = layer.fieldNameIndex('id')
+        source = layer.source()
+        for f in features:
+            attrs = f.attributes()
+            id = attrs[idx]
         
     def infoGui(self):
         if (self.isActive):
