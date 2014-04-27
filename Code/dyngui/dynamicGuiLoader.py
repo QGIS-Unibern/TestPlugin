@@ -35,6 +35,9 @@ from pyspatialite import dbapi2 as db
 
 class DynamicGuiLoader(QDialog):
 
+    '''
+    Initializes the GUI and sets the data from the database.
+    '''
     def __init__(self, guiName, id):
         super(QDialog, self).__init__()
         self.id = id
@@ -73,14 +76,23 @@ class DynamicGuiLoader(QDialog):
         # TODO hardcoded path
         return db.connect("/home/orlandopse/newProject.sqlite")
     
+    '''
+    Loads the constant data from the database and sets it into the 'Konstante Daten'-Tab 
+    '''
     def loadConstData(self, cursor):
         self.constData = self.getConstData(cursor)
         self.setDataToGui(self.constData)
-        
+    '''
+    Loads the variable data from the database and sets it into the 'Variable Daten'-Tab.
+    It loads the var data with the id set in self.varId 
+    '''
     def loadVarData(self, cursor):
         self.varData = self.getVarData(cursor)
         self.setDataToGui(self.varData)
 
+    '''
+    Action from the Speichern-Button. Stores the value from the GUI to the database.
+    '''
     def save(self):
         self.setDataToMap(self.constData)
         self.setDataToMap(self.varData)
@@ -113,7 +125,9 @@ class DynamicGuiLoader(QDialog):
         finally:
             if conn:
                 conn.close()
-                
+    '''
+    Action from the Vorwärts-Button. Sets the next variable data.
+    '''
     def nextVarData(self):
         print(self.varIds)
         print(self.varId)
@@ -132,6 +146,9 @@ class DynamicGuiLoader(QDialog):
             if conn:
                 conn.close()
     
+    '''
+    Action from the Zurück-Button. Sets the previous variable data.
+    '''
     def previousVarData(self):
         index = self.varIds.index(self.varId)
         if index > 0:
@@ -148,6 +165,9 @@ class DynamicGuiLoader(QDialog):
             if conn:
                 conn.close()
     
+    '''
+    Action from the 'Zeitpunkt hinzufügen'-Button. Adds a new, empty VarData entry.
+    '''
     def newVarData(self):
         try:
             conn = self.getDbConnection()
@@ -188,6 +208,10 @@ class DynamicGuiLoader(QDialog):
     def cancel(self):
         self.close()
         
+    '''
+    Gets the constant data from the database.
+    They are stored in a map with the column-name as key and the actual value as value
+    '''
     def getConstData(self, cursor):
         sql = "SELECT * FROM %s WHERE id = ?;" % self.guiName
         cursor.execute(sql, (self.id))
@@ -202,6 +226,10 @@ class DynamicGuiLoader(QDialog):
         data = [i[0] for i in data]
         return data
 
+    '''
+    Gets the variable data from the database.
+    They are stored in a map with the column-name as key and the actual value as value
+    '''
     def getVarData(self, cursor):
         sql = "SELECT * FROM %s WHERE id = ? AND parent_id = ?;" % (self.guiName + "_var")
         cursor.execute(sql, (self.varId, self.id))
@@ -226,6 +254,10 @@ class DynamicGuiLoader(QDialog):
             map[n] =  data[name[0]]
         return map
     
+    '''
+    Create a new Var Data entry in the database.
+    Only the id and parent_id are set.
+    '''
     def createNewVarData(self, cursor):
         sql = "INSERT INTO %s (parent_id) " % (self.guiName + '_var')
         sql += "VALUES (%s);" % self.id
