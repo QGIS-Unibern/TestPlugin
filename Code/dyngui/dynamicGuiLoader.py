@@ -52,19 +52,62 @@ class DynamicGuiLoader(QDialog):
         
     def loadData(self):
         # TODO hardcoded path
-        conn = db.connect("/home/orlandopse/newProject.sqlite")
-        cur = conn.cursor()
-        constData = self.getConstData(cur)
-        varData = self.getVarData(cur)
+        try:
+            conn = db.connect("/home/orlandopse/newProject.sqlite")
+            cur = conn.cursor()
+            self.constData = self.getConstData(cur)
+            self.varData = self.getVarData(cur)
+        finally:
+            if conn:
+                conn.close()
         
-        print(dir(self.ui))
+        self.widgets = lineEdits = self.ui.findChildren((QtGui.QLineEdit, QtGui.QCheckBox, QtGui.QComboBox))
+        for key, value in self.constData.iteritems():
+            for widget in self.widgets:
+                widgetName = str(widget.objectName())
+                if widgetName.endswith(key):
+                    if type(widget) is QtGui.QLineEdit:
+                        widget.setText(value)
+                    elif type(widget) is QtGui.QCheckBox:
+                        widget.setChecked(value == 'True')
+                    elif type(widget) is QtGui.QComboBox:
+                        pass
+                    break
+        print(self.constData)
         
-        print(self.id)
-        print(constData)
-        print(varData)
         
     def save(self):
-        print("save")
+        for key in self.constData:
+            for widget in self.widgets:
+                widgetName = str(widget.objectName())
+                if widgetName.endswith(key):
+                    if type(widget) is QtGui.QLineEdit:
+                        self.constData[key] = str(widget.text())
+                    elif type(widget) is QtGui.QCheckBox:
+                        self.constData[key] = widget.isChecked()
+                    elif type(widget) is QtGui.QComboBox:
+                        pass
+                    break
+                
+        # TODO hardcoded path
+        try:
+            conn = db.connect("/home/orlandopse/newProject.sqlite")
+            cur = conn.cursor()
+            sql = "UPDATE %s SET " % self.guiName
+            for key, value in self.constData.iteritems():
+                if key == 'geometry' or key == 'id':
+                    continue
+                sql += "'%s' = '%s'," % (key.replace('_', ' '), value)
+            sql = sql[:-1]  # remove last comma
+            sql += " WHERE id = %s;" % self.id
+            
+            print(sql)
+    
+            cur.execute(sql)
+            conn.commit()
+        finally:
+            if conn:
+                conn.close()
         
     def cancel(self):
         self.close()
@@ -91,5 +134,6 @@ class DynamicGuiLoader(QDialog):
         names = cursor.fetchall()
         map = {}
         for name in names:
-            map[name[1]] =  data[name[0]]
+            n = name[1].replace(' ', '_')
+            map[n] =  data[name[0]]
         return map
