@@ -56,13 +56,54 @@ class DynamicGuiLoader(QDialog):
             conn = db.connect("/home/orlandopse/newProject.sqlite")
             cur = conn.cursor()
             self.constData = self.getConstData(cur)
+            self.varIds = self.getVarIds(cur)
+            self.varId = self.varIds[-1]
             self.varData = self.getVarData(cur)
+            print(self.varData)
         finally:
             if conn:
                 conn.close()
         
-        self.widgets = lineEdits = self.ui.findChildren((QtGui.QLineEdit, QtGui.QCheckBox, QtGui.QComboBox))
-        for key, value in self.constData.iteritems():
+        self.widgets = self.ui.findChildren((QtGui.QLineEdit, QtGui.QCheckBox, QtGui.QComboBox))
+        self.setDataToGui(self.constData)
+        self.setDataToGui(self.varData)
+    
+    def save(self):
+        self.setDataToMap(self.constData)
+        self.setDataToMap(self.varData)
+                
+        # TODO hardcoded path
+        try:
+            conn = db.connect("/home/orlandopse/newProject.sqlite")
+            cur = conn.cursor()
+            
+            sql = "UPDATE %s SET " % self.guiName
+            for key, value in self.constData.iteritems():
+                if key == 'geometry' or key == 'id':
+                    continue
+                sql += "'%s' = '%s'," % (key.replace('_', ' '), value)
+            sql = sql[:-1]  # remove last comma
+            sql += " WHERE id = %s;" % self.id
+            cur.execute(sql)
+            
+            sql = "UPDATE %s SET " % (self.guiName + '_var')
+            for key, value in self.varData.iteritems():
+                if key == 'geometry' or key == 'id' or key == 'parent_id':
+                    continue
+                if value is None:
+                    value = ''
+                sql += "'%s' = '%s'," % (key.replace('_', ' '), value)
+            sql = sql[:-1]
+            sql += " WHERE id = %s" % self.varId
+            sql += " AND parent_id = %s" % self.id
+            cur.execute(sql)
+            conn.commit()
+        finally:
+            if conn:
+                conn.close()
+
+    def setDataToGui(self, data):
+        for key, value in data.iteritems():
             for widget in self.widgets:
                 widgetName = str(widget.objectName())
                 if widgetName.endswith(key):
@@ -73,41 +114,20 @@ class DynamicGuiLoader(QDialog):
                     elif type(widget) is QtGui.QComboBox:
                         pass
                     break
-        print(self.constData)
-        
-        
-    def save(self):
-        for key in self.constData:
+    
+    def setDataToMap(self, data):
+        for key in data:
             for widget in self.widgets:
                 widgetName = str(widget.objectName())
                 if widgetName.endswith(key):
                     if type(widget) is QtGui.QLineEdit:
-                        self.constData[key] = str(widget.text())
+                        data[key] = str(widget.text())
                     elif type(widget) is QtGui.QCheckBox:
-                        self.constData[key] = widget.isChecked()
+                        data[key] = widget.isChecked()
                     elif type(widget) is QtGui.QComboBox:
                         pass
                     break
-                
-        # TODO hardcoded path
-        try:
-            conn = db.connect("/home/orlandopse/newProject.sqlite")
-            cur = conn.cursor()
-            sql = "UPDATE %s SET " % self.guiName
-            for key, value in self.constData.iteritems():
-                if key == 'geometry' or key == 'id':
-                    continue
-                sql += "'%s' = '%s'," % (key.replace('_', ' '), value)
-            sql = sql[:-1]  # remove last comma
-            sql += " WHERE id = %s;" % self.id
-            
-            print(sql)
-    
-            cur.execute(sql)
-            conn.commit()
-        finally:
-            if conn:
-                conn.close()
+        
         
     def cancel(self):
         self.close()
@@ -118,12 +138,23 @@ class DynamicGuiLoader(QDialog):
         data = cursor.fetchall()
         map = self.matchDataWithColumnNames(cursor, data[0], self.guiName)
         return map
-
-    def getVarData(self, cursor):
-        sql = "SELECT * FROM %s WHERE parent_id = ?;" % (self.guiName + "_var")
+    
+    def getVarIds(self, cursor):
+        sql = "SELECT id FROM %s WHERE parent_id = ?;" % (self.guiName + "_var")
         cursor.execute(sql, (self.id))
         data = cursor.fetchall()
-        map = self.matchDataWithColumnNames(cursor, data, self.guiName + "_var")
+        return data[0]
+
+    def getVarData(self, cursor):
+        sql = "SELECT * FROM %s WHERE id = ? AND parent_id = ?;" % (self.guiName + "_var")
+        cursor.execute(sql, (self.varId, self.id))
+        data = cursor.fetchall()
+        # keine daten vorhanden --> neuen Datensatz erstellen
+        if len(data) <= 0:
+            self.createNewVarData(cursor)
+            return self.getVarData(cursor)
+
+        map = self.matchDataWithColumnNames(cursor, data[0], self.guiName + "_var")
         return map
     
     def matchDataWithColumnNames(self, cursor, data, tableName):
@@ -137,3 +168,11 @@ class DynamicGuiLoader(QDialog):
             n = name[1].replace(' ', '_')
             map[n] =  data[name[0]]
         return map
+    
+    def createNewVarData(self, cursor):
+        sql = "INSERT INTO %s (parent_id) " % (self.guiName + '_var')
+        sql += "VALUES (%s);" % self.id
+        cursor.execute(sql)
+        self.varIds = self.getVarIds(cursor)
+        self.varId = self.varIds[-1]
+        
