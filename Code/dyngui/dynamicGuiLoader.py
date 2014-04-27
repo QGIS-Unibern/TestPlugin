@@ -54,10 +54,13 @@ class DynamicGuiLoader(QDialog):
         try:
             conn = self.getDbConnection()
             cur = conn.cursor()
-            loadConstData(cur)
+            self.loadConstData(cur)
             
             self.varIds = self.getVarIds(cur)
-            self.varId = self.varIds[-1]
+            if len(self.varIds) > 0:
+                self.varId = self.varIds[-1]
+            else:
+                self.varId = 0
             self.loadVarData(cur)
         finally:
             if conn:
@@ -68,14 +71,14 @@ class DynamicGuiLoader(QDialog):
         
     def getDbConnection(self):
         # TODO hardcoded path
-        return connect("/home/orlandopse/newProject.sqlite")
+        return db.connect("/home/orlandopse/newProject.sqlite")
     
     def loadConstData(self, cursor):
         self.constData = self.getConstData(cursor)
         self.setDataToGui(self.constData)
         
     def loadVarData(self, cursor):
-        self.varData = self.getVarData(cur)
+        self.varData = self.getVarData(cursor)
         self.setDataToGui(self.varData)
 
     def save(self):
@@ -112,6 +115,8 @@ class DynamicGuiLoader(QDialog):
                 conn.close()
                 
     def nextVarData(self):
+        print(self.varIds)
+        print(self.varId)
         index = self.varIds.index(self.varId)
         if index < len(self.varIds) - 1:
             index += 1
@@ -121,7 +126,7 @@ class DynamicGuiLoader(QDialog):
         
         try:
             conn = self.getDbConnection()
-            conn.cursor()
+            cursor = conn.cursor()
             self.loadVarData(cursor)
         finally:
             if conn:
@@ -137,7 +142,7 @@ class DynamicGuiLoader(QDialog):
         
         try:
             conn = self.getDbConnection()
-            conn.cursor()
+            cursor = conn.cursor()
             self.loadVarData(cursor)
         finally:
             if conn:
@@ -146,7 +151,7 @@ class DynamicGuiLoader(QDialog):
     def newVarData(self):
         try:
             conn = self.getDbConnection()
-            conn.cursor()
+            cursor = conn.cursor()
             self.createNewVarData(cursor)
             self.loadVarData(cursor)
         finally:
@@ -194,7 +199,8 @@ class DynamicGuiLoader(QDialog):
         sql = "SELECT id FROM %s WHERE parent_id = ?;" % (self.guiName + "_var")
         cursor.execute(sql, (self.id))
         data = cursor.fetchall()
-        return data[0]
+        data = [i[0] for i in data]
+        return data
 
     def getVarData(self, cursor):
         sql = "SELECT * FROM %s WHERE id = ? AND parent_id = ?;" % (self.guiName + "_var")
