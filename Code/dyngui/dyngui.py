@@ -83,7 +83,7 @@ class dyngui:
         # connect the actions to methods
         self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
         self.action.triggered.connect(self.run)
-        self.export.triggered.connect(self.export)
+        self.export.triggered.connect(self.run)
 
         # Add toolbar button, menu item and info-tool
         self.iface.addToolBarIcon(self.action)
