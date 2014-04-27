@@ -41,40 +41,49 @@ class DynamicGuiLoader(QDialog):
         self.guiName = guiName
         gui = "%s/plugin/%s.ui" % (os.path.dirname(__file__), guiName)
         self.ui = uic.loadUi(gui, self)
+        self.widgets = self.ui.findChildren((QtGui.QLineEdit, QtGui.QCheckBox, QtGui.QComboBox))
         # Connect the buttons.
         self.connect(self.ui.buttonCancel_1, QtCore.SIGNAL("clicked()"), self.cancel)
         self.connect(self.ui.buttonCancel_2, QtCore.SIGNAL("clicked()"), self.cancel)
         self.connect(self.ui.buttonSave_1, QtCore.SIGNAL("clicked()"), self.save)
         self.connect(self.ui.buttonSave_2, QtCore.SIGNAL("clicked()"), self.save)
+        self.connect(self.ui.buttonPreviousData, QtCore.SIGNAL("clicked()"), self.previousVarData)
+        self.connect(self.ui.buttonNextData, QtCore.SIGNAL("clicked()"), self.nextVarData)
+        self.connect(self.ui.buttonNewData, QtCore.SIGNAL("clicked()"), self.newVarData)
 
-        self.loadData()
-        self.exec_()
-        
-    def loadData(self):
-        # TODO hardcoded path
         try:
-            conn = db.connect("/home/orlandopse/newProject.sqlite")
+            conn = self.getDbConnection()
             cur = conn.cursor()
-            self.constData = self.getConstData(cur)
+            loadConstData(cur)
+            
             self.varIds = self.getVarIds(cur)
             self.varId = self.varIds[-1]
-            self.varData = self.getVarData(cur)
-            print(self.varData)
+            self.loadVarData(cur)
         finally:
             if conn:
+                conn.commit()
                 conn.close()
         
-        self.widgets = self.ui.findChildren((QtGui.QLineEdit, QtGui.QCheckBox, QtGui.QComboBox))
-        self.setDataToGui(self.constData)
-        self.setDataToGui(self.varData)
+        self.exec_()
+        
+    def getDbConnection(self):
+        # TODO hardcoded path
+        return connect("/home/orlandopse/newProject.sqlite")
     
+    def loadConstData(self, cursor):
+        self.constData = self.getConstData(cursor)
+        self.setDataToGui(self.constData)
+        
+    def loadVarData(self, cursor):
+        self.varData = self.getVarData(cur)
+        self.setDataToGui(self.varData)
+
     def save(self):
         self.setDataToMap(self.constData)
         self.setDataToMap(self.varData)
                 
-        # TODO hardcoded path
         try:
-            conn = db.connect("/home/orlandopse/newProject.sqlite")
+            conn = self.getDbConnection()
             cur = conn.cursor()
             
             sql = "UPDATE %s SET " % self.guiName
@@ -98,6 +107,48 @@ class DynamicGuiLoader(QDialog):
             sql += " AND parent_id = %s" % self.id
             cur.execute(sql)
             conn.commit()
+        finally:
+            if conn:
+                conn.close()
+                
+    def nextVarData(self):
+        index = self.varIds.index(self.varId)
+        if index < len(self.varIds) - 1:
+            index += 1
+        else:
+            index = len(self.varIds) - 1
+        self.varId = self.varIds[index]
+        
+        try:
+            conn = self.getDbConnection()
+            conn.cursor()
+            self.loadVarData(cursor)
+        finally:
+            if conn:
+                conn.close()
+    
+    def previousVarData(self):
+        index = self.varIds.index(self.varId)
+        if index > 0:
+            index -= 1
+        else:
+            index = 0
+        self.varId = self.varIds[index]
+        
+        try:
+            conn = self.getDbConnection()
+            conn.cursor()
+            self.loadVarData(cursor)
+        finally:
+            if conn:
+                conn.close()
+    
+    def newVarData(self):
+        try:
+            conn = self.getDbConnection()
+            conn.cursor()
+            self.createNewVarData(cursor)
+            self.loadVarData(cursor)
         finally:
             if conn:
                 conn.close()
