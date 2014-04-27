@@ -56,3 +56,10 @@ class SpatiaLiteExporterTest(unittest.TestCase):
         data = exporter.getVarData(cur, "projectName1660", 2)
         self.assertNotEqual(None, data)
         conn.close()
+        
+    def testGetGeometryImage(self):
+        conn = db.connect(CONST_SQLITE_FILENAME)
+        cur = conn.cursor()
+        data = exporter.getGeometryImage(cur, "projectName1660", 2)
+        self.assertNotEqual(None, data)
+        conn.close()

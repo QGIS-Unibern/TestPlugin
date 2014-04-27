@@ -4,13 +4,13 @@
 '''
 import sys, os
 here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/reportlab-3.0/src')))
-sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1\build\lib.win32-2.7\pyspatialite')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
 
 from pyspatialite import dbapi2 as db
-from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image
 
 ''' 
 Exports all data of geometric objects
@@ -29,19 +29,18 @@ def exportPDF(spatiaLitePath, parentTable, objectId, childTables, outputPath):
     parentData = []
     childData = []
     parentData = extractData(spatiaLitePath, parentTable, objectId)
+    '''
     for table in childTables:
         childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))
-           
+    '''
     formattedData = formatData(parentData, childData)
     printPdf(outputPath, formattedData)
   
 '''
-Sollte den text richtig formatieren, so dass reportlab ihn nur noch printen kann
-FUNKTIONIERT NOCH NICHT
+Formats the tables for reportlab
 '''
 def formatData(parentData, childData):
     elements = []
-    
     constData = []
     for index, item in enumerate(parentData[1]):
         if item != None:
@@ -50,10 +49,6 @@ def formatData(parentData, childData):
     const.hAlign = "LEFT"
     elements.append(const)
     
-    print len(parentData[3])
-    print len(parentData[2])
-    print parentData[3]
-    print parentData[2]
     for list in parentData[3]:
         varData = []
         for i, item in enumerate(list):
@@ -72,12 +67,13 @@ def printPdf(outputPath, data):
 '''
 Returns an array of list of strings containing all data of object 'id' in table 'tableName'
 Output: 
-[constAttributes, constData, varAttributes, varData]
+[constAttributes, constData, varAttributes, varData, image]
 where: 
 constAttributes = {attribute1, attribute2, ...} (list of Strings)
 varAttributes = dito
 constData = [DataOfAttribute1, DataOfAttribute2, ...] (list of list of Strings)
 varData = dito
+image = svg representation of the selected geometry
 '''
 def extractData(spatiaLitePath, tableName, id):
     try:
@@ -87,7 +83,7 @@ def extractData(spatiaLitePath, tableName, id):
         varAttributes = getVarAttributes(cur, tableName)
         constData = getConstData(cur, tableName, id)
         varData = getVarData(cur, tableName, id)
-        
+        image = getGeometryImage(cur, tableName, id)
     except db.Error, e:
         print "Error %s:" % e.args[0]
         sys.exit()
@@ -95,7 +91,7 @@ def extractData(spatiaLitePath, tableName, id):
     finally:
         if conn:
             conn.close()
-    return [constAttributes, constData, varAttributes, varData]
+    return [constAttributes, constData, varAttributes, varData, image]
                
 '''
 Sollte alle IDs von objekten auf einer child-Table finden, die das selektierte objekt schneiden
@@ -151,3 +147,9 @@ def getVarData(cursor, tableName, id):
     for row in data:
         dataList.append([item for item in row])
     return dataList
+
+def getGeometryImage(cursor, tableName, id):
+    sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    return data[0]
