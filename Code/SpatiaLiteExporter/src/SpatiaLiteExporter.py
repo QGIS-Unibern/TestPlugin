@@ -41,15 +41,31 @@ FUNKTIONIERT NOCH NICHT
 '''
 def formatData(parentData, childData):
     elements = []
-    data = [['abcdefaasdf', 'gagagagagaga'],
-            ['attribut2', 'daten2'],
-            ['attribut3asdfasdfasfsa', 'daten3sehrlangblbablablbalbalbabla']]
-    text = Table(data)
-    elements.append(text)
-    return text
+    
+    constData = []
+    for index, item in enumerate(parentData[1]):
+        if item != None:
+            constData.append([parentData[0][index], item])
+    const = Table(constData)
+    const.hAlign = "LEFT"
+    elements.append(const)
+    
+    print len(parentData[3])
+    print len(parentData[2])
+    print parentData[3]
+    print parentData[2]
+    for list in parentData[3]:
+        varData = []
+        for i, item in enumerate(list):
+            if item != None:
+                varData.append([parentData[2][i], item])
+        var = Table(varData)
+        var.hAlign = "LEFT"
+        elements.append(var)
+    return elements
         
 def printPdf(outputPath, data):
-    doc = SimpleDocTemplate(outputPath)
+    doc = SimpleDocTemplate(outputPath, pagesize=letter)
     doc.build(data)
     
     
@@ -107,6 +123,7 @@ def getConstAttributes(cursor, tableName):
     sql = "SELECT * from '" + tableName + "'"
     cursor.execute(sql)
     names = list(map(lambda x: x[0], cursor.description))
+    del names[-1] # Remove geometry
     return names
 
 def getVarAttributes(cursor, tableName):
@@ -119,10 +136,18 @@ def getConstData(cursor, tableName, id):
     sql = "SELECT * FROM '" + tableName + "' WHERE id=" +`id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    return data
+    dataList = []
+    for row in data:
+        for item in row:
+            dataList.append(item)
+    del dataList[-1] # Remove geometry
+    return dataList
 
 def getVarData(cursor, tableName, id):
     sql = "SELECT * FROM '" + tableName + "_var' WHERE parent_id=" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    return data
+    dataList = []
+    for row in data:
+        dataList.append([item for item in row])
+    return dataList

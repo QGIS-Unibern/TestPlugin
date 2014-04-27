@@ -14,7 +14,7 @@ columnNamesConst = ['id', 'Abwasserkanal', 'Schmutzwasser', 'Mischwasser', 'Rege
                'Leitung Telefon', 'Leitung Glasfaser', 'Leitung Strom', 'Fotos', 'PDF', 
                'Word', 'Excel', 'Strasse', 'Abschnitt', 'Verkehrsfuehrung', 'Material Deckschicht', 
                'Dicke Deckschicht', 'Dicke Binderschicht', 'Dicke Asphalt-Tragschicht', 
-               'Dicke Schotter-tragschicht', 'Dicke Frostschutzschicht', 'geometry']
+               'Dicke Schotter-tragschicht', 'Dicke Frostschutzschicht']
 
 columnNamesVar = ['id', 'parent_id', 'Hausnummer kleinste', 'Hausnummer groesste', 
                  'Breite Fahrbereich', 'Breite Weg links', 'Breite Weg rechts', 'Fotos', 
@@ -22,13 +22,11 @@ columnNamesVar = ['id', 'parent_id', 'Hausnummer kleinste', 'Hausnummer groesste
                  'Event', 'Datum JJJJMMTT', 'Art der Arbeit', 'Firma', 'Person', 'Vermerk']
 
 class SpatiaLiteExporterTest(unittest.TestCase):
-    '''
-    PDF-export geht noch nicht
+    
     def testPdfExport(self):
         curDir = os.path.dirname(os.path.realpath(__file__))
         exporter.exportPDF(CONST_SQLITE_FILENAME, 
                            "projectName1660", 2, [],curDir + "test.pdf")
-    '''
     
     def testGetConstAttributes(self):
         conn = db.connect(CONST_SQLITE_FILENAME)
@@ -48,8 +46,8 @@ class SpatiaLiteExporterTest(unittest.TestCase):
         conn = db.connect(CONST_SQLITE_FILENAME)
         cur = conn.cursor()
         data = exporter.getConstData(cur, "projectName1660", 2)
-        self.assertEqual("vielleciht",data[0][10])
-        self.assertEqual("Guguselistrasse",data[0][16])
+        self.assertEqual("vielleciht",data[10])
+        self.assertEqual("Guguselistrasse",data[16])
         conn.close()
         
     def testGetVarData(self):
