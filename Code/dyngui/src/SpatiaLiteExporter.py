@@ -10,6 +10,8 @@ sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6
 
 from pyspatialite import dbapi2 as db
 from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image
 
 ''' 
@@ -25,28 +27,32 @@ outputPath: Path where the output pdf will be located
 This function will search for all geometric objects in childTables that intersect with the
 selected object in the parentTable and output all their data as PDF
 '''
-def exportPDF(spatiaLitePath, parentTable, objectId, childTables, outputPath):
+def exportPDF(spatiaLitePath, parentTable, objectIds, childTables, outputPath):
     parentData = []
     childData = []
-    parentData = extractData(spatiaLitePath, parentTable, objectId)
-    '''
-    for table in childTables:
-        childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))
-    '''
-    formattedData = formatData(parentData, childData)
-    printPdf(outputPath, formattedData)
+    for index in objectIds:
+        parentData.append(extractData(spatiaLitePath, parentTable, index))
+        '''
+        for table in childTables:
+            childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))
+        '''
+    doc = Document(outputPath)
+    for index, value in enumerate(objectIds):
+        doc.append(formatData(parentData[index], childData, doc))
+    doc.build()
   
 '''
 Formats the tables for reportlab
 '''
-def formatData(parentData, childData):
+def formatData(parentData, childData, doc):
     elements = []
     constData = []
     for index, item in enumerate(parentData[1]):
         if item != None:
             constData.append([parentData[0][index], item])
-    const = Table(constData)
+    const = Table(constData,2*[doc.width/2])
     const.hAlign = "LEFT"
+    const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
     elements.append(const)
     
     for list in parentData[3]:
@@ -54,16 +60,25 @@ def formatData(parentData, childData):
         for i, item in enumerate(list):
             if item != None:
                 varData.append([parentData[2][i], item])
-        var = Table(varData)
+        var = Table(varData,2*[doc.width/2])
         var.hAlign = "LEFT"
+        var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
         elements.append(var)
     return elements
+    
+class Document:
+    def __init__(self, outputPath):
+        self.doc = SimpleDocTemplate(outputPath, pagesize=letter)
+        self.width = self.doc.width
+        self.elements = []
         
-def printPdf(outputPath, data):
-    doc = SimpleDocTemplate(outputPath, pagesize=letter)
-    doc.build(data)
-    
-    
+    def append(self, list):
+        for item in list:
+            self.elements.append(item)
+        
+    def build(self):
+        if self.elements != []:
+            self.doc.build(self.elements)
 '''
 Returns an array of list of strings containing all data of object 'id' in table 'tableName'
 Output: 
