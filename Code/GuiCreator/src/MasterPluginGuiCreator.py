@@ -28,6 +28,9 @@ def setWidgetText(widget, text):
     textProp = widget.find("./property[@name='text']")
     if textProp is not None:
         textProp.find("./string").text = text
+        name = widget.get('name')
+        name = name.split('_')[0] + ('_' + text.replace(' ', '_'))
+        widget.set('name', name)
     
 
 def setWidgetInvisible(widget):    

@@ -47,7 +47,7 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         self.assertEqual('false', widget.find("./property[@name='visible']/bool").text)
         
     def testSetWidgetText(self):
-        widget = ElementTree.Element('widget')
+        widget = ElementTree.Element('widget', name='label_101')
         prop = ElementTree.SubElement(widget, 'property', name='text')
         string = ElementTree.SubElement(prop, 'string')
         string.text = '42'
@@ -55,3 +55,4 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         importer.setWidgetText(widget, '1337')
         
         self.assertEqual('1337', widget.find("./property[@name='text']/string").text)
+        self.assertEqual('label_1337', widget.get('name'))

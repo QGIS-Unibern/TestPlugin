@@ -57,6 +57,8 @@ class DynamicGuiLoader(QDialog):
         constData = self.getConstData(cur)
         varData = self.getVarData(cur)
         
+        print(dir(self.ui))
+        
         print(self.id)
         print(constData)
         print(varData)
