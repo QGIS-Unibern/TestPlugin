@@ -28,9 +28,9 @@ def setWidgetText(widget, text):
     textProp = widget.find("./property[@name='text']")
     if textProp is not None:
         textProp.find("./string").text = text
-        name = widget.get('name')
-        name = name.split('_')[0] + ('_' + text.replace(' ', '_'))
-        widget.set('name', name)
+    name = widget.get('name')
+    name = name.split('_')[0] + ('_' + text.replace(' ', '_'))
+    widget.set('name', name)
     
 
 def setWidgetInvisible(widget):    
@@ -74,13 +74,12 @@ def addChildrenWidgets(widget, children):
     '''
     Recursivly adds all widgets which name ends with '*_\d{3}' to the children list.
     '''
+    regex = re.compile('.*_\d{3}$', flags=re.M)
     for child in widget.findall("./"):
         if child.tag == 'widget':
             name = child.get('name')
-            regex = re.compile('.*_\d{3}$', flags=re.M)
             if regex.match(name):
-                children.append(child)
-                
+                children.append(child) 
         addChildrenWidgets(child, children)
 
 class ExcelRow(object):
