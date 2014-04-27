@@ -34,6 +34,8 @@ class InfoPointTool(QgsMapTool):
         x = event.pos().x()
         y = event.pos().y()
         
+        # TODO layer automatisch speichern damit das polygon eine id von der db kriegt
+        
         # Ugly hack to identify the clicked element. For some reasons if InfoPointTool inherits from QgsMapToolIdentify,
         # canvasRealeaseEvent isn't called.
         tool = QgsMapToolIdentify(self.canvas)
@@ -42,18 +44,24 @@ class InfoPointTool(QgsMapTool):
             return
         
         guiName = self.canvas.currentLayer().name()
+        dbName = self.canvas.currentLayer().dataProvider().dataSourceUri().split(' ')[0].split('=')[1].replace("'", '')
         
         result = results[0]
         
         feat = result.mFeature
         attrs = feat.attributes()
         fields = feat.fields().toList()
+        fieldId = None
         
         for i, attr in enumerate(attrs):
             name = fields[i].name()
-            if name == 'id':
-                id = str(attr)
+            if name == 'id' and attr is not None:
+                fieldId = str(attr)
                 break
-
-        DynamicGuiLoader(guiName, id)
+        
+        if fieldId is None:
+            QMessageBox.warning(None, "Ungespeicherte Aenderungen", "Sie muessen das Polygon zuerst speichern")
+            return
+        
+        DynamicGuiLoader(dbName, guiName, fieldId)
     

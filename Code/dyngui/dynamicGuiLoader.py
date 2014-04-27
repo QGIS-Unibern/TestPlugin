@@ -38,8 +38,10 @@ class DynamicGuiLoader(QDialog):
     '''
     Initializes the GUI and sets the data from the database.
     '''
-    def __init__(self, guiName, id):
+    def __init__(self, dbName, guiName, id):
         super(QDialog, self).__init__()
+        self.dbName = dbName
+        print(id)
         self.id = id
         self.guiName = guiName
         gui = "%s/plugin/%s.ui" % (os.path.dirname(__file__), guiName)
@@ -73,8 +75,7 @@ class DynamicGuiLoader(QDialog):
         self.exec_()
         
     def getDbConnection(self):
-        # TODO hardcoded path
-        return db.connect("/home/orlandopse/newProject.sqlite")
+        return db.connect(self.dbName)
     
     '''
     Loads the constant data from the database and sets it into the 'Konstante Daten'-Tab 
