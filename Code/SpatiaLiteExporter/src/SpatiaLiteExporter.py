@@ -25,10 +25,10 @@ outputPath: Path where the output pdf will be located
 This function will search for all geometric objects in childTables that intersect with the
 selected object in the parentTable and output all their data as PDF
 '''
-def exportPDF(spatiaLitePath, parentTable, objectId, childTables, outputPath):
+def exportPDF(spatiaLitePath, parentTable, objectIds, childTables, outputPath):
     parentData = []
     childData = []
-    parentData = extractData(spatiaLitePath, parentTable, objectId)
+    parentData = extractData(spatiaLitePath, parentTable, objectId[0])
     '''
     for table in childTables:
         childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))

@@ -3,4 +3,5 @@ encoding/__init__.py=utf-8
 encoding/dynamicGuiLoader.py=utf-8
 encoding/dyngui.py=utf-8
 encoding/dynguidialog.py=utf-8
+encoding/resources_rc.py=utf-8
 encoding/ui_dyngui.py=utf-8
