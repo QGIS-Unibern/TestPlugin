@@ -76,24 +76,24 @@ class dyngui:
             u"Identify Dynamic Gui", self.iface.mainWindow())
         
         # Create action to open export dialog
-        self.export = QAction(
-            QIcon(":/plugins/dyngui/res/icons/info.png"),
+        self.exportaction = QAction(
+            QIcon(":/plugins/dyngui/res/icons/export.png"),
             u"Export Data", self.iface.mainWindow())
         
         # connect the actions to methods
         self.info.connect(self.info, QtCore.SIGNAL('triggered()'), self.infoGui)
         self.action.triggered.connect(self.run)
-        self.export.triggered.connect(self.run)
+        self.exportaction.triggered.connect(self.export)
 
         # Add toolbar button, menu item and info-tool
         self.iface.addToolBarIcon(self.action)
-        self.iface.addToolBarIcon(self.export)
+        self.iface.addToolBarIcon(self.exportaction)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").addAction(self.info)
 
     def unload(self):
         # Remove the plugin menu item and icons
         self.iface.removeToolBarIcon(self.action)
-        self.iface.removeToolBarIcon(self.export)
+        self.iface.removeToolBarIcon(self.exportaction)
         self.iface.mainWindow().findChild(QToolBar,"mAttributesToolBar").removeAction(self.info)
 
     # run method will open plugin-window
@@ -108,14 +108,25 @@ class dyngui:
             # substitute with your code)
             pass
         
+    # export method will open export-window
     def export(self):
-        layer = iface.activeLayer()
-        features = layer.getFeatures()
-        idx = layer.fieldNameIndex('id')
-        source = layer.source()
-        for f in features:
-            attrs = f.attributes()
-            id = attrs[idx]
+        layer = self.iface.activeLayer()
+        if not (layer is None):
+            features = layer.getFeatures()
+            idx = layer.fieldNameIndex('id')
+            source = layer.source()
+            for f in features:
+                attrs = f.attributes()
+                id = attrs[idx]
+            # show the dialog
+            self.exp.show()
+            # Run the dialog event loop
+            result = self.exp.exec_()
+            # See if OK was pressed
+            if result == 1:
+                # do something useful (delete the line containing pass and
+                # substitute with your code)
+                pass
         
     def infoGui(self):
         if (self.isActive):
