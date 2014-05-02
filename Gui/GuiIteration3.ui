@@ -35,7 +35,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -308,14 +308,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="buttonSave_1">
-      <property name="geometry">
-       <rect>
-        <x>590</x>
-        <y>550</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Speichern</string>
       </property>
@@ -436,10 +428,10 @@
      <widget class="QPushButton" name="buttonCancel_1">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>551</y>
-        <width>91</width>
-        <height>21</height>
+        <x>490</x>
+        <y>550</y>
+        <width>92</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -682,10 +674,10 @@
      <widget class="QPushButton" name="buttonCancel_2">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>551</y>
-        <width>91</width>
-        <height>21</height>
+        <x>490</x>
+        <y>550</y>
+        <width>92</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -693,14 +685,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="buttonSave_2">
-      <property name="geometry">
-       <rect>
-        <x>590</x>
-        <y>550</y>
-        <width>81</width>
-        <height>23</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Speichern</string>
       </property>
