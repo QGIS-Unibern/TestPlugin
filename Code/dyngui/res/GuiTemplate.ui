@@ -60,7 +60,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Variable 101</string>
+          <string>Variable 102</string>
          </property>
         </widget>
        </item>
@@ -70,7 +70,7 @@
        <item row="1" column="0">
         <widget class="QLabel" name="label_105">
          <property name="text">
-          <string>Variable 102</string>
+          <string>Variable 105</string>
          </property>
         </widget>
        </item>
@@ -80,7 +80,7 @@
        <item row="2" column="0">
         <widget class="QLabel" name="label_106">
          <property name="text">
-          <string>Variable 105</string>
+          <string>Variable 106</string>
          </property>
         </widget>
        </item>
@@ -90,7 +90,7 @@
        <item row="3" column="0">
         <widget class="QLabel" name="label_108">
          <property name="text">
-          <string>Variable 106</string>
+          <string>Variable 108</string>
          </property>
         </widget>
        </item>
@@ -311,8 +311,8 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>540</y>
-        <width>81</width>
+        <y>550</y>
+        <width>75</width>
         <height>23</height>
        </rect>
       </property>
@@ -377,78 +377,69 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>0</y>
-        <width>331</width>
-        <height>34</height>
+        <y>10</y>
+        <width>691</width>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QPushButton" name="buttonPreviousData">
          <property name="text">
-          <string>Zurück ( - )</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSlider" name="horizontalSlider">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <string>Zurück</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="buttonNextData">
          <property name="text">
-          <string>Vorwärts ( + )</string>
+          <string>Vorwärts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblEventCount">
+         <property name="text">
+          <string>EventCount</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonDeleteData">
+         <property name="text">
+          <string>Event löschen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonNewData">
+         <property name="text">
+          <string>Event hinzufügen</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="buttonNewData">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>10</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Zeitpunkt Hinzufügen</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_6">
-      <property name="geometry">
-       <rect>
-        <x>570</x>
-        <y>10</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label">
-      <property name="geometry">
-       <rect>
-        <x>500</x>
-        <y>10</y>
-        <width>71</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Zeitpunkt:</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="buttonCancel_1">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>540</y>
-        <width>91</width>
-        <height>32</height>
+        <x>510</x>
+        <y>550</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
@@ -691,10 +682,10 @@
      <widget class="QPushButton" name="buttonCancel_2">
       <property name="geometry">
        <rect>
-        <x>500</x>
-        <y>540</y>
-        <width>91</width>
-        <height>32</height>
+        <x>510</x>
+        <y>550</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
@@ -705,8 +696,8 @@
       <property name="geometry">
        <rect>
         <x>590</x>
-        <y>540</y>
-        <width>81</width>
+        <y>550</y>
+        <width>75</width>
         <height>23</height>
        </rect>
       </property>

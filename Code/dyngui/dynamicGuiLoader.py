@@ -83,6 +83,7 @@ class DynamicGuiLoader(QDialog):
     def loadConstData(self, cursor):
         self.constData = self.getConstData(cursor)
         self.setDataToGui(self.constData)
+    
     '''
     Loads the variable data from the database and sets it into the 'Variable Daten'-Tab.
     It loads the var data with the id set in self.varId 
@@ -90,6 +91,7 @@ class DynamicGuiLoader(QDialog):
     def loadVarData(self, cursor):
         self.varData = self.getVarData(cursor)
         self.setDataToGui(self.varData)
+        self.updateCountLabel()
 
     '''
     Action from the Speichern-Button. Stores the value from the GUI to the database.
@@ -175,6 +177,7 @@ class DynamicGuiLoader(QDialog):
             cursor = conn.cursor()
             self.createNewVarData(cursor)
             self.loadVarData(cursor)
+            self.updateCountLabel()
         finally:
             if conn:
                 conn.close()
@@ -204,6 +207,12 @@ class DynamicGuiLoader(QDialog):
                     elif type(widget) is QtGui.QComboBox:
                         pass
                     break
+    
+    def updateCountLabel(self):
+        index = self.varIds.index(self.varId) + 1
+        total = len(self.varIds)
+        txt = "%d/%d" % (index, total)
+        self.ui.lblEventCount.setText(txt)
         
         
     def cancel(self):

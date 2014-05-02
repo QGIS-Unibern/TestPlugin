@@ -76,7 +76,7 @@ class Ui_dyngui(object):
         plugin_dir = os.path.dirname(__file__)
         createSpatiaLiteDatabase(excel, name, database)
         guiName = "%(dir)s/plugin/%(name)s.ui" % {"dir": plugin_dir, "name": name}
-        createPluginGui(excel, "%s/res/GuiIteation2.ui"%plugin_dir, guiName)
+        createPluginGui(excel, "%s/res/GuiTemplate.ui"%plugin_dir, guiName)
         self.addLayer(name, database)
         self.close()
         
