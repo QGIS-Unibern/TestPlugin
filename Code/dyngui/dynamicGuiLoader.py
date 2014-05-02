@@ -41,7 +41,6 @@ class DynamicGuiLoader(QDialog):
     def __init__(self, dbName, guiName, id):
         super(QDialog, self).__init__()
         self.dbName = dbName
-        print(id)
         self.id = id
         self.guiName = guiName
         gui = "%s/plugin/%s.ui" % (os.path.dirname(__file__), guiName)
@@ -55,6 +54,7 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.buttonPreviousData, QtCore.SIGNAL("clicked()"), self.previousVarData)
         self.connect(self.ui.buttonNextData, QtCore.SIGNAL("clicked()"), self.nextVarData)
         self.connect(self.ui.buttonNewData, QtCore.SIGNAL("clicked()"), self.newVarData)
+        self.connect(self.ui.buttonDeleteData, QtCore.SIGNAL("clicked()"), self.deleteVarData)
 
         try:
             conn = self.getDbConnection()
@@ -132,8 +132,6 @@ class DynamicGuiLoader(QDialog):
     Action from the Vorwärts-Button. Sets the next variable data.
     '''
     def nextVarData(self):
-        print(self.varIds)
-        print(self.varId)
         index = self.varIds.index(self.varId)
         if index < len(self.varIds) - 1:
             index += 1
@@ -177,10 +175,30 @@ class DynamicGuiLoader(QDialog):
             cursor = conn.cursor()
             self.createNewVarData(cursor)
             self.loadVarData(cursor)
-            self.updateCountLabel()
         finally:
             if conn:
                 conn.close()
+                
+    def deleteVarData(self):
+        if (len(self.varIds) <= 1):
+            return
+        try:
+            conn = self.getDbConnection()
+            cursor = conn.cursor()
+            
+            sql = "DELETE FROM %s WHERE id = ?" % (self.guiName + '_var')
+            cursor.execute(sql, [self.varId])
+                        
+            prevIndex = self.varIds.index(self.varId) - 1
+            if prevIndex < 0:
+                prevIndex = 0
+            self.varId = self.varIds[prevIndex]
+            self.varIds = self.getVarIds(cursor)
+            self.loadVarData(cursor)
+        finally:
+            if conn:
+                conn.close()
+        
 
     def setDataToGui(self, data):
         for key, value in data.iteritems():
