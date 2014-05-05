@@ -1,2 +1,4 @@
 # Files to ignore
 *.pyc
+
+Code/SpatiaLiteCreator/test/test_simple.sqlite

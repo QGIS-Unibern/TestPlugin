@@ -13,13 +13,14 @@ try:
 except OSError:
     pass
 
-CONST_EXCEl_FILENAME = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen.xls"
-CONST_EXCEl_FILENAME_SIMPLE = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen_simple.xls"
+CONST_EXCEl_FILENAME = "resources/importExcel_20140428.xls"
+CONST_EXCEl_FILENAME_SIMPLE = "resources/importExcel_20140428_simple.xls"
+HERE = os.path.dirname(os.path.realpath(__file__))
 
 class SpatiaLiteCreatorTest(unittest.TestCase):
     
     def testSpatiaLiteCreatorSimple(self):
-        creator.createSpatiaLiteDatabase(CONST_EXCEl_FILENAME_SIMPLE, 'test_simple')
+        creator.createSpatiaLiteDatabase(CONST_EXCEl_FILENAME_SIMPLE, 'test_simple', HERE)
 ''' 
     def testSpatiaLiteCreator(self):
         creator.createSpatiaLiteDatabase(CONST_EXCEl_FILENAME, 'test')
