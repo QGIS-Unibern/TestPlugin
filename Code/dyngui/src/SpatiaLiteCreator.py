@@ -58,9 +58,33 @@ def createTables(statNames, varNames, projectName, outputPath):
     
     sql = "CREATE TABLE '" + projectName + "_var' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-    sql += "parent_id INTEGER REFERENCES '" + projectName + "',"
+    sql += "parent_id INTEGER REFERENCES '" + projectName + "' (id),"
     for attribute in varNames:
         sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
     sql += ")"
+    cur.execute(sql)
+    
+    sql = "CREATE TABLE '" + projectName + "_fotos_var' ("
+    sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+    sql += "ref_id INTEGER REFERENCES '" + projectName + "_var' (id),"
+    sql += "path TEXT)"
+    cur.execute(sql)
+    
+    sql = "CREATE TABLE '" + projectName + "_fotos_const' ("
+    sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+    sql += "ref_id INTEGER REFERENCES '" + projectName + "' (id),"
+    sql += "path TEXT)"
+    cur.execute(sql)
+    
+    sql = "CREATE TABLE '" + projectName + "_doc_var' ("
+    sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+    sql += "ref_id INTEGER REFERENCES '" + projectName + "_var' (id),"
+    sql += "path TEXT)"
+    cur.execute(sql)
+    
+    sql = "CREATE TABLE '" + projectName + "_doc_const' ("
+    sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+    sql += "ref_id INTEGER REFERENCES '" + projectName + "' (id),"
+    sql += "path TEXT)"
     cur.execute(sql)
