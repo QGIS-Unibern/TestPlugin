@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 CONST_EXCEl_FILENAME = "resources/importExcel_20140428.xls"
 CONST_EXCEl_FILENAME_SIMPLE = "resources/importExcel_20140428_simple.xls"
 
-CONST_XML_FILENAME = "../../../Gui/GUIIteration3.ui"
+CONST_XML_FILENAME = "../../../Gui/GuiIteration3.ui"
 
 class MasterPluginGuiCreatorTest(unittest.TestCase):
 
@@ -37,7 +37,7 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         result = importer.getXmlWidgets(tree)
         
         self.assertNotEqual(None, result)
-        self.assertEqual(86, len(result))
+        self.assertEqual(59, len(result))
         
     def testSetWidgetInvisible(self):
         widget = ElementTree.Element('widget')
@@ -57,3 +57,18 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         
         self.assertEqual('1337', widget.find("./property[@name='text']/string").text)
         self.assertEqual('label_1337', widget.get('name'))
+        
+    def testSetWidgetTextCombobox(self):
+        widget = ElementTree.Element('widget', {'name':'combobox_101', 'class':'QComboBox'})
+        comboboxItems = [0,1,2,3,4]
+        element = ExcelRow(101, '1337', False, 'combobox', comboboxItems)
+        importer.setWidgetText(widget, element)
+        
+        self.assertIsNone(widget.find("./property[@name='text']/string"))
+        self.assertEqual('combobox_1337', widget.get('name'))
+        items = widget.findall("./item")
+        self.assertEquals(5, len(items))
+        for i in range(0,4):
+            item = items[i]
+            string = item.find("./property/string")
+            self.assertEquals(i, string.text)

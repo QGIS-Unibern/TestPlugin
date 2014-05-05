@@ -59,7 +59,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Variable 102</string>
+          <string>Event</string>
          </property>
         </widget>
        </item>
@@ -69,7 +69,7 @@
        <item column="0" row="1">
         <widget class="QLabel" name="label_Firma">
          <property name="text">
-          <string>Variable 105</string>
+          <string>Firma</string>
          </property>
         </widget>
        </item>
@@ -79,7 +79,7 @@
        <item column="0" row="2">
         <widget class="QLabel" name="label_Person">
          <property name="text">
-          <string>Variable 106</string>
+          <string>Person</string>
          </property>
         </widget>
        </item>
@@ -99,7 +99,7 @@
        <item column="0" row="4">
         <widget class="QLabel" name="label_Abschnitt">
          <property name="text">
-          <string>Variable 201</string>
+          <string>Abschnitt</string>
          </property>
         </widget>
        </item>
@@ -109,7 +109,7 @@
        <item column="0" row="5">
         <widget class="QLabel" name="label_Hausnummer_groesste">
          <property name="text">
-          <string>Variable 203</string>
+          <string>Hausnummer groesste</string>
          </property>
         </widget>
        </item>
@@ -119,7 +119,7 @@
        <item column="0" row="6">
         <widget class="QLabel" name="label_Dicke_Deckschicht">
          <property name="text">
-          <string>Variable 209</string>
+          <string>Dicke Deckschicht</string>
          </property>
         </widget>
        </item>
@@ -129,7 +129,7 @@
        <item column="0" row="7">
         <widget class="QLabel" name="label_Dicke_Binderschicht">
          <property name="text">
-          <string>Variable 210</string>
+          <string>Dicke Binderschicht</string>
          </property>
         </widget>
        </item>
@@ -149,7 +149,7 @@
        <item column="0" row="9">
         <widget class="QLabel" name="label_Dicke_Schotter-tragschicht">
          <property name="text">
-          <string>Variable 212</string>
+          <string>Dicke Schotter-tragschicht</string>
          </property>
         </widget>
        </item>
@@ -159,7 +159,7 @@
        <item column="0" row="10">
         <widget class="QLabel" name="label_Dicke_Frostschutzschicht">
          <property name="text">
-          <string>Variable 213</string>
+          <string>Dicke Frostschutzschicht</string>
          </property>
         </widget>
        </item>
@@ -187,7 +187,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Variable 101</string>
+          <string>von</string>
          </property>
         </widget>
        </item>
@@ -197,7 +197,7 @@
        <item column="0" row="1">
         <widget class="QLabel" name="label_Datum_JJJJMMTT">
          <property name="text">
-          <string>Variable 103</string>
+          <string>Datum JJJJMMTT</string>
          </property>
         </widget>
        </item>
@@ -207,7 +207,7 @@
        <item column="0" row="2">
         <widget class="QLabel" name="label_Art_der_Arbeit">
          <property name="text">
-          <string>Variable 104</string>
+          <string>Art der Arbeit</string>
          </property>
         </widget>
        </item>
@@ -217,7 +217,7 @@
        <item column="0" row="3">
         <widget class="QLabel" name="label_Vermerk">
          <property name="text">
-          <string>Variable 107</string>
+          <string>Vermerk</string>
          </property>
         </widget>
        </item>
@@ -227,7 +227,7 @@
        <item column="0" row="4">
         <widget class="QLabel" name="label_Strasse">
          <property name="text">
-          <string>Variable 200</string>
+          <string>Strasse</string>
          </property>
         </widget>
        </item>
@@ -237,7 +237,7 @@
        <item column="0" row="5">
         <widget class="QLabel" name="label_Hausnummer_kleinste">
          <property name="text">
-          <string>Variable 202</string>
+          <string>Hausnummer kleinste</string>
          </property>
         </widget>
        </item>
@@ -247,7 +247,7 @@
        <item column="0" row="6">
         <widget class="QLabel" name="label_Breite_Fahrbereich">
          <property name="text">
-          <string>Variable 204</string>
+          <string>Breite Fahrbereich</string>
          </property>
         </widget>
        </item>
@@ -257,7 +257,7 @@
        <item column="0" row="7">
         <widget class="QLabel" name="label_Breite_Weg_links">
          <property name="text">
-          <string>Variable 205</string>
+          <string>Breite Weg links</string>
          </property>
         </widget>
        </item>
@@ -267,7 +267,7 @@
        <item column="0" row="8">
         <widget class="QLabel" name="label_Breite_Weg_rechts">
          <property name="text">
-          <string>Variable 206</string>
+          <string>Breite Weg rechts</string>
          </property>
         </widget>
        </item>
@@ -277,17 +277,17 @@
        <item column="0" row="9">
         <widget class="QLabel" name="label_Verkehrsfuehrung">
          <property name="text">
-          <string>Varialbe 207</string>
+          <string>Verkehrsfuehrung</string>
          </property>
-        <item><property name="text"><string>Einspurig</string></property></item><item><property name="text"><string>Zweispurig</string></property></item><item><property name="text"><string>Dreispurig</string></property></item><item><property name="text"><string>Vierspurig</string></property></item></widget>
+        </widget>
        </item>
        <item column="1" row="9">
-        <widget class="QComboBox" name="comboBox" />
+        <widget class="QComboBox" name="comboBox_Verkehrsfuehrung"><item><property name="text"><string>Einspurig</string></property></item><item><property name="text"><string>Zweispurig</string></property></item><item><property name="text"><string>Dreispurig</string></property></item><item><property name="text"><string>Vierspurig</string></property></item></widget>
        </item>
        <item column="0" row="10">
         <widget class="QLabel" name="label_Material_Deckschicht">
          <property name="text">
-          <string>Variable 208</string>
+          <string>Material Deckschicht</string>
          </property>
         </widget>
        </item>
@@ -333,7 +333,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>450</y>
+        <y>490</y>
         <width>91</width>
         <height>27</height>
        </rect>
@@ -448,10 +448,10 @@
      <widget class="QPushButton" name="pushButton_11">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>75</width>
-        <height>23</height>
+        <x>10</x>
+        <y>450</y>
+        <width>96</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -473,9 +473,9 @@
        </rect>
       </property>
       <property name="text">
-       <string>Variable 309</string>
+       <string>Leitung Strom</string>
       </property>
-     <item><property name="text"><string>0.4 kV</string></property></item><item><property name="text"><string>1.6kV</string></property></item><item><property name="text"><string>0.4 kV + 1.6kV</string></property></item></widget>
+     </widget>
      <widget class="QGraphicsView" name="graphicsView_2">
       <property name="geometry">
        <rect>
@@ -555,10 +555,10 @@
      <widget class="QPushButton" name="pushButton_19">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>75</width>
-        <height>23</height>
+        <x>10</x>
+        <y>440</y>
+        <width>91</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -590,35 +590,35 @@
          <item column="0" row="1">
           <widget class="QCheckBox" name="checkBox_Schmutzwasser">
            <property name="text">
-            <string />
+            <string>Schmutzwasser</string>
            </property>
           </widget>
          </item>
          <item column="0" row="0">
           <widget class="QCheckBox" name="checkBox_Abwasserkanal">
            <property name="text">
-            <string />
+            <string>Abwasserkanal</string>
            </property>
           </widget>
          </item>
          <item column="0" row="2">
           <widget class="QCheckBox" name="checkBox_Mischwasser">
            <property name="text">
-            <string />
+            <string>Mischwasser</string>
            </property>
           </widget>
          </item>
          <item column="0" row="3">
           <widget class="QCheckBox" name="checkBox_Regenwasser">
            <property name="text">
-            <string />
+            <string>Regenwasser</string>
            </property>
           </widget>
          </item>
          <item column="0" row="4">
           <widget class="QCheckBox" name="checkBox_Frischwasser">
            <property name="text">
-            <string />
+            <string>Frischwasser</string>
            </property>
           </widget>
          </item>
@@ -629,35 +629,35 @@
          <item column="0" row="3">
           <widget class="QCheckBox" name="checkBox_Leitung_Telefon">
            <property name="text">
-            <string />
+            <string>Leitung Telefon</string>
            </property>
           </widget>
          </item>
          <item column="0" row="2">
           <widget class="QCheckBox" name="checkBox_Leitung_Fernseh">
            <property name="text">
-            <string />
+            <string>Leitung Fernseh</string>
            </property>
           </widget>
          </item>
          <item column="0" row="1">
           <widget class="QCheckBox" name="checkBox_Leitung_Fernwaerme">
            <property name="text">
-            <string />
+            <string>Leitung Fernwaerme</string>
            </property>
           </widget>
          </item>
          <item column="0" row="0">
           <widget class="QCheckBox" name="checkBox_Leitung_Erdgas">
            <property name="text">
-            <string />
+            <string>Leitung Erdgas</string>
            </property>
           </widget>
          </item>
          <item column="0" row="4">
           <widget class="QCheckBox" name="checkBox_Leitung_Glasfaser">
            <property name="text">
-            <string />
+            <string>Leitung Glasfaser</string>
            </property>
           </widget>
          </item>
@@ -668,10 +668,10 @@
      <widget class="QPushButton" name="pushButton_12">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>75</width>
-        <height>23</height>
+        <x>10</x>
+        <y>410</y>
+        <width>96</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -681,10 +681,10 @@
      <widget class="QPushButton" name="buttonCancel_2">
       <property name="geometry">
        <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>75</width>
-        <height>23</height>
+        <x>510</x>
+        <y>550</y>
+        <width>92</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">

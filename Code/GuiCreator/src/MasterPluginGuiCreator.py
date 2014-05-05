@@ -25,25 +25,20 @@ def createPluginGui(excelPath, xmlPath, outputPath):
     tree.write(outputPath)
     
 def setWidgetText(widget, element):
-    textProp = widget.find("./prop[@name='text']")
+    textProp = widget.find("./property[@name='text']")
+    print(textProp)
     if textProp is not None:
         textProp.find("./string").text = element.name
     name = widget.get('name')
     name = name.split('_')[0] + ('_' + element.name.replace(' ', '_'))
     widget.set('name', name)
     # Add Combobox items
-    if element.fieldType == 'combobox':
+    if element.fieldType == 'combobox' and widget.attrib['class'] == 'QComboBox':
         for item in element.comboItems:
             i = ElementTree.SubElement(widget, 'item')
             prop = ElementTree.SubElement(i, 'property', name='text')
             string = ElementTree.SubElement(prop, 'string')
-            string.text = item
-        for child in widget:
-            print("children for: ",child.tag, child.attrib)
-            for child2 in child:
-                print(child2.tag)
-        # TODO add combobox items
-    
+            string.text = item            
 
 def setWidgetInvisible(widget):    
     prop = ElementTree.SubElement(widget, 'property', name='visible')

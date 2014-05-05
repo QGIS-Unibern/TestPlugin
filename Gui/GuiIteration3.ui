@@ -283,13 +283,7 @@
         </widget>
        </item>
        <item row="9" column="1">
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>Item 1</string>
-          </property>
-         </item>
-        </widget>
+        <widget class="QComboBox" name="comboBox_207"/>
        </item>
        <item row="10" column="0">
         <widget class="QLabel" name="label_208">
@@ -340,7 +334,7 @@
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>450</y>
+        <y>490</y>
         <width>91</width>
         <height>27</height>
        </rect>
@@ -453,6 +447,14 @@
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_11">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>450</y>
+        <width>96</width>
+        <height>27</height>
+       </rect>
+      </property>
       <property name="text">
        <string>Hinzufügen</string>
       </property>
@@ -552,6 +554,14 @@
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_19">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>440</y>
+        <width>91</width>
+        <height>27</height>
+       </rect>
+      </property>
       <property name="text">
        <string>Alle Fotos</string>
       </property>
@@ -657,11 +667,27 @@
       </layout>
      </widget>
      <widget class="QPushButton" name="pushButton_12">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>410</y>
+        <width>96</width>
+        <height>27</height>
+       </rect>
+      </property>
       <property name="text">
        <string>Hinzufügen</string>
       </property>
      </widget>
      <widget class="QPushButton" name="buttonCancel_2">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>550</y>
+        <width>92</width>
+        <height>27</height>
+       </rect>
+      </property>
       <property name="text">
        <string>Abbrechen</string>
       </property>
