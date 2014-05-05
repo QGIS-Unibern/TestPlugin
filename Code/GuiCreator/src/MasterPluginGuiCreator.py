@@ -18,19 +18,22 @@ def createPluginGui(excelPath, xmlPath, outputPath):
     for widget in widgets:
         varId = int(widget.get('name')[-3:])
         if excelElements.has_key(varId):
-            setWidgetText(widget, excelElements[varId].name)
+            setWidgetText(widget, excelElements[varId])
         else:
             setWidgetInvisible(widget)
     
     tree.write(outputPath)
     
-def setWidgetText(widget, text):
+def setWidgetText(widget, element):
     textProp = widget.find("./property[@name='text']")
     if textProp is not None:
-        textProp.find("./string").text = text
+        textProp.find("./string").text = element.name
     name = widget.get('name')
-    name = name.split('_')[0] + ('_' + text.replace(' ', '_'))
+    name = name.split('_')[0] + ('_' + element.name.replace(' ', '_'))
     widget.set('name', name)
+    if element.fieldType == 'combobox':
+        # TODO add combobox items
+        pass
     
 
 def setWidgetInvisible(widget):    
@@ -96,5 +99,5 @@ class ExcelRow(object):
         self.varId = varId
         self.name = name
         self.isVariabel = isVariabel
-        self.fieldType = fieldType
+        self.fieldType = fieldType.lower()
         self.comboItems = comboItems

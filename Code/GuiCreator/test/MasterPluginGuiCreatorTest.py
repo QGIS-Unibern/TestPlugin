@@ -7,6 +7,7 @@ import unittest
 import sys, os
 sys.path.insert(0, os.path.dirname('../src/MasterPluginGuiCreator.py'))
 import MasterPluginGuiCreator as importer
+from MasterPluginGuiCreator import ExcelRow
 from xml.etree import ElementTree
 
 
@@ -51,8 +52,8 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         prop = ElementTree.SubElement(widget, 'property', name='text')
         string = ElementTree.SubElement(prop, 'string')
         string.text = '42'
-        
-        importer.setWidgetText(widget, '1337')
+        element = ExcelRow(101, '1337', False, 'String', [])
+        importer.setWidgetText(widget, element)
         
         self.assertEqual('1337', widget.find("./property[@name='text']/string").text)
         self.assertEqual('label_1337', widget.get('name'))
