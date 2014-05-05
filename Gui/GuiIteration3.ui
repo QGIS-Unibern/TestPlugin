@@ -283,7 +283,13 @@
         </widget>
        </item>
        <item row="9" column="1">
-        <widget class="QComboBox" name="comboBox"/>
+        <widget class="QComboBox" name="comboBox">
+         <item>
+          <property name="text">
+           <string>Item 1</string>
+          </property>
+         </item>
+        </widget>
        </item>
        <item row="10" column="0">
         <widget class="QLabel" name="label_208">
@@ -310,10 +316,10 @@
      <widget class="QPushButton" name="buttonSave_1">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>610</x>
         <y>550</y>
-        <width>75</width>
-        <height>23</height>
+        <width>85</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -336,7 +342,7 @@
         <x>10</x>
         <y>450</y>
         <width>91</width>
-        <height>51</height>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -438,8 +444,8 @@
        <rect>
         <x>510</x>
         <y>550</y>
-        <width>75</width>
-        <height>23</height>
+        <width>92</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
@@ -447,14 +453,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_11">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>500</y>
-        <width>91</width>
-        <height>51</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Hinzufügen</string>
       </property>
@@ -554,14 +552,6 @@
       </property>
      </widget>
      <widget class="QPushButton" name="pushButton_19">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>390</y>
-        <width>91</width>
-        <height>51</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Alle Fotos</string>
       </property>
@@ -667,27 +657,11 @@
       </layout>
      </widget>
      <widget class="QPushButton" name="pushButton_12">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>440</y>
-        <width>91</width>
-        <height>51</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Hinzufügen</string>
       </property>
      </widget>
      <widget class="QPushButton" name="buttonCancel_2">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>550</y>
-        <width>75</width>
-        <height>23</height>
-       </rect>
-      </property>
       <property name="text">
        <string>Abbrechen</string>
       </property>
@@ -695,10 +669,10 @@
      <widget class="QPushButton" name="buttonSave_2">
       <property name="geometry">
        <rect>
-        <x>590</x>
+        <x>610</x>
         <y>550</y>
-        <width>75</width>
-        <height>23</height>
+        <width>85</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">

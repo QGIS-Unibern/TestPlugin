@@ -10,8 +10,8 @@ import MasterPluginGuiCreator as importer
 from xml.etree import ElementTree
 
 
-CONST_EXCEl_FILENAME = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen.xls"
-CONST_EXCEl_FILENAME_SIMPLE = "resources/20140301_Bern_Excel-Input-Tabelle_Attributnamen_simple.xls"
+CONST_EXCEl_FILENAME = "resources/importExcel_20140428.xls"
+CONST_EXCEl_FILENAME_SIMPLE = "resources/importExcel_20140428_simple.xls"
 
 CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
 
@@ -26,7 +26,7 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
     def testImportExcel(self):
         result = importer.importExcel(CONST_EXCEl_FILENAME)
         self.assertNotEqual(None, result, 'result is none')
-        self.assertEquals(42, len(result))
+        self.assertEquals(34, len(result))
         self.assertEquals('Nr.', result[100].name)
         self.assertTrue(result[100].isVariabel)
         self.assertFalse(result[300].isVariabel)

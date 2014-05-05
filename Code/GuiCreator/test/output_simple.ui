@@ -63,21 +63,21 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
-        <widget class="QLabel" name="label_unit_204">
+        <widget class="QLabel" name="label_Breite_Fahrbereich">
          <property name="text">
           <string>Breite Fahrbereich</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_unit_205">
+        <widget class="QLabel" name="label_Breite_Weg_links">
          <property name="text">
           <string>Breite Weg links</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_unit_206">
+        <widget class="QLabel" name="label_Breite_Weg_rechts">
          <property name="text">
           <string>Breite Weg rechts</string>
          </property>
@@ -100,77 +100,77 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="label_100">
+         <widget class="QLabel" name="label_Nr.">
           <property name="text">
            <string>Nr.</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_103">
+         <widget class="QLabel" name="label_Datum_JJJJMMTT">
           <property name="text">
            <string>Datum JJJJMMTT</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_104">
+         <widget class="QLabel" name="label_Art_der_Arbeit">
           <property name="text">
            <string>Art der Arbeit</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_107">
+         <widget class="QLabel" name="label_Vermerk">
           <property name="text">
            <string>Vermerk</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_200">
+         <widget class="QLabel" name="label_Strasse">
           <property name="text">
            <string>Strasse</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_202">
+         <widget class="QLabel" name="label_Hausnummer_kleinste">
           <property name="text">
            <string>Hausnummer kleinste</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_204">
+         <widget class="QLabel" name="label_Breite_Fahrbereich">
           <property name="text">
            <string>Breite Fahrbereich</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_205">
+         <widget class="QLabel" name="label_Breite_Weg_links">
           <property name="text">
            <string>Breite Weg links</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_206">
+         <widget class="QLabel" name="label_Breite_Weg_rechts">
           <property name="text">
            <string>Breite Weg rechts</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_207">
+         <widget class="QLabel" name="label_Verkehrsfuehrung">
           <property name="text">
            <string>Verkehrsfuehrung</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_208">
+         <widget class="QLabel" name="label_Material_Deckschicht">
           <property name="text">
            <string>Material Deckschicht</string>
           </property>
@@ -181,37 +181,37 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="lineEdit_100" />
+         <widget class="QLineEdit" name="lineEdit_Nr." />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_103" />
+         <widget class="QLineEdit" name="lineEdit_Datum_JJJJMMTT" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_104" />
+         <widget class="QLineEdit" name="lineEdit_Art_der_Arbeit" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_107" />
+         <widget class="QLineEdit" name="lineEdit_Vermerk" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_200" />
+         <widget class="QLineEdit" name="lineEdit_Strasse" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_202" />
+         <widget class="QLineEdit" name="lineEdit_Hausnummer_kleinste" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_204" />
+         <widget class="QLineEdit" name="lineEdit_Breite_Fahrbereich" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_205" />
+         <widget class="QLineEdit" name="lineEdit_Breite_Weg_links" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_206" />
+         <widget class="QLineEdit" name="lineEdit_Breite_Weg_rechts" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_207" />
+         <widget class="QLineEdit" name="lineEdit_Verkehrsfuehrung" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_208" />
+         <widget class="QLineEdit" name="lineEdit_Material_Deckschicht" />
         </item>
        </layout>
       </widget>
@@ -227,14 +227,14 @@
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label_101">
+        <widget class="QLabel" name="label_von">
          <property name="text">
           <string>von</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_101" />
+        <widget class="QLineEdit" name="lineEdit_von" />
        </item>
       </layout>
      </widget>
@@ -460,67 +460,67 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="label_102">
+         <widget class="QLabel" name="label_Event">
           <property name="text">
            <string>Event</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_105">
+         <widget class="QLabel" name="label_Firma">
           <property name="text">
            <string>Firma</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_106">
+         <widget class="QLabel" name="label_Person">
           <property name="text">
            <string>Person</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_201">
+         <widget class="QLabel" name="label_Abschnitt">
           <property name="text">
            <string>Abschnitt</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_203">
+         <widget class="QLabel" name="label_Hausnummer_groesste">
           <property name="text">
            <string>Hausnummer groesste</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_209">
+         <widget class="QLabel" name="label_Dicke_Deckschicht">
           <property name="text">
            <string>Dicke Deckschicht</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_210">
+         <widget class="QLabel" name="label_Dicke_Binderschicht">
           <property name="text">
            <string>Dicke Binderschicht</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_211">
+         <widget class="QLabel" name="label_Dicke_Asphalt-Tragschicht">
           <property name="text">
-           <string>Variable 211</string>
+           <string>Dicke Asphalt-Tragschicht</string>
           </property>
-         <property name="visible"><bool>false</bool></property></widget>
+         </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_212">
+         <widget class="QLabel" name="label_Dicke_Schotter-tragschicht">
           <property name="text">
-           <string>Variable 212</string>
+           <string>Dicke Schotter-tragschicht</string>
           </property>
-         <property name="visible"><bool>false</bool></property></widget>
+         </widget>
         </item>
         <item>
          <widget class="QLabel" name="label_213">
@@ -534,31 +534,31 @@
       <widget class="QWidget" name="layoutWidget_2">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
-         <widget class="QLineEdit" name="lineEdit_102" />
+         <widget class="QLineEdit" name="lineEdit_Event" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_105" />
+         <widget class="QLineEdit" name="lineEdit_Firma" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_106" />
+         <widget class="QLineEdit" name="lineEdit_Person" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_201" />
+         <widget class="QLineEdit" name="lineEdit_Abschnitt" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_203" />
+         <widget class="QLineEdit" name="lineEdit_Hausnummer_groesste" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_209" />
+         <widget class="QLineEdit" name="lineEdit_Dicke_Deckschicht" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_210" />
+         <widget class="QLineEdit" name="lineEdit_Dicke_Binderschicht" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_211"><property name="visible"><bool>false</bool></property></widget>
+         <widget class="QLineEdit" name="lineEdit_Dicke_Asphalt-Tragschicht" />
         </item>
         <item>
-         <widget class="QLineEdit" name="lineEdit_212"><property name="visible"><bool>false</bool></property></widget>
+         <widget class="QLineEdit" name="lineEdit_Dicke_Schotter-tragschicht" />
         </item>
         <item>
          <widget class="QLineEdit" name="lineEdit_213"><property name="visible"><bool>false</bool></property></widget>
