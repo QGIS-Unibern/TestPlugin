@@ -1,681 +1,508 @@
 <ui version="4.0">
- <class>QGisMasterPluginUI</class>
- <widget class="QMainWindow" name="QGisMasterPluginUI">
+ <class>MainWindow</class>
+ <widget class="QDialog" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>936</width>
-    <height>752</height>
+    <width>709</width>
+    <height>612</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QGisMasterPluginUI</string>
+   <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
+  <widget class="QWidget" name="centralWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>701</width>
+     <height>611</height>
+    </rect>
+   </property>
+   <widget class="QTabWidget" name="VariableData">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>-10</x>
       <y>0</y>
-      <width>941</width>
-      <height>691</height>
+      <width>711</width>
+      <height>611</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true" />
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="tab_1">
+    <widget class="QWidget" name="tab1">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Variable Daten</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_214">
+     <widget class="QWidget" name="formLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>50</y>
+        <width>341</width>
+        <height>359</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item column="0" row="0">
+        <widget class="QLabel" name="label_Event">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Variable 102</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="0">
+        <widget class="QLineEdit" name="lineEdit_Event" />
+       </item>
+       <item column="0" row="1">
+        <widget class="QLabel" name="label_Firma">
+         <property name="text">
+          <string>Variable 105</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="1">
+        <widget class="QLineEdit" name="lineEdit_Firma" />
+       </item>
+       <item column="0" row="2">
+        <widget class="QLabel" name="label_Person">
+         <property name="text">
+          <string>Variable 106</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="2">
+        <widget class="QLineEdit" name="lineEdit_Person" />
+       </item>
+       <item column="0" row="3">
+        <widget class="QLabel" name="label_108">
+         <property name="text">
+          <string>Variable 108</string>
+         </property>
+        <property name="visible"><bool>false</bool></property></widget>
+       </item>
+       <item column="1" row="3">
+        <widget class="QLineEdit" name="lineEdit_108"><property name="visible"><bool>false</bool></property></widget>
+       </item>
+       <item column="0" row="4">
+        <widget class="QLabel" name="label_Abschnitt">
+         <property name="text">
+          <string>Variable 201</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="4">
+        <widget class="QLineEdit" name="lineEdit_Abschnitt" />
+       </item>
+       <item column="0" row="5">
+        <widget class="QLabel" name="label_Hausnummer_groesste">
+         <property name="text">
+          <string>Variable 203</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="5">
+        <widget class="QLineEdit" name="lineEdit_Hausnummer_groesste" />
+       </item>
+       <item column="0" row="6">
+        <widget class="QLabel" name="label_Dicke_Deckschicht">
+         <property name="text">
+          <string>Variable 209</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="6">
+        <widget class="QLineEdit" name="lineEdit_Dicke_Deckschicht" />
+       </item>
+       <item column="0" row="7">
+        <widget class="QLabel" name="label_Dicke_Binderschicht">
+         <property name="text">
+          <string>Variable 210</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="7">
+        <widget class="QLineEdit" name="lineEdit_Dicke_Binderschicht" />
+       </item>
+       <item column="0" row="8">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>Variable 211</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="8">
+        <widget class="QLineEdit" name="lineEdit_Dicke_Asphalt-Tragschicht" />
+       </item>
+       <item column="0" row="9">
+        <widget class="QLabel" name="label_Dicke_Schotter-tragschicht">
+         <property name="text">
+          <string>Variable 212</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="9">
+        <widget class="QLineEdit" name="lineEdit_Dicke_Schotter-tragschicht" />
+       </item>
+       <item column="0" row="10">
+        <widget class="QLabel" name="label_213">
+         <property name="text">
+          <string>Variable 213</string>
+         </property>
+        <property name="visible"><bool>false</bool></property></widget>
+       </item>
+       <item column="1" row="10">
+        <widget class="QLineEdit" name="lineEdit_213"><property name="visible"><bool>false</bool></property></widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>331</width>
+        <height>359</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item column="0" row="0">
+        <widget class="QLabel" name="label_von">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Variable 101</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="0">
+        <widget class="QLineEdit" name="lineEdit_von" />
+       </item>
+       <item column="0" row="1">
+        <widget class="QLabel" name="label_Datum_JJJJMMTT">
+         <property name="text">
+          <string>Variable 103</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="1">
+        <widget class="QLineEdit" name="lineEdit_Datum_JJJJMMTT" />
+       </item>
+       <item column="0" row="2">
+        <widget class="QLabel" name="label_Art_der_Arbeit">
+         <property name="text">
+          <string>Variable 104</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="2">
+        <widget class="QLineEdit" name="lineEdit_Art_der_Arbeit" />
+       </item>
+       <item column="0" row="3">
+        <widget class="QLabel" name="label_Vermerk">
+         <property name="text">
+          <string>Variable 107</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="3">
+        <widget class="QLineEdit" name="lineEdit_Vermerk" />
+       </item>
+       <item column="0" row="4">
+        <widget class="QLabel" name="label_Strasse">
+         <property name="text">
+          <string>Variable 200</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="4">
+        <widget class="QLineEdit" name="lineEdit_Strasse" />
+       </item>
+       <item column="0" row="5">
+        <widget class="QLabel" name="label_Hausnummer_kleinste">
+         <property name="text">
+          <string>Variable 202</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="5">
+        <widget class="QLineEdit" name="lineEdit_Hausnummer_kleinste" />
+       </item>
+       <item column="0" row="6">
+        <widget class="QLabel" name="label_Breite_Fahrbereich">
+         <property name="text">
+          <string>Variable 204</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="6">
+        <widget class="QLineEdit" name="lineEdit_Breite_Fahrbereich" />
+       </item>
+       <item column="0" row="7">
+        <widget class="QLabel" name="label_Breite_Weg_links">
+         <property name="text">
+          <string>Variable 205</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="7">
+        <widget class="QLineEdit" name="lineEdit_Breite_Weg_links" />
+       </item>
+       <item column="0" row="8">
+        <widget class="QLabel" name="label_Breite_Weg_rechts">
+         <property name="text">
+          <string>Variable 206</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="8">
+        <widget class="QLineEdit" name="lineEdit_Breite_Weg_rechts" />
+       </item>
+       <item column="0" row="9">
+        <widget class="QLabel" name="label_Verkehrsfuehrung">
+         <property name="text">
+          <string>Varialbe 207</string>
+         </property>
+        <item><property name="text"><string>Einspurig</string></property></item><item><property name="text"><string>Zweispurig</string></property></item><item><property name="text"><string>Dreispurig</string></property></item><item><property name="text"><string>Vierspurig</string></property></item></widget>
+       </item>
+       <item column="1" row="9">
+        <widget class="QComboBox" name="comboBox" />
+       </item>
+       <item column="0" row="10">
+        <widget class="QLabel" name="label_Material_Deckschicht">
+         <property name="text">
+          <string>Variable 208</string>
+         </property>
+        </widget>
+       </item>
+       <item column="1" row="10">
+        <widget class="QLineEdit" name="lineEdit_Material_Deckschicht" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>400</y>
+        <width>241</width>
+        <height>171</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonSave_1">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>550</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Speichern</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>420</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_9">
       <property name="geometry">
        <rect>
         <x>10</x>
         <y>450</y>
-        <width>139</width>
-        <height>21</height>
-       </rect>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QPushButton" name="pushButton_8">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>630</y>
-        <width>114</width>
-        <height>32</height>
+        <width>91</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
-       <string>Export</string>
+       <string>Alle Fotos</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_3">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>400</y>
+        <width>311</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_4">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>430</y>
+        <width>311</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_5">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>460</y>
+        <width>311</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>290</x>
-        <y>200</y>
-        <width>71</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_5">
-       <item>
-        <widget class="QLabel" name="label_Breite_Fahrbereich">
-         <property name="text">
-          <string>Breite Fahrbereich</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_Breite_Weg_links">
-         <property name="text">
-          <string>Breite Weg links</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_Breite_Weg_rechts">
-         <property name="text">
-          <string>Breite Weg rechts</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QSplitter" name="splitter">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>281</width>
-        <height>372</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout">
-        <item>
-         <widget class="QLabel" name="label_Nr.">
-          <property name="text">
-           <string>Nr.</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Datum_JJJJMMTT">
-          <property name="text">
-           <string>Datum JJJJMMTT</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Art_der_Arbeit">
-          <property name="text">
-           <string>Art der Arbeit</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Vermerk">
-          <property name="text">
-           <string>Vermerk</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Strasse">
-          <property name="text">
-           <string>Strasse</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Hausnummer_kleinste">
-          <property name="text">
-           <string>Hausnummer kleinste</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Breite_Fahrbereich">
-          <property name="text">
-           <string>Breite Fahrbereich</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Breite_Weg_links">
-          <property name="text">
-           <string>Breite Weg links</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Breite_Weg_rechts">
-          <property name="text">
-           <string>Breite Weg rechts</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Verkehrsfuehrung">
-          <property name="text">
-           <string>Verkehrsfuehrung</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Material_Deckschicht">
-          <property name="text">
-           <string>Material Deckschicht</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Nr." />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Datum_JJJJMMTT" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Art_der_Arbeit" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Vermerk" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Strasse" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Hausnummer_kleinste" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Breite_Fahrbereich" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Breite_Weg_links" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Breite_Weg_rechts" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Verkehrsfuehrung" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Material_Deckschicht" />
-        </item>
-       </layout>
-      </widget>
-     </widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>0</y>
-        <width>281</width>
-        <height>41</height>
+        <x>10</x>
+        <y>10</y>
+        <width>691</width>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QLabel" name="label_von">
+        <widget class="QPushButton" name="buttonPreviousData">
          <property name="text">
-          <string>von</string>
+          <string>Zur&#252;ck</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_von" />
-       </item>
-      </layout>
-     </widget>
-     <widget class="QFrame" name="frame">
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>400</y>
-        <width>351</width>
-        <height>281</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_30">
-      <property name="geometry">
-       <rect>
-        <x>400</x>
-        <y>60</y>
-        <width>51</width>
-        <height>51</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_215">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>450</y>
-        <width>351</width>
-        <height>51</height>
-       </rect>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QPushButton" name="pushButton_216">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>510</y>
-        <width>114</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start Word</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QPushButton" name="pushButton_217">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>600</y>
-        <width>114</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start Excel</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QLineEdit" name="lineEdit_217">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>630</y>
-        <width>351</width>
-        <height>51</height>
-       </rect>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QPushButton" name="pushButton_215">
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>420</y>
-        <width>114</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Start PDF</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QLineEdit" name="lineEdit_216">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>540</y>
-        <width>351</width>
-        <height>51</height>
-       </rect>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QWidget" name="layoutWidget">
-      <property name="geometry">
-       <rect>
-        <x>810</x>
-        <y>180</y>
-        <width>81</width>
-        <height>151</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_6">
-       <item>
-        <widget class="QLabel" name="label_4">
+        <widget class="QPushButton" name="buttonNextData">
          <property name="text">
-          <string>Unit 209</string>
+          <string>Vorw&#228;rts</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_5">
+        <widget class="QLabel" name="lblEventCount">
          <property name="text">
-          <string>Unit 210</string>
+          <string>EventCount</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_6">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonDeleteData">
          <property name="text">
-          <string>Unit 211</string>
+          <string>Event l&#246;schen</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_7">
+        <widget class="QPushButton" name="buttonNewData">
          <property name="text">
-          <string>Unit 212</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>Unit 213</string>
+          <string>Event hinzuf&#252;gen</string>
          </property>
         </widget>
        </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="label_214">
+     <widget class="QPushButton" name="buttonCancel_1">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>430</y>
-        <width>125</width>
-        <height>21</height>
+        <x>510</x>
+        <y>550</y>
+        <width>92</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
-       <string>Variable 214</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QLabel" name="label_215">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>410</y>
-        <width>125</width>
-        <height>57</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Variable 215</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QLabel" name="label_216">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>500</y>
-        <width>125</width>
-        <height>57</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Variable 216</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QLabel" name="label_217">
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>590</y>
-        <width>125</width>
-        <height>57</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Variable 217</string>
-      </property>
-     <property name="visible"><bool>false</bool></property></widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>590</y>
-        <width>114</width>
-        <height>32</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Refresh All</string>
+       <string>Abbrechen</string>
       </property>
      </widget>
-     <widget class="QSplitter" name="splitter_3">
+     <widget class="QPushButton" name="pushButton_11">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>30</y>
-        <width>226</width>
-        <height>302</height>
+        <x>0</x>
+        <y>0</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="text">
+       <string>Hinzuf&#252;gen</string>
       </property>
-      <widget class="QWidget" name="layoutWidget">
-       <layout class="QVBoxLayout" name="verticalLayout_3">
-        <item>
-         <widget class="QLabel" name="label_Event">
-          <property name="text">
-           <string>Event</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Firma">
-          <property name="text">
-           <string>Firma</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Person">
-          <property name="text">
-           <string>Person</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Abschnitt">
-          <property name="text">
-           <string>Abschnitt</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Hausnummer_groesste">
-          <property name="text">
-           <string>Hausnummer groesste</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Dicke_Deckschicht">
-          <property name="text">
-           <string>Dicke Deckschicht</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Dicke_Binderschicht">
-          <property name="text">
-           <string>Dicke Binderschicht</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Dicke_Asphalt-Tragschicht">
-          <property name="text">
-           <string>Dicke Asphalt-Tragschicht</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Dicke_Schotter-tragschicht">
-          <property name="text">
-           <string>Dicke Schotter-tragschicht</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_213">
-          <property name="text">
-           <string>Variable 213</string>
-          </property>
-         <property name="visible"><bool>false</bool></property></widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="layoutWidget_2">
-       <layout class="QVBoxLayout" name="verticalLayout_4">
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Event" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Firma" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Person" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Abschnitt" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Hausnummer_groesste" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Dicke_Deckschicht" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Dicke_Binderschicht" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Dicke_Asphalt-Tragschicht" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_Dicke_Schotter-tragschicht" />
-        </item>
-        <item>
-         <widget class="QLineEdit" name="lineEdit_213"><property name="visible"><bool>false</bool></property></widget>
-        </item>
-       </layout>
-      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
      <attribute name="title">
-      <string>Tab 2</string>
+      <string>Konstante Daten</string>
      </attribute>
-     <widget class="QPushButton" name="pushButton_42">
+     <widget class="QLabel" name="label_309">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>390</y>
-        <width>71</width>
-        <height>61</height>
+        <x>10</x>
+        <y>180</y>
+        <width>121</width>
+        <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>Play</string>
+       <string>Variable 309</string>
       </property>
-     </widget>
-     <widget class="QFrame" name="frame_2">
+     <property name="visible"><bool>false</bool></property></widget>
+     <widget class="QGraphicsView" name="graphicsView_2">
       <property name="geometry">
        <rect>
-        <x>150</x>
-        <y>290</y>
-        <width>341</width>
-        <height>271</height>
+        <x>110</x>
+        <y>350</y>
+        <width>241</width>
+        <height>211</height>
        </rect>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_5">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>290</y>
-        <width>371</width>
-        <height>62</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_12">
-       <item>
-        <widget class="QLabel" name="label_315">
-         <property name="text">
-          <string>Variable 315</string>
-         </property>
-        <property name="visible"><bool>false</bool></property></widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_315"><property name="visible"><bool>false</bool></property></widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_6">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>470</y>
-        <width>371</width>
-        <height>62</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_13">
-       <item>
-        <widget class="QLabel" name="label_317">
-         <property name="text">
-          <string>Variable 317</string>
-         </property>
-        <property name="visible"><bool>false</bool></property></widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_317"><property name="visible"><bool>false</bool></property></widget>
-       </item>
-      </layout>
-     </widget>
-     <widget class="QWidget" name="layoutWidget_7">
-      <property name="geometry">
-       <rect>
-        <x>520</x>
-        <y>380</y>
-        <width>371</width>
-        <height>62</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_14">
-       <item>
-        <widget class="QLabel" name="label_316">
-         <property name="text">
-          <string>Variable 316</string>
-         </property>
-        <property name="visible"><bool>false</bool></property></widget>
-       </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_316"><property name="visible"><bool>false</bool></property></widget>
-       </item>
-      </layout>
      </widget>
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>290</y>
-        <width>117</width>
-        <height>62</height>
+        <y>330</y>
+        <width>128</width>
+        <height>19</height>
        </rect>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_11">
+      <layout class="QHBoxLayout" name="horizontalLayout_4">
+       <item>
+        <widget class="QLabel" name="label_45">
+         <property name="text">
+          <string>Foto:</string>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QLabel" name="label_314">
          <property name="text">
@@ -683,22 +510,69 @@
          </property>
         <property name="visible"><bool>false</bool></property></widget>
        </item>
-       <item>
-        <widget class="QComboBox" name="comboBox_314"><property name="visible"><bool>false</bool></property></widget>
-       </item>
       </layout>
      </widget>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QComboBox" name="comboBox_216">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>500</y>
-        <width>114</width>
-        <height>32</height>
+        <x>440</x>
+        <y>380</y>
+        <width>241</width>
+        <height>21</height>
+       </rect>
+      </property>
+     <property name="visible"><bool>false</bool></property></widget>
+     <widget class="QComboBox" name="comboBox_217">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>450</y>
+        <width>241</width>
+        <height>21</height>
+       </rect>
+      </property>
+     <property name="visible"><bool>false</bool></property></widget>
+     <widget class="QComboBox" name="comboBox_215">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>310</y>
+        <width>241</width>
+        <height>21</height>
+       </rect>
+      </property>
+     <property name="visible"><bool>false</bool></property></widget>
+     <widget class="QComboBox" name="comboBox_309">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>180</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+     <property name="visible"><bool>false</bool></property></widget>
+     <widget class="QPushButton" name="pushButton_19">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
-       <string>Refresh All</string>
+       <string>Alle Fotos</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_19">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>350</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -706,199 +580,150 @@
        <rect>
         <x>10</x>
         <y>20</y>
-        <width>211</width>
-        <height>116</height>
+        <width>511</width>
+        <height>133</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_3">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_7">
-         <item>
-          <widget class="QLabel" name="label_300">
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item column="0" row="0">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item column="0" row="1">
+          <widget class="QCheckBox" name="checkBox_300">
            <property name="text">
-            <string>Variable 300</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_301">
+         <item column="0" row="0">
+          <widget class="QCheckBox" name="checkBox_299">
            <property name="text">
-            <string>Variable 301</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_302">
+         <item column="0" row="2">
+          <widget class="QCheckBox" name="checkBox_301">
            <property name="text">
-            <string>Variable 302</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_303">
+         <item column="0" row="3">
+          <widget class="QCheckBox" name="checkBox_302">
            <property name="text">
-            <string>Variable 303</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QLabel" name="label_309">
+         <item column="0" row="4">
+          <widget class="QCheckBox" name="checkBox_303">
            <property name="text">
-            <string>Variable 309</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
         </layout>
        </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_8">
-         <item>
-          <widget class="QCheckBox" name="checkBox_300">
+       <item column="1" row="0">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item column="0" row="3">
+          <widget class="QCheckBox" name="checkBox_307">
            <property name="text">
-            <string>CheckBox</string>
-           </property>
-           <property name="tristate">
-            <bool>false</bool>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_301">
+         <item column="0" row="2">
+          <widget class="QCheckBox" name="checkBox_306">
            <property name="text">
-            <string>CheckBox</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_302">
+         <item column="0" row="1">
+          <widget class="QCheckBox" name="checkBox_305">
            <property name="text">
-            <string>CheckBox</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_303">
+         <item column="0" row="0">
+          <widget class="QCheckBox" name="checkBox_304">
            <property name="text">
-            <string>CheckBox</string>
+            <string />
            </property>
           <property name="visible"><bool>false</bool></property></widget>
          </item>
-         <item>
-          <widget class="QComboBox" name="comboBox_309"><property name="visible"><bool>false</bool></property></widget>
+         <item column="0" row="4">
+          <widget class="QCheckBox" name="checkBox_308">
+           <property name="text">
+            <string />
+           </property>
+          <property name="visible"><bool>false</bool></property></widget>
          </item>
         </layout>
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="layoutWidget">
+     <widget class="QPushButton" name="pushButton_12">
       <property name="geometry">
        <rect>
-        <x>380</x>
-        <y>20</y>
-        <width>181</width>
-        <height>116</height>
+        <x>0</x>
+        <y>0</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_4">
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_10">
-         <item>
-          <widget class="QLabel" name="label_304">
-           <property name="text">
-            <string>Variable 304</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_305">
-           <property name="text">
-            <string>Variable 305</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_306">
-           <property name="text">
-            <string>Variable 306</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_307">
-           <property name="text">
-            <string>Variable 307</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QLabel" name="label_308">
-           <property name="text">
-            <string>Variable 308</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_9">
-         <item>
-          <widget class="QCheckBox" name="checkBox_304">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_305">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_306">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_307">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="checkBox_308">
-           <property name="text">
-            <string>CheckBox</string>
-           </property>
-          <property name="visible"><bool>false</bool></property></widget>
-         </item>
-        </layout>
-       </item>
-      </layout>
+      <property name="text">
+       <string>Hinzuf&#252;gen</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonCancel_2">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>75</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Abbrechen</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonSave_2">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>550</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Speichern</string>
+      </property>
      </widget>
     </widget>
    </widget>
   </widget>
-  <widget class="QStatusBar" name="statusBar" />
   <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>936</width>
-     <height>21</height>
+     <width>2</width>
+     <height>13</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>3</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>

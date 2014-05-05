@@ -25,15 +25,24 @@ def createPluginGui(excelPath, xmlPath, outputPath):
     tree.write(outputPath)
     
 def setWidgetText(widget, element):
-    textProp = widget.find("./property[@name='text']")
+    textProp = widget.find("./prop[@name='text']")
     if textProp is not None:
         textProp.find("./string").text = element.name
     name = widget.get('name')
     name = name.split('_')[0] + ('_' + element.name.replace(' ', '_'))
     widget.set('name', name)
+    # Add Combobox items
     if element.fieldType == 'combobox':
+        for item in element.comboItems:
+            i = ElementTree.SubElement(widget, 'item')
+            prop = ElementTree.SubElement(i, 'property', name='text')
+            string = ElementTree.SubElement(prop, 'string')
+            string.text = item
+        for child in widget:
+            print("children for: ",child.tag, child.attrib)
+            for child2 in child:
+                print(child2.tag)
         # TODO add combobox items
-        pass
     
 
 def setWidgetInvisible(widget):    
@@ -64,8 +73,9 @@ def importExcel(filename):
             index = 4
             val = row[index]
             while index <= len(row) - 1:
-                val = row[index]
-                comboItems.append(val)
+                val = row[index].value
+                if val:
+                    comboItems.append(val)
                 index += 1
         guiElements[varId] = ExcelRow(varId, name, isVariabel, fieldType, comboItems)
         

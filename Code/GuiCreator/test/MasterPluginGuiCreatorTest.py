@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 CONST_EXCEl_FILENAME = "resources/importExcel_20140428.xls"
 CONST_EXCEl_FILENAME_SIMPLE = "resources/importExcel_20140428_simple.xls"
 
-CONST_XML_FILENAME = "../../../Gui/GUIersterVersuchWoche3.ui"
+CONST_XML_FILENAME = "../../../Gui/GUIIteration3.ui"
 
 class MasterPluginGuiCreatorTest(unittest.TestCase):
 
