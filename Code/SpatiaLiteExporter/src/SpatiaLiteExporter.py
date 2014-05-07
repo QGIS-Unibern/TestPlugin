@@ -20,31 +20,29 @@ Exports all data of geometric objects
 Input:
 spatiaLitePath: Path to the SpatiaLite file
 parentTable: Name of the table where the selected polygon is
-objectId: Id of the selected polygon (table primary key)
-childTables: list of names of all tables where you want to export the data
+objectId: Ids of the selected polygons (table primary key)
+attributeNames: Names of the attributes to export
+    It has to be a list of two lists like [constAttributes, varAttributes]
+    Where constAttribtues = {attribute1, attribute2, ...} of the constant table
+    and the same for varAttributes.
 outputPath: Path where the output pdf will be located
 ---
 This function will search for all geometric objects in childTables that intersect with the
 selected object in the parentTable and output all their data as PDF
 '''
-def exportPDF(spatiaLitePath, parentTable, objectIds, childTables, outputPath):
-    parentData = []
-    childData = []
+def exportPDF(spatiaLitePath, table, objectIds, attributeNames, outputPath):
+    tabledata = []
     for index in objectIds:
-        parentData.append(extractData(spatiaLitePath, parentTable, index))
-        '''
-        for table in childTables:
-            childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))
-        '''
+        tabledata.append(extractData(spatiaLitePath, table, index, attributeNames))
     doc = Document(outputPath)
     for index, value in enumerate(objectIds):
-        doc.append(formatData(parentData[index], childData, doc))
+        doc.append(formatData(tabledata[index], doc))
     doc.build()
   
 '''
 Formats the tables for reportlab
 '''
-def formatData(parentData, childData, doc):
+def formatData(parentData, doc):
     elements = []
     constData = []
     for index, item in enumerate(parentData[1]):
@@ -55,11 +53,10 @@ def formatData(parentData, childData, doc):
     const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
     elements.append(const)
     
-    for list in parentData[3]:
+    for datalist in parentData[3]:
         varData = []
-        for i, item in enumerate(list):
-            if item != None:
-                varData.append([parentData[2][i], item])
+        for i, item in enumerate(datalist):
+            varData.append([parentData[2][i], item])
         var = Table(varData,2*[doc.width/2])
         var.hAlign = "LEFT"
         var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
@@ -72,8 +69,8 @@ class Document:
         self.width = self.doc.width
         self.elements = []
         
-    def append(self, list):
-        for item in list:
+    def append(self, datalist):
+        for item in datalist:
             self.elements.append(item)
         
     def build(self):
@@ -84,13 +81,13 @@ Returns an array of list of strings containing all data of object 'id' in table 
 Output: 
 [constAttributes, constData, varAttributes, varData, image]
 where: 
-constAttributes = {attribute1, attribute2, ...} (list of Strings)
-varAttributes = dito
-constData = [DataOfAttribute1, DataOfAttribute2, ...] (list of list of Strings)
-varData = dito
-image = svg representation of the selected geometry
+    constAttributes = {attribute1, attribute2, ...} (list of Strings)
+    varAttributes = dito
+    constData = [DataOfAttribute1, DataOfAttribute2, ...] (list of list of Strings)
+    varData = dito
+    image = svg representation of the selected geometry
 '''
-def extractData(spatiaLitePath, tableName, id):
+def extractData(spatiaLitePath, tableName, id, attributes):
     try:
         conn = db.connect(spatiaLitePath)
         cur = conn.cursor()
@@ -99,36 +96,42 @@ def extractData(spatiaLitePath, tableName, id):
         constData = getConstData(cur, tableName, id)
         varData = getVarData(cur, tableName, id)
         image = getGeometryImage(cur, tableName, id)
-    except db.Error, e:
-        print "Error %s:" % e.args[0]
-        sys.exit()
         
-    finally:
-        if conn:
-            conn.close()
-    return [constAttributes, constData, varAttributes, varData, image]
-               
-'''
-Sollte alle IDs von objekten auf einer child-Table finden, die das selektierte objekt schneiden
-'''
-def extractChildData(spatiaLitePath, parentTable, id, table):
-    try:
-        conn = db.connect(spatiaLitePath)
-        cur = conn.cursor()
-        sqlgeom1 = "SELECT geometry FROM '"+parentTable+"' WHERE id="+`id`
-        sqlselect = "SELECT id FROM '"+table+"' WHERE TOUCHES(("+sqlgeom1+"),geometry)"
-        cur.execute(sqlselect)
-        data = cur.fetchall()
-    except db.Error, e:
-        print "Error %s:" % e.args[0]
-        sys.exit()
+        #Filtering stuff
+        if attributes:
+            varAttr_ = []
+            constAttr_ = []
+            constData_ = []
+            varData_ = []
+            for index, value in enumerate(constAttributes):
+                if value in attributes[0]:
+                    constAttr_.append(constAttributes[index])
+                    constData_.append(constData[index])
         
-    finally:
-        if conn:
-            conn.close()
+            for index, value in enumerate(varAttributes):
+                if value in attributes[1]:
+                    varAttr_.append(varAttributes[index])
+                    for i,v in enumerate(varData):
+                        if len(varData_) <= i:
+                            varData_.append([varData[i][index]])
+                        else:
+                            varData_[i].append(varData[i][index])
+                            
+            print constAttr_
+            print constData_  
+            print varAttr_    
+            print varData_  
             
-    return extractData(spatiaLitePath, table, id)
-                
+            return[constAttr_, constData_, varAttr_, varData_]
+        
+    except db.Error, e:
+        print "Error %s:" % e.args[0]
+        sys.exit()
+        
+    finally:
+        if conn:
+            conn.close()
+    return [constAttributes, constData, varAttributes, varData, image]            
                      
 def getConstAttributes(cursor, tableName):
     sql = "SELECT * from '" + tableName + "'"

@@ -25,8 +25,10 @@ class SpatiaLiteExporterTest(unittest.TestCase):
     
     def testPdfExport(self):
         curDir = os.path.dirname(os.path.realpath(__file__))
+        varAttributes = ['Event', 'Art der Arbeit']
+        constAttributes = ['Strasse', 'Abschnitt']
         exporter.exportPDF(CONST_SQLITE_FILENAME, 
-                           "newProject", [2,1], [],curDir + "test.pdf")
+                           "newProject", [2,1], [constAttributes, varAttributes],curDir + "test.pdf")
     
     def testGetConstAttributes(self):
         conn = db.connect(CONST_SQLITE_FILENAME)
