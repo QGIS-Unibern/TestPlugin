@@ -42,21 +42,26 @@ def exportPDF(spatiaLitePath, table, objectIds, attributeNames, outputPath):
 '''
 Formats the tables for reportlab
 '''
-def formatData(parentData, doc):
+def formatData(tabledata, doc):
     elements = []
     constData = []
-    for index, item in enumerate(parentData[1]):
-        if item != None:
-            constData.append([parentData[0][index], item])
-    const = Table(constData,2*[doc.width/2])
+    
+    med = int(round(float(len(tabledata[1]))/2))
+    for index, item in enumerate(tabledata[1]):
+        if index < med:
+            constData.append([tabledata[0][index]+":", item])
+        else:
+            constData[index-med].append(tabledata[0][index]+":")
+            constData[index-med].append(item)
+    const = Table(constData,4*[doc.width/4])
     const.hAlign = "LEFT"
     const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
     elements.append(const)
     
-    for datalist in parentData[3]:
+    for datalist in tabledata[3]:
         varData = []
         for i, item in enumerate(datalist):
-            varData.append([parentData[2][i], item])
+            varData.append([tabledata[2][i], item])
         var = Table(varData,2*[doc.width/2])
         var.hAlign = "LEFT"
         var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
@@ -116,11 +121,6 @@ def extractData(spatiaLitePath, tableName, id, attributes):
                             varData_.append([varData[i][index]])
                         else:
                             varData_[i].append(varData[i][index])
-                            
-            print constAttr_
-            print constData_  
-            print varAttr_    
-            print varData_  
             
             return[constAttr_, constData_, varAttr_, varData_]
         
