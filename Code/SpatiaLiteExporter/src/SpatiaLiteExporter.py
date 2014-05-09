@@ -68,7 +68,9 @@ def formatData(tabledata, doc):
     const = Table(constData,4*[doc.width/4])
     const.hAlign = "LEFT"
     const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black),
-                               ('LINEABOVE', (0,0), (3,0), 2, colors.black)]))
+                               ('LINEABOVE', (0,0), (3,0), 2, colors.black),
+                               ('LEFTPADDING', (1,0), (1,-1), 10),
+                               ('LEFTPADDING', (3,0), (3,-1), 10)]))
     elements.append(const)
     if tabledata[3]:
         elements.append(Paragraph("Event Data",style))
