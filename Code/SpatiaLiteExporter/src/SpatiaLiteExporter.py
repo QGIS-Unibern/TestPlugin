@@ -9,7 +9,6 @@ sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svgfig')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 
-import string
 from pyspatialite import dbapi2 as db
 from svgfig import *
 from svglib.svglib import svg2rlg
@@ -18,7 +17,8 @@ from reportlab.lib import colors
 from reportlab.lib.units import mm
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image, Paragraph, Spacer
 from reportlab.lib.styles import ParagraphStyle
-
+from reportlab.graphics.renderPDF import GraphicsFlowable
+from reportlab.pdfgen import canvas
 
 ''' 
 Exports all data of geometric objects
@@ -40,7 +40,7 @@ def exportPDF(spatiaLitePath, table, objectIds, attributeNames, outputPath):
     tabledata = []
     for index in objectIds:
         tabledata.append(extractData(spatiaLitePath, table, index, attributeNames))
-    doc = Document(outputPath)
+    doc = Document(outputPath, table)
     for index, value in enumerate(objectIds):
         doc.append(formatData(tabledata[index], doc))
     doc.build()
@@ -51,12 +51,11 @@ Formats the tables for reportlab
 def formatData(tabledata, doc):
     elements = []
     constData = []
+    elements.append(GraphicsFlowable(tabledata[4]))
+    elements.append(Spacer(width=1, height=20))
     style = ParagraphStyle(name='Normal',
                            fontName='Helvetica-Bold',
                            fontSize=9,)
-    
-    elements.append(tabledata[4])
-    elements.append(Spacer(width=1, height=20))
     elements.append(Paragraph("Constant Data",style))
     
     med = int(round(float(len(tabledata[1]))/2))
@@ -83,20 +82,6 @@ def formatData(tabledata, doc):
                                  ('LINEABOVE', (0,0), (3,0), 2, colors.black)]))
         elements.append(var)
     return elements
-    
-class Document:
-    def __init__(self, outputPath):
-        self.doc = SimpleDocTemplate(outputPath, pagesize=letter)
-        self.width = self.doc.width
-        self.elements = []
-        
-    def append(self, datalist):
-        for item in datalist:
-            self.elements.append(item)
-        
-    def build(self):
-        if self.elements != []:
-            self.doc.build(self.elements)
 '''
 Returns an array of list of strings containing all data of object 'id' in table 'tableName'
 Output: 
@@ -186,6 +171,50 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    Fig(Path(data[0][0], fill="blue"), trans="-30*x, -30*y").SVG().save("tmp.svg")
+    Fig(Path(data[0][0], fill="blue", local="true"), trans="-30*x, -30*y").SVG().save("tmp.svg")
     svg = svg2rlg("tmp.svg")
     return svg
+
+'''
+Helper class for building a document
+'''
+class Document:
+    def __init__(self, outputPath, table):
+        self.doc = SimpleDocTemplate(outputPath, pagesize=letter)
+        self.width = self.doc.width
+        self.elements = []
+        self.name = table
+        
+    def append(self, datalist):
+        for item in datalist:
+            self.elements.append(item)
+        
+    def build(self):
+        if self.elements != []:
+            self.doc.build(self.elements, canvasmaker=NumberedCanvas)
+            
+'''
+Helper class needed for page numbers (I love reportlab)
+'''
+class NumberedCanvas(canvas.Canvas):
+    def __init__(self, *args, **kwargs):
+        canvas.Canvas.__init__(self, *args, **kwargs)
+        self._saved_page_states = []
+
+    def showPage(self):
+        self._saved_page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        """add page info to each page (page x of y)"""
+        num_pages = len(self._saved_page_states)
+        for state in self._saved_page_states:
+            self.__dict__.update(state)
+            self.draw_page_number(num_pages)
+            canvas.Canvas.showPage(self)
+        canvas.Canvas.save(self)
+        
+    def draw_page_number(self, page_count):
+        self.setFont("Helvetica", 7)
+        self.drawRightString(115*mm, 15*mm,
+                             "Page %d of %d" % (self._pageNumber, page_count))
