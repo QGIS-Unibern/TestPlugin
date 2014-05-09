@@ -4,15 +4,21 @@
 '''
 import sys, os
 here = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/reportlab-3.0/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svgfig')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 
 from pyspatialite import dbapi2 as db
+from svgfig import *
+from svglib.svglib import svg2rlg
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image, Paragraph, Spacer
+from reportlab.lib.styles import ParagraphStyle
+from reportlab.graphics.renderPDF import GraphicsFlowable
+from reportlab.pdfgen import canvas
 
 ''' 
 Exports all data of geometric objects
@@ -20,77 +26,76 @@ Exports all data of geometric objects
 Input:
 spatiaLitePath: Path to the SpatiaLite file
 parentTable: Name of the table where the selected polygon is
-objectId: Id of the selected polygon (table primary key)
-childTables: list of names of all tables where you want to export the data
+objectId: Ids of the selected polygons (table primary key)
+attributeNames: Names of the attributes to export
+    It has to be a list of two lists like [constAttributes, varAttributes]
+    Where constAttribtues = {attribute1, attribute2, ...} of the constant table
+    and the same for varAttributes.
 outputPath: Path where the output pdf will be located
 ---
 This function will search for all geometric objects in childTables that intersect with the
 selected object in the parentTable and output all their data as PDF
 '''
-def exportPDF(spatiaLitePath, parentTable, objectIds, childTables, outputPath):
-    parentData = []
-    childData = []
+def exportPDF(spatiaLitePath, table, objectIds, attributeNames, outputPath):
+    tabledata = []
     for index in objectIds:
-        parentData.append(extractData(spatiaLitePath, parentTable, index))
-        '''
-        for table in childTables:
-            childData.append(extractChildData(spatiaLitePath, parentTable, objectId, table))
-        '''
-    doc = Document(outputPath)
+        tabledata.append(extractData(spatiaLitePath, table, index, attributeNames))
+    doc = Document(outputPath, table)
     for index, value in enumerate(objectIds):
-        doc.append(formatData(parentData[index], childData, doc))
+        doc.append(formatData(tabledata[index], doc))
     doc.build()
   
 '''
 Formats the tables for reportlab
 '''
-def formatData(parentData, childData, doc):
+def formatData(tabledata, doc):
     elements = []
     constData = []
-    for index, item in enumerate(parentData[1]):
-        if item != None:
-            constData.append([parentData[0][index], item])
-    const = Table(constData,2*[doc.width/2])
-    const.hAlign = "LEFT"
-    const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
-    elements.append(const)
+    elements.append(GraphicsFlowable(tabledata[4]))
+    elements.append(Spacer(width=1, height=20))
+    style = ParagraphStyle(name='Normal',
+                           fontName='Helvetica-Bold',
+                           fontSize=9,)
+    elements.append(Paragraph("Constant Data",style))
     
-    for list in parentData[3]:
+    med = int(round(float(len(tabledata[1]))/2))
+    for index, item in enumerate(tabledata[1]):
+        if index < med:
+            constData.append([tabledata[0][index]+":", item])
+        else:
+            constData[index-med].append(tabledata[0][index]+":")
+            constData[index-med].append(item)
+    const = Table(constData,4*[doc.width/4])
+    const.hAlign = "LEFT"
+    const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                               ('LINEABOVE', (0,0), (3,0), 2, colors.black),
+                               ('LEFTPADDING', (1,0), (1,-1), 10),
+                               ('LEFTPADDING', (3,0), (3,-1), 10)]))
+    elements.append(const)
+    if tabledata[3]:
+        elements.append(Paragraph("Event Data",style))
+    for datalist in tabledata[3]:
         varData = []
-        for i, item in enumerate(list):
-            if item != None:
-                varData.append([parentData[2][i], item])
+        for i, item in enumerate(datalist):
+            varData.append([tabledata[2][i], item])
         var = Table(varData,2*[doc.width/2])
         var.hAlign = "LEFT"
-        var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
+        var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                                 ('LINEABOVE', (0,0), (3,0), 2, colors.black)]))
         elements.append(var)
     return elements
-    
-class Document:
-    def __init__(self, outputPath):
-        self.doc = SimpleDocTemplate(outputPath, pagesize=letter)
-        self.width = self.doc.width
-        self.elements = []
-        
-    def append(self, list):
-        for item in list:
-            self.elements.append(item)
-        
-    def build(self):
-        if self.elements != []:
-            self.doc.build(self.elements)
 '''
 Returns an array of list of strings containing all data of object 'id' in table 'tableName'
 Output: 
 [constAttributes, constData, varAttributes, varData, image]
 where: 
-constAttributes = {attribute1, attribute2, ...} (list of Strings)
-varAttributes = dito
-constData = [DataOfAttribute1, DataOfAttribute2, ...] (list of list of Strings)
-varData = dito
-image = svg representation of the selected geometry
+    constAttributes = {attribute1, attribute2, ...} (list of Strings)
+    varAttributes = dito
+    constData = [DataOfAttribute1, DataOfAttribute2, ...] (list of list of Strings)
+    varData = dito
+    image = svg representation of the selected geometry
 '''
-def extractData(spatiaLitePath, tableName, id):
+def extractData(spatiaLitePath, tableName, id, attributes):
     try:
         conn = db.connect(spatiaLitePath)
         cur = conn.cursor()
@@ -99,36 +104,37 @@ def extractData(spatiaLitePath, tableName, id):
         constData = getConstData(cur, tableName, id)
         varData = getVarData(cur, tableName, id)
         image = getGeometryImage(cur, tableName, id)
-    except db.Error, e:
-        print "Error %s:" % e.args[0]
-        sys.exit()
         
-    finally:
-        if conn:
-            conn.close()
-    return [constAttributes, constData, varAttributes, varData, image]
-               
-'''
-Sollte alle IDs von objekten auf einer child-Table finden, die das selektierte objekt schneiden
-'''
-def extractChildData(spatiaLitePath, parentTable, id, table):
-    try:
-        conn = db.connect(spatiaLitePath)
-        cur = conn.cursor()
-        sqlgeom1 = "SELECT geometry FROM '"+parentTable+"' WHERE id="+`id`
-        sqlselect = "SELECT id FROM '"+table+"' WHERE TOUCHES(("+sqlgeom1+"),geometry)"
-        cur.execute(sqlselect)
-        data = cur.fetchall()
-    except db.Error, e:
-        print "Error %s:" % e.args[0]
-        sys.exit()
+        #Filtering stuff
+        if attributes:
+            varAttr_ = []
+            constAttr_ = []
+            constData_ = []
+            varData_ = []
+            for index, value in enumerate(constAttributes):
+                if value in attributes[0]:
+                    constAttr_.append(constAttributes[index])
+                    constData_.append(constData[index])
         
-    finally:
-        if conn:
-            conn.close()
+            for index, value in enumerate(varAttributes):
+                if value in attributes[1]:
+                    varAttr_.append(varAttributes[index])
+                    for i,v in enumerate(varData):
+                        if len(varData_) <= i:
+                            varData_.append([varData[i][index]])
+                        else:
+                            varData_[i].append(varData[i][index])
             
-    return extractData(spatiaLitePath, table, id)
-                
+            return[constAttr_, constData_, varAttr_, varData_, image]
+        
+    except db.Error, e:
+        print "Error %s:" % e.args[0]
+        sys.exit()
+        
+    finally:
+        if conn:
+            conn.close()
+    return [constAttributes, constData, varAttributes, varData, image]            
                      
 def getConstAttributes(cursor, tableName):
     sql = "SELECT * from '" + tableName + "'"
@@ -167,4 +173,50 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    return data[0]
+    Fig(Path(data[0][0], fill="blue", local="true"), trans="-30*x, -30*y").SVG().save("tmp.svg")
+    svg = svg2rlg("tmp.svg")
+    return svg
+
+'''
+Helper class for building a document
+'''
+class Document:
+    def __init__(self, outputPath, table):
+        self.doc = SimpleDocTemplate(outputPath, pagesize=letter)
+        self.width = self.doc.width
+        self.elements = []
+        self.name = table
+        
+    def append(self, datalist):
+        for item in datalist:
+            self.elements.append(item)
+        
+    def build(self):
+        if self.elements != []:
+            self.doc.build(self.elements, canvasmaker=NumberedCanvas)
+            
+'''
+Helper class needed for page numbers (I love reportlab)
+'''
+class NumberedCanvas(canvas.Canvas):
+    def __init__(self, *args, **kwargs):
+        canvas.Canvas.__init__(self, *args, **kwargs)
+        self._saved_page_states = []
+
+    def showPage(self):
+        self._saved_page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        """add page info to each page (page x of y)"""
+        num_pages = len(self._saved_page_states)
+        for state in self._saved_page_states:
+            self.__dict__.update(state)
+            self.draw_page_number(num_pages)
+            canvas.Canvas.showPage(self)
+        canvas.Canvas.save(self)
+        
+    def draw_page_number(self, page_count):
+        self.setFont("Helvetica", 7)
+        self.drawRightString(115*mm, 15*mm,
+                             "Page %d of %d" % (self._pageNumber, page_count))
