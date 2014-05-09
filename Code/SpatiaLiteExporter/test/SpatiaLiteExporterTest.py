@@ -28,7 +28,7 @@ class SpatiaLiteExporterTest(unittest.TestCase):
         varAttributes = ['Event', 'Art der Arbeit', 'Person']
         constAttributes = ['Strasse', 'Abschnitt', 'Breite Weg links', 'Schmutzwasser']
         exporter.exportPDF(CONST_SQLITE_FILENAME, 
-                           "newProject", [2], [columnNamesConst, varAttributes],curDir + "test.pdf")
+                           "newProject", [1,2], [columnNamesConst, varAttributes],curDir + "test.pdf")
     
     def testGetConstAttributes(self):
         conn = db.connect(CONST_SQLITE_FILENAME)
@@ -61,6 +61,6 @@ class SpatiaLiteExporterTest(unittest.TestCase):
     def testGetGeometryImage(self):
         conn = db.connect(CONST_SQLITE_FILENAME)
         cur = conn.cursor()
-        data = exporter.getGeometryImage(cur, "newProject", 2)
+        data = exporter.getGeometryImage(cur, "newProject", 1)
         self.assertNotEqual(None, data)
         conn.close()

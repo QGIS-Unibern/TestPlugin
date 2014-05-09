@@ -4,15 +4,21 @@
 '''
 import sys, os
 here = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/reportlab-3.0/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svgfig')))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src')))
 
+import string
 from pyspatialite import dbapi2 as db
+from svgfig import *
+from svglib.svglib import svg2rlg
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import mm
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Image, Paragraph, Spacer
+from reportlab.lib.styles import ParagraphStyle
+
 
 ''' 
 Exports all data of geometric objects
@@ -45,6 +51,13 @@ Formats the tables for reportlab
 def formatData(tabledata, doc):
     elements = []
     constData = []
+    style = ParagraphStyle(name='Normal',
+                           fontName='Helvetica-Bold',
+                           fontSize=9,)
+    
+    elements.append(tabledata[4])
+    elements.append(Spacer(width=1, height=20))
+    elements.append(Paragraph("Constant Data",style))
     
     med = int(round(float(len(tabledata[1]))/2))
     for index, item in enumerate(tabledata[1]):
@@ -55,16 +68,19 @@ def formatData(tabledata, doc):
             constData[index-med].append(item)
     const = Table(constData,4*[doc.width/4])
     const.hAlign = "LEFT"
-    const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
+    const.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                               ('LINEABOVE', (0,0), (3,0), 2, colors.black)]))
     elements.append(const)
-    
+    if tabledata[3]:
+        elements.append(Paragraph("Event Data",style))
     for datalist in tabledata[3]:
         varData = []
         for i, item in enumerate(datalist):
             varData.append([tabledata[2][i], item])
         var = Table(varData,2*[doc.width/2])
         var.hAlign = "LEFT"
-        var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black)]))
+        var.setStyle(TableStyle([('BOX', (0,0), (-1,-1), 0.25, colors.black),
+                                 ('LINEABOVE', (0,0), (3,0), 2, colors.black)]))
         elements.append(var)
     return elements
     
@@ -122,7 +138,7 @@ def extractData(spatiaLitePath, tableName, id, attributes):
                         else:
                             varData_[i].append(varData[i][index])
             
-            return[constAttr_, constData_, varAttr_, varData_]
+            return[constAttr_, constData_, varAttr_, varData_, image]
         
     except db.Error, e:
         print "Error %s:" % e.args[0]
@@ -170,4 +186,6 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    return data[0]
+    Fig(Path(data[0][0], fill="blue"), trans="-30*x, -30*y").SVG().save("tmp.svg")
+    svg = svg2rlg("tmp.svg")
+    return svg

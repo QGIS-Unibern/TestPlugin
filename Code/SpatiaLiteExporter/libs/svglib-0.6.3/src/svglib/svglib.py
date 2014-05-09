@@ -23,6 +23,7 @@ import re
 import operator
 import gzip
 import xml.dom.minidom 
+import string
 
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.graphics.shapes import *

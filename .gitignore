@@ -2,3 +2,5 @@
 *.pyc
 
 Code/SpatiaLiteCreator/test/test_simple.sqlite
+
+*.svg
