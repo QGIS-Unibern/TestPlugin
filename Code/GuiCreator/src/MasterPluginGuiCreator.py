@@ -2,6 +2,9 @@
 
 @author: orlando.signer@students.unibe.ch
 '''
+import sys, os
+here = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/xlrd-0.9.2')))
 
 import xlrd
 from xml.etree import ElementTree
