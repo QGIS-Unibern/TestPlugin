@@ -35,7 +35,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab1">
      <attribute name="title">
@@ -433,7 +433,7 @@
         <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
       </property>
      </widget>
-     <widget class="QPushButton" name="button_remove_photo_var">
+     <widget class="QPushButton" name="button_delete_photo_var">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -529,7 +529,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="button_remove_doc_var">
+     <widget class="QPushButton" name="button_delete_doc_var">
       <property name="geometry">
        <rect>
         <x>610</x>
@@ -809,7 +809,7 @@
         <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
       </property>
      </widget>
-     <widget class="QPushButton" name="button_remove_doc">
+     <widget class="QPushButton" name="button_delete_doc">
       <property name="geometry">
        <rect>
         <x>610</x>
@@ -839,7 +839,7 @@
        </rect>
       </property>
      </widget>
-     <widget class="QPushButton" name="button_remove_photo">
+     <widget class="QPushButton" name="button_delete_photo">
       <property name="geometry">
        <rect>
         <x>270</x>
@@ -882,10 +882,6 @@
     </rect>
    </property>
   </widget>
-  <zorder>centralWidget</zorder>
-  <zorder>mainToolBar</zorder>
-  <zorder>statusBar</zorder>
-  <zorder>buttonCancel_2</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

@@ -26,6 +26,7 @@ from ui_dyngui import Ui_dyngui
 from PyQt4 import QtGui, uic
 import sys, os
 import os.path
+import functools
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/reportlab-3.0/src')))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
@@ -55,6 +56,20 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.buttonNextData, QtCore.SIGNAL("clicked()"), self.nextVarData)
         self.connect(self.ui.buttonNewData, QtCore.SIGNAL("clicked()"), self.newVarData)
         self.connect(self.ui.buttonDeleteData, QtCore.SIGNAL("clicked()"), self.deleteVarData)
+        # Buttons for open/add/delete files
+        self.connect(self.ui.button_open_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile,True, True))
+        self.connect(self.ui.button_open_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, True, False))
+        self.connect(self.ui.button_open_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, False, True))
+        self.connect(self.ui.button_open_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, False, False))
+        self.connect(self.ui.button_add_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile,True, True))
+        self.connect(self.ui.button_add_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, True, False))
+        self.connect(self.ui.button_add_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, True))
+        self.connect(self.ui.button_add_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, False))
+        self.connect(self.ui.button_delete_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile,True, True))
+        self.connect(self.ui.button_deletephoto, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, False))
+        self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, True))
+        self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, False))
+
 
         try:
             conn = self.getDbConnection()
@@ -74,6 +89,16 @@ class DynamicGuiLoader(QDialog):
         
         self.exec_()
         
+    def openFile(self, isPhoto, isVar):
+        print("openfile: %s/%s" % (isPhoto, isVar))
+        
+    def addFile(self, isPhoto, isVar):
+        print("addfile: %s/%s" % (isPhoto, isVar))
+        
+    def deleteFile(self, isPhoto, isVar):
+        print("deletefile: %s/%s" % (isPhoto, isVar))
+
+    
     def getDbConnection(self):
         return db.connect(self.dbName)
     
