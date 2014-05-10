@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QDialog" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>709</width>
+    <height>634</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>711</width>
+     <height>631</height>
+    </rect>
+   </property>
+   <widget class="QTabWidget" name="VariableData">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>711</width>
+      <height>631</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="tab1">
+     <attribute name="title">
+      <string>Variable Daten</string>
+     </attribute>
+     <widget class="QWidget" name="formLayoutWidget_2">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>50</y>
+        <width>341</width>
+        <height>359</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_102">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Variable 102</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_102"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_105">
+         <property name="text">
+          <string>Variable 105</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_105"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_106">
+         <property name="text">
+          <string>Variable 106</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_106"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_108">
+         <property name="text">
+          <string>Variable 108</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_108"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_201">
+         <property name="text">
+          <string>Variable 201</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEdit_201"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_203">
+         <property name="text">
+          <string>Variable 203</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="lineEdit_203"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_209">
+         <property name="text">
+          <string>Variable 209</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="lineEdit_209"/>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_210">
+         <property name="text">
+          <string>Variable 210</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="lineEdit_210"/>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_20">
+         <property name="text">
+          <string>Variable 211</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lineEdit_211"/>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_212">
+         <property name="text">
+          <string>Variable 212</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QLineEdit" name="lineEdit_212"/>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label_213">
+         <property name="text">
+          <string>Variable 213</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QLineEdit" name="lineEdit_213"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="formLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>331</width>
+        <height>359</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_2">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_101">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Variable 101</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit_101"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_103">
+         <property name="text">
+          <string>Variable 103</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="lineEdit_103"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_104">
+         <property name="text">
+          <string>Variable 104</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="lineEdit_104"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_107">
+         <property name="text">
+          <string>Variable 107</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="lineEdit_107"/>
+       </item>
+       <item row="4" column="0">
+        <widget class="QLabel" name="label_200">
+         <property name="text">
+          <string>Variable 200</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1">
+        <widget class="QLineEdit" name="lineEdit_200"/>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_202">
+         <property name="text">
+          <string>Variable 202</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="QLineEdit" name="lineEdit_202"/>
+       </item>
+       <item row="6" column="0">
+        <widget class="QLabel" name="label_204">
+         <property name="text">
+          <string>Variable 204</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1">
+        <widget class="QLineEdit" name="lineEdit_204"/>
+       </item>
+       <item row="7" column="0">
+        <widget class="QLabel" name="label_205">
+         <property name="text">
+          <string>Variable 205</string>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1">
+        <widget class="QLineEdit" name="lineEdit_205"/>
+       </item>
+       <item row="8" column="0">
+        <widget class="QLabel" name="label_206">
+         <property name="text">
+          <string>Variable 206</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLineEdit" name="lineEdit_206"/>
+       </item>
+       <item row="9" column="0">
+        <widget class="QLabel" name="label_207">
+         <property name="text">
+          <string>Varialbe 207</string>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="1">
+        <widget class="QComboBox" name="comboBox_207"/>
+       </item>
+       <item row="10" column="0">
+        <widget class="QLabel" name="label_208">
+         <property name="text">
+          <string>Variable 208</string>
+         </property>
+        </widget>
+       </item>
+       <item row="10" column="1">
+        <widget class="QLineEdit" name="lineEdit_208"/>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>691</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QPushButton" name="buttonPreviousData">
+         <property name="text">
+          <string>Zurück</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonNextData">
+         <property name="text">
+          <string>Vorwärts</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="lblEventCount">
+         <property name="text">
+          <string>EventCount</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonDeleteData">
+         <property name="text">
+          <string>Event löschen</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="buttonNewData">
+         <property name="text">
+          <string>Event hinzufügen</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QListView" name="listView_fotos_var">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>440</y>
+        <width>256</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_open_photo_var">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>440</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Öffnen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonCancel_1">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>570</y>
+        <width>92</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Abbrechen</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonSave_1">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>570</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Speichern</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_add_photo_var">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>470</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Hinzufügen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_remove_photo_var">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>500</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Entfernen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_fotos_var">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>420</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fotos</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_dokumente_var">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>420</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Dokumente</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_add_doc_var">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>470</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Hinzufügen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_open_doc_var">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>440</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Öffnen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_docs_var">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>440</y>
+        <width>256</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_remove_doc_var">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>500</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Entfernen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Konstante Daten</string>
+     </attribute>
+     <widget class="QLabel" name="label_309">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Variable 309</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="comboBox_309">
+      <property name="geometry">
+       <rect>
+        <x>140</x>
+        <y>180</y>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>511</width>
+        <height>133</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_3">
+       <item row="0" column="0">
+        <layout class="QGridLayout" name="gridLayout_4">
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBox_300">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBox_299">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBox_301">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="checkBox_302">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="checkBox_303">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="1">
+        <layout class="QGridLayout" name="gridLayout_5">
+         <item row="3" column="0">
+          <widget class="QCheckBox" name="checkBox_307">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QCheckBox" name="checkBox_306">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QCheckBox" name="checkBox_305">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0">
+          <widget class="QCheckBox" name="checkBox_304">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="0">
+          <widget class="QCheckBox" name="checkBox_308">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QPushButton" name="buttonCancel_2">
+      <property name="geometry">
+       <rect>
+        <x>510</x>
+        <y>570</y>
+        <width>92</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Abbrechen</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="buttonSave_2">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>570</y>
+        <width>85</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Speichern</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_fotos">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>420</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Fotos</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_add_doc">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>470</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Hinzufügen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_add_photo">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>470</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Hinzufügen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/add.png</normaloff>icons/add.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_open_doc">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>440</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Öffnen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_docs">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>440</y>
+        <width>256</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_dokumente">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>420</y>
+        <width>91</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Dokumente</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_open_photo">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>440</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Öffnen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_remove_doc">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>500</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Entfernen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+     <widget class="QListView" name="listView_fotos">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>440</y>
+        <width>256</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="button_remove_photo">
+      <property name="geometry">
+       <rect>
+        <x>270</x>
+        <y>500</y>
+        <width>31</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="toolTip">
+       <string>Entfernen</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>13</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>3</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <zorder>centralWidget</zorder>
+  <zorder>mainToolBar</zorder>
+  <zorder>statusBar</zorder>
+  <zorder>buttonCancel_2</zorder>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
