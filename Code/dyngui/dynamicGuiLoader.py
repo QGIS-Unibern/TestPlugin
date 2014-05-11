@@ -66,10 +66,10 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.button_add_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, True, False))
         self.connect(self.ui.button_add_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, True))
         self.connect(self.ui.button_add_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, False))
-        self.connect(self.ui.button_delete_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, True))
-        self.connect(self.ui.button_delete_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, False))
-        self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, True))
-        self.connect(self.ui.button_delete_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, False))
+        self.connect(self.ui.button_delete_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, True, True))
+        self.connect(self.ui.button_delete_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, True, False))
+        self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, True))
+        self.connect(self.ui.button_delete_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, False))
 
 
         try:
@@ -83,6 +83,8 @@ class DynamicGuiLoader(QDialog):
             else:
                 self.varId = 0
             self.loadVarData(cur)
+            
+            self.loadFileData(cur, False)
         finally:
             if conn:
                 conn.commit()
@@ -115,12 +117,44 @@ class DynamicGuiLoader(QDialog):
             view = self.getFileListWidget(isPhoto, isVar)
             if not view.findItems(read, QtCore.Qt.MatchExactly):
                 view.addItem(read)
-            
+                self.persistFile(read, isPhoto, isVar)
+    
+    def persistFile(self, filename, isPhoto, isVar):
+        tblName = self.getFileTableName(isPhoto, isVar)
+        dataId = self.varId if isVar else self.id
+        sql = "INSERT INTO %s (ref_id, path) "
+        sql += "VALUES (?, ?)"
+        sql = sql % tblName
         
-    def deleteFile(self, isPhoto, isVar):
+        try:
+            conn = self.getDbConnection()
+            cur = conn.cursor()
+            cur.execute(sql, (dataId, filename))
+        finally:
+            if conn:
+                conn.commit()
+                conn.close()      
+        
+    def removeFile(self, isPhoto, isVar):
         view = self.getFileListWidget(isPhoto, isVar)
         if view.currentRow() >= 0:
-            view.takeItem(view.currentRow())
+            item = view.takeItem(view.currentRow())
+            deleteFile(item.text(), isPhoto, isVar)
+            
+    def deleteFile(self, filename, isPhoto, isVar):
+        tblName = self.getFileTableName(isPhoto, isVar)
+        dataId = self.varId if isVar else self.id
+        sql = "DELETE FROM %s "
+        sql += "WHERE ref_id = ? AND path = ?"
+        sql = sql % tblName
+        try:
+            conn = self.getDbConnection()
+            cur = conn.cursor()
+            cur.execute(sql, (dataId, filename))
+        finally:
+            if conn:
+                conn.commit()
+                conn.close()
 
         
     def getFileListWidget(self, isPhoto, isVar):
@@ -138,6 +172,32 @@ class DynamicGuiLoader(QDialog):
     def getDbConnection(self):
         return db.connect(self.dbName)
     
+    def getFileTableName(self, isPhoto, isVar):
+        type = "fotos" if isPhoto else "doc"
+        var = "var" if isVar else "const"
+        return "%s_%s_%s " % (self.guiName, type, var)
+    
+    def loadFileData(self, cursor, isVar):
+        vals = [True, False]
+        for isPhoto in vals:
+            widget = self.getFileListWidget(isPhoto, isVar)
+            widget.clear()
+            result = self.loadFileData2(cursor, isPhoto, isVar)
+            print(result)
+            for data in result:
+                widget.addItem(data)
+    
+    def loadFileData2(self, cursor, isPhoto, isVar):
+        dataId = self.varId if isVar else self.id
+        table = self.getFileTableName(isPhoto, isVar)
+        sql = "SELECT path FROM %s "
+        sql += "WHERE ref_id = ?"
+        sql = sql % table
+        cursor.execute(sql, (str(dataId)))
+        data = cursor.fetchall()
+        data = [i[0] for i in data]
+        return data
+        
     '''
     Loads the constant data from the database and sets it into the 'Konstante Daten'-Tab 
     '''
@@ -152,6 +212,7 @@ class DynamicGuiLoader(QDialog):
     def loadVarData(self, cursor):
         self.varData = self.getVarData(cursor)
         self.setDataToGui(self.varData)
+        self.loadFileData(cursor, True)
         self.updateCountLabel()
 
     '''
@@ -170,7 +231,7 @@ class DynamicGuiLoader(QDialog):
                 if key == 'geometry' or key == 'id':
                     continue
                 sql += "'%s' = '%s'," % (key.replace('_', ' '), value)
-            sql = sql[:-1]  # remove last comma
+            sql = sql[:-1]  # removeFile last comma
             sql += " WHERE id = %s;" % self.id
             cur.execute(sql)
             
@@ -189,6 +250,7 @@ class DynamicGuiLoader(QDialog):
         finally:
             if conn:
                 conn.close()
+        
     '''
     Action from the Vorwärts-Button. Sets the next variable data.
     '''
