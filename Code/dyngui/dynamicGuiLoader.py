@@ -100,12 +100,15 @@ class DynamicGuiLoader(QDialog):
         
         if read and read.strip():
             view = self.getFileListWidget(isPhoto, isVar)
-            print(view)
-            view.addItem(read)
+            if not view.findItems(read, QtCore.Qt.MatchExactly):
+                view.addItem(read)
             
         
     def deleteFile(self, isPhoto, isVar):
-        print("deletefile: %s/%s" % (isPhoto, isVar))
+        view = self.getFileListWidget(isPhoto, isVar)
+        if view.currentRow() >= 0:
+            view.takeItem(view.currentRow())
+
         
     def getFileListWidget(self, isPhoto, isVar):
         if isPhoto:
