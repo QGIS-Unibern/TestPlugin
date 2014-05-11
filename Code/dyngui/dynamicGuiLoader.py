@@ -192,7 +192,7 @@ class DynamicGuiLoader(QDialog):
         sql = "SELECT path FROM %s "
         sql += "WHERE ref_id = ?"
         sql = sql % table
-        cursor.execute(sql, (str(dataId)))
+        cursor.execute(sql, [str(dataId)])
         data = cursor.fetchall()
         data = [i[0] for i in data]
         return data
@@ -332,7 +332,10 @@ class DynamicGuiLoader(QDialog):
                     elif type(widget) is QtGui.QCheckBox:
                         widget.setChecked(value == 'True')
                     elif type(widget) is QtGui.QComboBox:
-                        pass
+                        for i in range(widget.count()):
+                            if widget.itemText(i) == value:
+                                widget.setCurrentIndex(i)
+                                break
                     break
     
     def setDataToMap(self, data):
@@ -345,7 +348,7 @@ class DynamicGuiLoader(QDialog):
                     elif type(widget) is QtGui.QCheckBox:
                         data[key] = widget.isChecked()
                     elif type(widget) is QtGui.QComboBox:
-                        pass
+                        data[key] = str(widget.currentText())
                     break
     
     def updateCountLabel(self):
