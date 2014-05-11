@@ -25,6 +25,7 @@ from PyQt4.QtGui import QDialog
 from PyQt4.QtGui import QFileDialog
 from ui_dyngui import Ui_dyngui
 import sys, os
+import subprocess
 import os.path
 import functools
 here = os.path.dirname(os.path.abspath(__file__))
@@ -90,7 +91,17 @@ class DynamicGuiLoader(QDialog):
         self.exec_()
         
     def openFile(self, isPhoto, isVar):
-        print("openfile: %s/%s" % (isPhoto, isVar))
+        view = self.getFileListWidget(isPhoto, isVar)
+        if view.currentRow() >= 0:
+            file = view.currentItem().text()
+            print(file)
+            # see http://stackoverflow.com/a/435669
+            if sys.platform.startswith('darwin'):
+                subprocess.call(('open', file))
+            elif os.name == 'nt':
+                os.startfile(file)
+            elif os.name == 'posix':
+                subprocess.call(('xdg-open', file))
         
     def addFile(self, isPhoto, isVar):
         fileTypes = ""
