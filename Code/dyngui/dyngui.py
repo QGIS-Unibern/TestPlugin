@@ -28,6 +28,7 @@ from qgis.core import *
 import resources_rc
 # Import the code for the dialog
 from dynguidialog import dynguiDialog
+from exportdialog import exportDialog
 import os.path
 # import plugin-functions
 from src.SpatiaLiteCreator import createSpatiaLiteDatabase
@@ -64,6 +65,7 @@ class dyngui:
 
         # Create the dialog (after translation) and keep reference
         self.dlg = dynguiDialog()
+        self.exp = exportDialog()
 
     def initGui(self):
         # Create action that will start plugin configuration
@@ -114,11 +116,12 @@ class dyngui:
         if not (layer is None):
             features = layer.getFeatures()
             idx = layer.fieldNameIndex('id')
-            source = layer.source()
+            objectIDs = []
             for f in features:
-                attrs = f.attributes()
-                id = attrs[idx]
-            # show the dialog
+                objectIDs.append(f.attributes()[idx])
+            # prepare & show the dialog
+            path = layer.source().split("'")[1]
+            self.exp.setValues(path, layer.name(), objectIDs)
             self.exp.show()
             # Run the dialog event loop
             result = self.exp.exec_()
