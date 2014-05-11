@@ -90,11 +90,13 @@ class DynamicGuiLoader(QDialog):
         
         self.exec_()
         
+    '''
+    Evaluates the selected file from the correct file-ListWidget and opens with the default application
+    '''
     def openFile(self, isPhoto, isVar):
         view = self.getFileListWidget(isPhoto, isVar)
         if view.currentRow() >= 0:
             file = view.currentItem().text()
-            print(file)
             # see http://stackoverflow.com/a/435669
             if sys.platform.startswith('darwin'):
                 subprocess.call(('open', file))
@@ -106,8 +108,8 @@ class DynamicGuiLoader(QDialog):
     def addFile(self, isPhoto, isVar):
         fileTypes = ""
         if isPhoto:
-            fileTypes = "Bilder (*.jpg *.jpeg *.pnf *.gif *.bmp *.tiff"
-        read = QFileDialog.getOpenFileName(self ,"Open a Guimask", fileTypes)
+            fileTypes = "Bilder (*.jpg *.jpeg *.png *.gif *.bmp *.tiff)"
+        read = QFileDialog.getOpenFileName(self ,"Open a Guimask", filter=fileTypes)
         
         if read and read.strip():
             view = self.getFileListWidget(isPhoto, isVar)
