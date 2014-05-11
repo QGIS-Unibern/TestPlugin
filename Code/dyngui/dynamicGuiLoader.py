@@ -183,7 +183,6 @@ class DynamicGuiLoader(QDialog):
             widget = self.getFileListWidget(isPhoto, isVar)
             widget.clear()
             result = self.loadFileData2(cursor, isPhoto, isVar)
-            print(result)
             for data in result:
                 widget.addItem(data)
     

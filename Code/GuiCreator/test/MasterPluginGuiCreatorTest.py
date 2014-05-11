@@ -14,7 +14,7 @@ from xml.etree import ElementTree
 CONST_EXCEl_FILENAME = "resources/importExcel_20140428.xls"
 CONST_EXCEl_FILENAME_SIMPLE = "resources/importExcel_20140428_simple.xls"
 
-CONST_XML_FILENAME = "../../../Gui/GuiIteration3.ui"
+CONST_XML_FILENAME = "../../../Gui/GuiIteration4.ui"
 
 class MasterPluginGuiCreatorTest(unittest.TestCase):
 
@@ -37,7 +37,7 @@ class MasterPluginGuiCreatorTest(unittest.TestCase):
         result = importer.getXmlWidgets(tree)
         
         self.assertNotEqual(None, result)
-        self.assertEqual(59, len(result))
+        self.assertEqual(55, len(result))
         
     def testSetWidgetInvisible(self):
         widget = ElementTree.Element('widget')
