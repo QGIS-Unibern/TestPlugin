@@ -20,10 +20,10 @@
  ***************************************************************************/
 """
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, uic
 from PyQt4.QtGui import QDialog
+from PyQt4.QtGui import QFileDialog
 from ui_dyngui import Ui_dyngui
-from PyQt4 import QtGui, uic
 import sys, os
 import os.path
 import functools
@@ -57,18 +57,18 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.buttonNewData, QtCore.SIGNAL("clicked()"), self.newVarData)
         self.connect(self.ui.buttonDeleteData, QtCore.SIGNAL("clicked()"), self.deleteVarData)
         # Buttons for open/add/delete files
-        self.connect(self.ui.button_open_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile,True, True))
+        self.connect(self.ui.button_open_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, True, True))
         self.connect(self.ui.button_open_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, True, False))
         self.connect(self.ui.button_open_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, False, True))
-        self.connect(self.ui.button_open_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, False, False))
-        self.connect(self.ui.button_add_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile,True, True))
+        self.connect(self.ui.button_open_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.openFile, False, False))
+        self.connect(self.ui.button_add_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, True, True))
         self.connect(self.ui.button_add_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, True, False))
         self.connect(self.ui.button_add_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, True))
-        self.connect(self.ui.button_add_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, False))
-        self.connect(self.ui.button_delete_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile,True, True))
-        self.connect(self.ui.button_deletephoto, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, False))
+        self.connect(self.ui.button_add_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.addFile, False, False))
+        self.connect(self.ui.button_delete_photo_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, True))
+        self.connect(self.ui.button_delete_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, True, False))
         self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, True))
-        self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, False))
+        self.connect(self.ui.button_delete_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.deleteFile, False, False))
 
 
         try:
@@ -93,11 +93,31 @@ class DynamicGuiLoader(QDialog):
         print("openfile: %s/%s" % (isPhoto, isVar))
         
     def addFile(self, isPhoto, isVar):
-        print("addfile: %s/%s" % (isPhoto, isVar))
+        fileTypes = ""
+        if isPhoto:
+            fileTypes = "Bilder (*.jpg *.jpeg *.pnf *.gif *.bmp *.tiff"
+        read = QFileDialog.getOpenFileName(self ,"Open a Guimask", fileTypes)
+        
+        if read and read.strip():
+            view = self.getFileListWidget(isPhoto, isVar)
+            print(view)
+            view.addItem(read)
+            
         
     def deleteFile(self, isPhoto, isVar):
         print("deletefile: %s/%s" % (isPhoto, isVar))
-
+        
+    def getFileListWidget(self, isPhoto, isVar):
+        if isPhoto:
+            if isVar:
+                return self.ui.listWidget_photo_var
+            else: 
+                return self.ui.listWidget_photo
+        else:
+            if isVar:
+               return self.ui.listWidget_doc_var
+            else:
+                return self.ui.listWidget_doc
     
     def getDbConnection(self):
         return db.connect(self.dbName)
@@ -304,7 +324,7 @@ class DynamicGuiLoader(QDialog):
         map = {}
         for name in names:
             n = name[1].replace(' ', '_')
-            map[n] =  data[name[0]]
+            map[n] = data[name[0]]
         return map
     
     '''

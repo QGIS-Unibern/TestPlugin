@@ -357,20 +357,10 @@
        </item>
       </layout>
      </widget>
-     <widget class="QListView" name="listView_fotos_var">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>440</y>
-        <width>256</width>
-        <height>121</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="button_open_photo_var">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>440</y>
         <width>31</width>
         <height>27</height>
@@ -416,7 +406,7 @@
      <widget class="QPushButton" name="button_add_photo_var">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>470</y>
         <width>31</width>
         <height>27</height>
@@ -436,7 +426,7 @@
      <widget class="QPushButton" name="button_delete_photo_var">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>500</y>
         <width>31</width>
         <height>27</height>
@@ -482,7 +472,7 @@
      <widget class="QPushButton" name="button_add_doc_var">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>470</y>
         <width>31</width>
         <height>27</height>
@@ -502,7 +492,7 @@
      <widget class="QPushButton" name="button_open_doc_var">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>440</y>
         <width>31</width>
         <height>27</height>
@@ -519,20 +509,10 @@
         <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
       </property>
      </widget>
-     <widget class="QListView" name="listView_docs_var">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>440</y>
-        <width>256</width>
-        <height>121</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QPushButton" name="button_delete_doc_var">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>500</y>
         <width>31</width>
         <height>27</height>
@@ -547,6 +527,26 @@
       <property name="icon">
        <iconset>
         <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget_photo_var">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>440</y>
+        <width>261</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget_doc_var">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>440</y>
+        <width>261</width>
+        <height>121</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -709,7 +709,7 @@
      <widget class="QPushButton" name="button_add_doc">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>470</y>
         <width>31</width>
         <height>27</height>
@@ -729,7 +729,7 @@
      <widget class="QPushButton" name="button_add_photo">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>470</y>
         <width>31</width>
         <height>27</height>
@@ -749,7 +749,7 @@
      <widget class="QPushButton" name="button_open_doc">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>440</y>
         <width>31</width>
         <height>27</height>
@@ -764,16 +764,6 @@
       <property name="icon">
        <iconset>
         <normaloff>icons/open.png</normaloff>icons/open.png</iconset>
-      </property>
-     </widget>
-     <widget class="QListView" name="listView_docs">
-      <property name="geometry">
-       <rect>
-        <x>350</x>
-        <y>440</y>
-        <width>256</width>
-        <height>121</height>
-       </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_dokumente">
@@ -792,7 +782,7 @@
      <widget class="QPushButton" name="button_open_photo">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>440</y>
         <width>31</width>
         <height>27</height>
@@ -812,7 +802,7 @@
      <widget class="QPushButton" name="button_delete_doc">
       <property name="geometry">
        <rect>
-        <x>610</x>
+        <x>620</x>
         <y>500</y>
         <width>31</width>
         <height>27</height>
@@ -827,22 +817,12 @@
       <property name="icon">
        <iconset>
         <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
-      </property>
-     </widget>
-     <widget class="QListView" name="listView_fotos">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>440</y>
-        <width>256</width>
-        <height>121</height>
-       </rect>
       </property>
      </widget>
      <widget class="QPushButton" name="button_delete_photo">
       <property name="geometry">
        <rect>
-        <x>270</x>
+        <x>280</x>
         <y>500</y>
         <width>31</width>
         <height>27</height>
@@ -857,6 +837,26 @@
       <property name="icon">
        <iconset>
         <normaloff>icons/delete.png</normaloff>icons/delete.png</iconset>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget_photo">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>440</y>
+        <width>261</width>
+        <height>121</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QListWidget" name="listWidget_doc">
+      <property name="geometry">
+       <rect>
+        <x>350</x>
+        <y>440</y>
+        <width>261</width>
+        <height>121</height>
+       </rect>
       </property>
      </widget>
     </widget>
