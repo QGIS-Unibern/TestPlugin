@@ -173,8 +173,9 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    Fig(Path(data[0][0], fill="blue", local="true"), trans="-30*x, -30*y").SVG().save("tmp.svg")
-    svg = svg2rlg("tmp.svg")
+    Fig(Path(data[0][0], fill="blue", local="true"), trans="-30*x, -30*y").SVG().save(here + "tmp.svg")
+    svg = svg2rlg(here + "tmp.svg")
+    os.remove(here + "tmp.svg")
     return svg
 
 '''
