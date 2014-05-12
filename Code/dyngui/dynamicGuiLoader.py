@@ -139,7 +139,7 @@ class DynamicGuiLoader(QDialog):
         view = self.getFileListWidget(isPhoto, isVar)
         if view.currentRow() >= 0:
             item = view.takeItem(view.currentRow())
-            deleteFile(item.text(), isPhoto, isVar)
+            self.deleteFile(item.text(), isPhoto, isVar)
             
     def deleteFile(self, filename, isPhoto, isVar):
         tblName = self.getFileTableName(isPhoto, isVar)
