@@ -76,6 +76,7 @@ class dyngui:
         self.info = QAction(
             QIcon(":/plugins/dyngui/res/icons/info.png"),
             u"Identify Dynamic Gui", self.iface.mainWindow())
+        self.info.setCheckable(True)
         
         # Create action to open export dialog
         self.exportaction = QAction(
