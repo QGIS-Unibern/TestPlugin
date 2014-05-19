@@ -28,7 +28,7 @@ class SpatiaLiteExporterTest(unittest.TestCase):
         varAttributes = ['Event', 'Art der Arbeit', 'Person']
         constAttributes = ['Strasse', 'Abschnitt', 'Breite Weg links', 'Schmutzwasser']
         exporter.exportPDF(CONST_SQLITE_FILENAME, 
-                           "newProject", [1,2], [constAttributes, varAttributes],curDir + "test.pdf")
+                           "newProject", [1,2,3,4], [constAttributes, varAttributes],curDir + "test.pdf")
     
     def testGetConstAttributes(self):
         conn = db.connect(CONST_SQLITE_FILENAME)
