@@ -70,6 +70,11 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.button_delete_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, True, False))
         self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, True))
         self.connect(self.ui.button_delete_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, False))
+        
+        self.listWidget_photo_var.itemDoubleClicked.connect(functools.partial(self.openFile, True, True))
+        self.listWidget_photo.itemDoubleClicked.connect(functools.partial(self.openFile, True, False))
+        self.listWidget_doc_var.itemDoubleClicked.connect(functools.partial(self.openFile, False, True))
+        self.listWidget_doc.itemDoubleClicked.connect(functools.partial(self.openFile, False, False))
 
 
         try:
@@ -111,7 +116,7 @@ class DynamicGuiLoader(QDialog):
         fileTypes = ""
         if isPhoto:
             fileTypes = "Bilder (*.jpg *.jpeg *.png *.gif *.bmp *.tiff)"
-        read = QFileDialog.getOpenFileName(self ,"Open a Guimask", filter=fileTypes)
+        read = QFileDialog.getOpenFileName(self ,"Datei auswählen", filter=fileTypes)
         
         if read and read.strip():
             view = self.getFileListWidget(isPhoto, isVar)
