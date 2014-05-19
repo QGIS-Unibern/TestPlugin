@@ -70,7 +70,7 @@ class DynamicGuiLoader(QDialog):
         self.connect(self.ui.button_delete_photo, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, True, False))
         self.connect(self.ui.button_delete_doc_var, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, True))
         self.connect(self.ui.button_delete_doc, QtCore.SIGNAL("clicked()"), functools.partial(self.removeFile, False, False))
-        
+        # Add doubleclick to document-listwidgets
         self.listWidget_photo_var.itemDoubleClicked.connect(functools.partial(self.openFile, True, True))
         self.listWidget_photo.itemDoubleClicked.connect(functools.partial(self.openFile, True, False))
         self.listWidget_doc_var.itemDoubleClicked.connect(functools.partial(self.openFile, False, True))
@@ -98,6 +98,14 @@ class DynamicGuiLoader(QDialog):
         self.exec_()
         
     '''
+    Info to the file handling:
+    To add/remove files, there exitsts 4 ListWidgets: for photos or documents and for constant or variable data.
+    For each of these widgets, there exists also a database table.
+    The handling for these widgets is always the same. So the methods for file-stuff require two boolean
+    variables: isPhoto and isVar to determine the correct listWidget and table.
+    '''
+        
+    '''
     Evaluates the selected file from the correct file-ListWidget and opens with the default application
     '''
     def openFile(self, isPhoto, isVar):
@@ -112,6 +120,9 @@ class DynamicGuiLoader(QDialog):
             elif os.name == 'posix':
                 subprocess.call(('xdg-open', file))
         
+    '''
+    Opens a filechooser and adds the selected file to the corresponding listWidget and database.
+    '''
     def addFile(self, isPhoto, isVar):
         fileTypes = ""
         if isPhoto:
@@ -124,6 +135,9 @@ class DynamicGuiLoader(QDialog):
                 view.addItem(read)
                 self.persistFile(read, isPhoto, isVar)
     
+    '''
+    Persists the filename to the database.
+    '''
     def persistFile(self, filename, isPhoto, isVar):
         tblName = self.getFileTableName(isPhoto, isVar)
         dataId = self.varId if isVar else self.id
@@ -139,13 +153,19 @@ class DynamicGuiLoader(QDialog):
             if conn:
                 conn.commit()
                 conn.close()      
-        
+    
+    '''
+    Removes the selected file from the listWidget and the database.
+    '''
     def removeFile(self, isPhoto, isVar):
         view = self.getFileListWidget(isPhoto, isVar)
         if view.currentRow() >= 0:
             item = view.takeItem(view.currentRow())
             self.deleteFile(item.text(), isPhoto, isVar)
-            
+    
+    '''
+    Deletes the file from the database
+    '''
     def deleteFile(self, filename, isPhoto, isVar):
         tblName = self.getFileTableName(isPhoto, isVar)
         dataId = self.varId if isVar else self.id
@@ -161,7 +181,10 @@ class DynamicGuiLoader(QDialog):
                 conn.commit()
                 conn.close()
 
-        
+    
+    '''
+    Finds the correct listWidget according to isPhoto and isVar
+    '''
     def getFileListWidget(self, isPhoto, isVar):
         if isPhoto:
             if isVar:
@@ -177,11 +200,17 @@ class DynamicGuiLoader(QDialog):
     def getDbConnection(self):
         return db.connect(self.dbName)
     
+    '''
+    Returns the correct table-name for the files.
+    '''
     def getFileTableName(self, isPhoto, isVar):
         type = "fotos" if isPhoto else "doc"
         var = "var" if isVar else "const"
         return "%s_%s_%s " % (self.guiName, type, var)
     
+    '''
+    Loads the file-data from the database and puts it to the listWidget.
+    '''
     def loadFileData(self, cursor, isVar):
         vals = [True, False]
         for isPhoto in vals:
@@ -191,6 +220,10 @@ class DynamicGuiLoader(QDialog):
             for data in result:
                 widget.addItem(data)
     
+    '''
+    loads the file-paths from the database.
+    Returns a list fof strings.
+    '''
     def loadFileData2(self, cursor, isPhoto, isVar):
         dataId = self.varId if isVar else self.id
         table = self.getFileTableName(isPhoto, isVar)
