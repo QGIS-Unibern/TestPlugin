@@ -56,8 +56,8 @@ Formats the tables for reportlab
 def formatData(tabledata, doc):
     elements = []
     constData = []
-    elements.append(GraphicsFlowable(tabledata[4]))
-    elements.append(Spacer(width=1, height=20))
+    #elements.append(GraphicsFlowable(tabledata[4]))
+    elements.append(Spacer(width=1, height=30))
     style = ParagraphStyle(name='Normal',
                            fontName='Helvetica-Bold',
                            fontSize=9,)
@@ -178,7 +178,7 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    t = "abs(x), abs(y)"
+    t = "x*x, y*y"
     fig = Fig(Path(data[0][0], fill="blue", local="true"), trans=t).SVG()
     svgfig._canvas_defaults["width"] = "100px"
     svgfig._canvas_defaults["height"] = "100px"

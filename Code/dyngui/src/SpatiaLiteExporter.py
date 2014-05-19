@@ -11,6 +11,7 @@ sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/svglib-0.6.3/src
 
 from pyspatialite import dbapi2 as db
 from svgfig import *
+import svgfig as svgfig
 from svglib.svglib import svg2rlg
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
@@ -41,6 +42,10 @@ def exportPDF(spatiaLitePath, table, objectIds, attributeNames, outputPath):
     for index in objectIds:
         tabledata.append(extractData(spatiaLitePath, table, index, attributeNames))
     doc = Document(outputPath, table)
+    style = ParagraphStyle(name='Normal',
+                           fontName='Helvetica-Bold',
+                           fontSize=12,)
+    doc.append([Paragraph(table,style)])
     for index, value in enumerate(objectIds):
         doc.append(formatData(tabledata[index], doc))
     doc.build()
@@ -51,8 +56,8 @@ Formats the tables for reportlab
 def formatData(tabledata, doc):
     elements = []
     constData = []
-    elements.append(GraphicsFlowable(tabledata[4]))
-    elements.append(Spacer(width=1, height=20))
+    #elements.append(GraphicsFlowable(tabledata[4]))
+    elements.append(Spacer(width=1, height=30))
     style = ParagraphStyle(name='Normal',
                            fontName='Helvetica-Bold',
                            fontSize=9,)
@@ -173,7 +178,12 @@ def getGeometryImage(cursor, tableName, id):
     sql = "SELECT AsSvg(geometry) FROM '" + tableName + "' WHERE id =" + `id`
     cursor.execute(sql)
     data = cursor.fetchall()
-    Fig(Path(data[0][0], fill="blue", local="true"), trans="-30*x, -30*y").SVG().save(here + "tmp.svg")
+    t = "x*x, y*y"
+    fig = Fig(Path(data[0][0], fill="blue", local="true"), trans=t).SVG()
+    svgfig._canvas_defaults["width"] = "100px"
+    svgfig._canvas_defaults["height"] = "100px"
+    svgfig._canvas_defaults["viewBox"] = "0 0 100 100"
+    fig.save(here + "tmp.svg")
     svg = svg2rlg(here + "tmp.svg")
     os.remove(here + "tmp.svg")
     return svg
