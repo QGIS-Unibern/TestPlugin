@@ -47,7 +47,7 @@ def createTables(statNames, varNames, projectName, outputPath):
     sql = "CREATE TABLE '" + projectName + "' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
     for attribute in statNames:
-        sql += "'" + attribute[0] + "' " + attribute[1] + ","
+        sql += "'" + str(attribute[0]) + "' " + str(attribute[1]) + ","
     sql = sql[:-1]
     sql += ")"
     cur.execute(sql)
@@ -60,7 +60,7 @@ def createTables(statNames, varNames, projectName, outputPath):
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
     sql += "parent_id INTEGER REFERENCES '" + projectName + "' (id),"
     for attribute in varNames:
-        sql += "'" + attribute[0] + "' " + attribute[1] + ","
+        sql += "'" + str(attribute[0]) + "' " + str(attribute[1]) + ","
     sql = sql[:-1]
     sql += ")"
     cur.execute(sql)
