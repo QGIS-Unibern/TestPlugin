@@ -115,7 +115,7 @@ class dyngui:
     def export(self):
         layer = self.iface.activeLayer()
         if not (layer is None):
-            features = layer.getFeatures()
+            features = layer.selectedFeatures()
             idx = layer.fieldNameIndex('id')
             objectIDs = []
             for f in features:
