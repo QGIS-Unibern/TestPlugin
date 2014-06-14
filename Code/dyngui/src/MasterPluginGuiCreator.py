@@ -25,7 +25,7 @@ def createPluginGui(excelPath, xmlPath, outputPath):
         else:
             setWidgetInvisible(widget)
     
-    tree.write(outputPath)
+    tree.write(outputPath, encoding="UTF-8")
     
 def setWidgetText(widget, element):
     textProp = widget.find("./property[@name='text']")
@@ -64,6 +64,7 @@ def importExcel(filename):
         
         isVariabel = row[1].value.count('variabel') > 0
         name = row[2].value
+
         fieldType = row[3].value
         comboItems = []
         if fieldType and fieldType.lower() == 'combobox':

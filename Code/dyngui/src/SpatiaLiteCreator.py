@@ -44,10 +44,10 @@ def createTables(statNames, varNames, projectName, outputPath):
     
     sql = "SELECT InitSpatialMetadata()"
     cur.execute(sql)
-    sql = "CREATE TABLE '" + projectName + "' ("
+    sql = u"CREATE TABLE '" + projectName + "' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
     for attribute in statNames:
-        sql += "'" + str(attribute[0]) + "' " + str(attribute[1]) + ","
+        sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
     sql += ")"
     cur.execute(sql)
@@ -56,11 +56,11 @@ def createTables(statNames, varNames, projectName, outputPath):
     sql += "'geometry', 4326, 'POLYGON', 'XY')" 
     cur.execute(sql)
     
-    sql = "CREATE TABLE '" + projectName + "_var' ("
+    sql = u"CREATE TABLE '" + projectName + "_var' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"
     sql += "parent_id INTEGER REFERENCES '" + projectName + "' (id),"
     for attribute in varNames:
-        sql += "'" + str(attribute[0]) + "' " + str(attribute[1]) + ","
+        sql += "'" + attribute[0] + "' " + attribute[1] + ","
     sql = sql[:-1]
     sql += ")"
     cur.execute(sql)
