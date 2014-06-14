@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/xlrd-0.9.2')))
 import xlrd
 from xml.etree import ElementTree
 import re
+import unicodedata
 
 '''
 This is the main method from this class. It parses the excel and XMl file and creates the XML-GUI to outputPath.
@@ -31,6 +32,9 @@ def setWidgetText(widget, element):
     textProp = widget.find("./property[@name='text']")
     if textProp is not None:
         textProp.find("./string").text = element.name
+    # Normalize (converts unicode to ascii) the elementname for the widget and the database name
+    if type(element.name) is unicode:
+        element.name =  unicodedata.normalize('NFKD', element.name).encode('ascii','ignore')
     name = widget.get('name')
     name = name.split('_')[0] + ('_' + element.name.replace(' ', '_'))
     widget.set('name', name)

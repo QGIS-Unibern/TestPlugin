@@ -6,6 +6,8 @@ import sys, os
 here = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.normpath(os.path.join(here, '../libs/pyspatialite-2.6.1')))
 
+import unicodedata
+
 import MasterPluginGuiCreator as guiCreator
 from pyspatialite import dbapi2 as db
 
@@ -25,11 +27,14 @@ def extractAttributeNames(excelElements):
     '''
     varNames = []
     statNames = []
-    for key, ExcelRow in excelElements.iteritems():
-        if ExcelRow.isVariabel == 1:
-            varNames.append([ExcelRow.name, ' VARCHAR(50)'])
+    for key, excelRow in excelElements.iteritems():
+        # Normalize (converts unicode to ascii) the elementname for the widget and the database name
+        if type(excelRow.name) is unicode:
+            excelRow.name =  unicodedata.normalize('NFKD', excelRow.name).encode('ascii','ignore')
+        if excelRow.isVariabel == 1:
+            varNames.append([excelRow.name, ' VARCHAR(50)'])
         else:
-            statNames.append([ExcelRow.name, ' VARCHAR(50)'])
+            statNames.append([excelRow.name, ' VARCHAR(50)'])
     return [statNames, varNames]
         
     
