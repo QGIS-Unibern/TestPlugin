@@ -47,7 +47,7 @@ def createTables(statNames, varNames, projectName, outputPath):
     conn = db.connect(outputPath+'/'+projectName+'.sqlite')
     cur = conn.cursor()
     
-    sql = "SELECT InitSpatialMetadata()"
+    sql = "SELECT InitSpatialMetadata(1)"
     cur.execute(sql)
     sql = u"CREATE TABLE '" + projectName + "' ("
     sql += "id INTEGER PRIMARY KEY AUTOINCREMENT,"

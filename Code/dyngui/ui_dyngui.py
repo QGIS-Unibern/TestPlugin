@@ -70,7 +70,6 @@ class Ui_dyngui(object):
         self.connect(self.b_database, QtCore.SIGNAL('clicked()'), self.database)
 
     def apply(self):
-        QMessageBox.warning(None, "Note", "The next operation might take a few minutes to complete. Please click 'OK' and wait until the configuration window closes.")
         excel = self.l_excel.text()
         database = self.l_database.text()
         name = self.tl_name.text()
